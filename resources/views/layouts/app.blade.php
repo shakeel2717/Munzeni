@@ -171,14 +171,11 @@
             <div data-simplebar class="h-100">
                 <div id="sidebar-menu">
                     <ul class="metismenu list-unstyled" id="side-menu">
-                        <li class="menu-title">Menu</li>
-
-                        <li>
-                            <a href="{{ route('user.dashboard.index') }}" class="waves-effect">
-                                <i class="ri-dashboard-line"></i>
-                                <span>Dashboard</span>
-                            </a>
-                        </li>
+                        @if (auth()->user()->role == 'user')
+                            @include('inc.nav.user')
+                        @else
+                            @include('inc.nav.admin')
+                        @endif
                     </ul>
                 </div>
             </div>
@@ -254,6 +251,7 @@
     <script src="/assets/js/pages/dashboard.init.js"></script>
 
     <script src="/assets/js/app.js"></script>
+    <x-alert />
 
 </body>
 

@@ -8,7 +8,7 @@
                     <div class="media">
                         <div class="media-body overflow-hidden">
                             <p class="text-truncate font-size-14 mb-2">Available Balance</p>
-                            <h4 class="mb-0">${{ number_format(0, 2) }}</h4>
+                            <h4 class="mb-0">${{ number_format(auth()->user()->getBalance(auth()->user()->id),2) }}</h4>
                         </div>
                         <div class="text-primary">
                             <i class="ri-stack-line font-size-24"></i>
@@ -29,7 +29,7 @@
                     <div class="media">
                         <div class="media-body overflow-hidden">
                             <p class="text-truncate font-size-14 mb-2">Total Income</p>
-                            <h4 class="mb-0">${{ number_format(0, 2) }}</h4>
+                            <h4 class="mb-0">${{ number_format(auth()->user()->allIncome(auth()->user()->id),2) }}</h4>
                         </div>
                         <div class="text-primary">
                             <i class="ri-stack-line font-size-24"></i>
@@ -50,7 +50,7 @@
                     <div class="media">
                         <div class="media-body overflow-hidden">
                             <p class="text-truncate font-size-14 mb-2">Total Withdarawls</p>
-                            <h4 class="mb-0">${{ number_format(0, 2) }}</h4>
+                            <h4 class="mb-0">${{ number_format(auth()->user()->allWithdraw(auth()->user()->id),2) }}</h4>
                         </div>
                         <div class="text-primary">
                             <i class="ri-stack-line font-size-24"></i>

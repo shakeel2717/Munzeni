@@ -27,6 +27,35 @@ class User extends Authenticatable implements MustVerifyEmail
         'password',
     ];
 
+    public function getBalance($user_id)
+    {
+        $in = Transaction::where('user_id', $user_id)->where('sum', true)->sum('amount');
+        $out = Transaction::where('user_id', $user_id)->where('sum', false)->sum('amount');
+        return $in - $out;
+    }
+
+
+    public function allIncome($user_id)
+    {
+        $in = Transaction::where('user_id', $user_id)->where('type', '!=', 'deposit')->where('sum', true)->sum('amount');
+        return $in;
+    }
+
+    public function allWithdraw($user_id)
+    {
+        $in = Transaction::where('user_id', $user_id)->where('type', 'withdraw')->where('sum', false)->sum('amount');
+        return $in;
+    }
+
+
+
+
+
+
+
+
+
+
     /**
      * The attributes that should be hidden for serialization.
      *
@@ -46,4 +75,9 @@ class User extends Authenticatable implements MustVerifyEmail
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+    public function transactions()
+    {
+        return $this->hasMany(Transaction::class);
+    }
 }
