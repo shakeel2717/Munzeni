@@ -30,14 +30,17 @@ class WithdrawController extends Controller
     public function store(Request $request)
     {
         $validatedData = $request->validate([
-            'currency_id' => 'required|string|exists:currencies,id',
             'amount' => 'required|numeric|digits_between:1,999999',
-            'wallet' => 'required|string|min:12',
         ]);
 
         // checking if available balance is enough
         if (auth()->user()->getBalance() < $validatedData['amount']) {
             // return back()->withErrors(['Insufficient Balance']);
+        }
+
+        // checking if available balance is enough
+        if (!isset(auth()->user()->wallet)) {
+            return redirect()->route('user.wallet.index')->withErrors(['Please Update Your wallet First']);
         }
 
         // checking if available balance is enough
@@ -55,8 +58,8 @@ class WithdrawController extends Controller
 
 
         $withdraw = auth()->user()->withdraws()->create([
-            'currency_id' => $validatedData['currency_id'],
-            'wallet' => $validatedData['wallet'],
+            'currency_id' => auth()->user()->wallet->currency_id,
+            'wallet' => auth()->user()->wallet->wallet,
             'amount' => $amount,
         ]);
 
@@ -67,7 +70,7 @@ class WithdrawController extends Controller
             'amount' => $amount,
             'sum' => false,
             'status' => false,
-            'reference' => "Withdrawal Request to : " . $validatedData['wallet'],
+            'reference' => "Withdrawal Request to : " . auth()->user()->wallet->wallet,
         ]);
 
         if (settings('withdraw_fees') > 0) {
@@ -77,7 +80,7 @@ class WithdrawController extends Controller
                 'amount' => $fees,
                 'sum' => false,
                 'status' => false,
-                'reference' => "Total Withdraw Amount: " . $amount . " to : " . $validatedData['wallet'],
+                'reference' => "Total Withdraw Amount: " . $amount . " to : " . auth()->user()->wallet->wallet,
             ]);
         }
 

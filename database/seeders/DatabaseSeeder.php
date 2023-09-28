@@ -56,7 +56,7 @@ class DatabaseSeeder extends Seeder
 
         $setting = Setting::firstOrCreate([
             'key' => 'withdraw',
-            'value' => false,
+            'value' => true,
         ]);
     }
 }
