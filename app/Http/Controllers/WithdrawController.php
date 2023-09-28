@@ -37,28 +37,51 @@ class WithdrawController extends Controller
 
         // checking if available balance is enough
         if (auth()->user()->getBalance() < $validatedData['amount']) {
-            return back()->withErrors(['Insufficient Balance']);
+            // return back()->withErrors(['Insufficient Balance']);
         }
+
+        // checking if available balance is enough
+        if (settings('withdraw') == false) {
+            return back()->withErrors(['Withdraw Temporary Off, Please try again later']);
+        }
+
+        $amount = $validatedData['amount'];
+
+        // checking if withdrawal fees is enable
+        if (settings('withdraw_fees') > 0) {
+            $fees = $validatedData['amount'] * settings('withdraw_fees') / 100;
+            $amount = $amount - $fees;
+        }
+
 
         $withdraw = auth()->user()->withdraws()->create([
             'currency_id' => $validatedData['currency_id'],
             'wallet' => $validatedData['wallet'],
-            'amount' => $validatedData['amount'],
+            'amount' => $amount,
         ]);
 
         // adding balance to this user
         $transaction = auth()->user()->transactions()->create([
             'withdraw_id' => $withdraw->id,
             'type' => 'withdraw',
-            'amount' => $validatedData['amount'],
+            'amount' => $amount,
             'sum' => false,
             'status' => false,
             'reference' => "Withdrawal Request to : " . $validatedData['wallet'],
         ]);
 
+        if (settings('withdraw_fees') > 0) {
+            $transaction = auth()->user()->transactions()->create([
+                'withdraw_id' => $withdraw->id,
+                'type' => 'withdraw fees',
+                'amount' => $fees,
+                'sum' => false,
+                'status' => false,
+                'reference' => "Total Withdraw Amount: " . $amount . " to : " . $validatedData['wallet'],
+            ]);
+        }
 
-
-        return back()->with('success', 'Deposit Added Successfully');
+        return back()->with('success', 'Withdraw Request Successfully Sent');
     }
 
     /**

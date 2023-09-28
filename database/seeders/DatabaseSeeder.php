@@ -5,6 +5,7 @@ namespace Database\Seeders;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
 use App\Models\Currency;
+use App\Models\Setting;
 use App\Models\User;
 use Illuminate\Database\Seeder;
 
@@ -45,6 +46,17 @@ class DatabaseSeeder extends Seeder
             'symbol' => 'BTC',
             'network' => 'BTC',
             'code' => 'BTC',
+        ]);
+
+
+        $setting = Setting::firstOrCreate([
+            'key' => 'withdraw_fees',
+            'value' => 5,
+        ]);
+
+        $setting = Setting::firstOrCreate([
+            'key' => 'withdraw',
+            'value' => false,
         ]);
     }
 }

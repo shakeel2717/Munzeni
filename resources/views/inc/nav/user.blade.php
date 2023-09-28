@@ -15,3 +15,9 @@
         <span>Withdraw Request</span>
     </a>
 </li>
+<li>
+    <a href="{{ route('user.wallet.index') }}" class="waves-effect">
+        <i class="ri-dashboard-line"></i>
+        <span>Withdraw Methods</span>
+    </a>
+</li>
