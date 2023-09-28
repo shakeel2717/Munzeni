@@ -11,14 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('transactions', function (Blueprint $table) {
+        Schema::create('currencies', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained()->cascadeOnDelete()->cascadeOnUpdate();
-            $table->string('type');
-            $table->double('amount');
-            $table->boolean('sum')->default(true);
+            $table->string('name');
+            $table->string('symbol');
+            $table->string('network');
+            $table->string('code');
             $table->boolean('status')->default(true);
-            $table->longText('reference')->nullable();
             $table->timestamps();
         });
     }
@@ -28,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('transactions');
+        Schema::dropIfExists('currencies');
     }
 };

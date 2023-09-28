@@ -27,23 +27,23 @@ class User extends Authenticatable implements MustVerifyEmail
         'password',
     ];
 
-    public function getBalance($user_id)
+    public function getBalance()
     {
-        $in = Transaction::where('user_id', $user_id)->where('sum', true)->sum('amount');
-        $out = Transaction::where('user_id', $user_id)->where('sum', false)->sum('amount');
+        $in = Transaction::where('user_id',  $this->id)->where('sum', true)->sum('amount');
+        $out = Transaction::where('user_id', $this->id)->where('sum', false)->sum('amount');
         return $in - $out;
     }
 
 
-    public function allIncome($user_id)
+    public function allIncome()
     {
-        $in = Transaction::where('user_id', $user_id)->where('type', '!=', 'deposit')->where('sum', true)->sum('amount');
+        $in = Transaction::where('user_id', $this->id)->where('type', '!=', 'deposit')->where('sum', true)->sum('amount');
         return $in;
     }
 
-    public function allWithdraw($user_id)
+    public function allWithdraw()
     {
-        $in = Transaction::where('user_id', $user_id)->where('type', 'withdraw')->where('sum', false)->sum('amount');
+        $in = Transaction::where('user_id', $this->id)->where('type', 'withdraw')->where('sum', false)->sum('amount');
         return $in;
     }
 
@@ -79,5 +79,10 @@ class User extends Authenticatable implements MustVerifyEmail
     public function transactions()
     {
         return $this->hasMany(Transaction::class);
+    }
+
+    public function withdraws()
+    {
+        return $this->hasMany(Withdraw::class);
     }
 }
