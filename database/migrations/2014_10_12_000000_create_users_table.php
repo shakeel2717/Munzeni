@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('password');
             $table->enum('role', ['user', 'admin'])->default('user');
             $table->enum('status', ['pending', 'active', 'suspend'])->default('pending');
+            $table->string('refer')->default('default');
             $table->rememberToken();
             $table->timestamps();
         });

@@ -30,3 +30,18 @@
         <span>Investment Plan</span>
     </a>
 </li>
+
+<li class="menu-title">Account Settings</li>
+
+<li>
+    <a href="{{ route('user.profile.index') }}" class="waves-effect">
+        <i class="ri-dashboard-line"></i>
+        <span>My Profile</span>
+    </a>
+</li>
+<li>
+    <a href="{{ route('user.password.index') }}" class="waves-effect">
+        <i class="ri-dashboard-line"></i>
+        <span>Change Password</span>
+    </a>
+</li>

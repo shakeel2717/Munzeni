@@ -3,15 +3,16 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
-class ProfileController extends Controller
+class PasswordController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        return view('user.profile.index');
+        return view('user.profile.password');
     }
 
     /**
@@ -28,14 +29,20 @@ class ProfileController extends Controller
     public function store(Request $request)
     {
         $validatedData = $request->validate([
-            'name' => 'required|string',
+            'current_password' => 'required|string|min:8',
+            'password' => 'required|confirmed|string|min:8',
         ]);
 
+        // checking if this user password is correct
+        if (!Hash::check($validatedData['current_password'], auth()->user()->password)) {
+            return back()->withErrors(['Current password is incorrect, Please try again']);
+        }
+
         // updating this user record
-        auth()->user()->name = $validatedData['name'];
+        auth()->user()->password = bcrypt($validatedData['password']);
         auth()->user()->save();
 
-        return back()->with('success', 'User Profile updated successfully');
+        return back()->with('success', 'Password updated successfully');
     }
 
     /**
