@@ -56,6 +56,12 @@ class User extends Authenticatable implements MustVerifyEmail
         return $in;
     }
 
+    public function directCommission()
+    {
+        $in = Transaction::where('user_id', $this->id)->where('type', 'direct commission')->where('sum', true)->sum('amount');
+        return $in;
+    }
+
     public function totalTodayProfit()
     {
         $in = Transaction::where('user_id', $this->id)
