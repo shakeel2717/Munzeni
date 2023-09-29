@@ -11,16 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('transactions', function (Blueprint $table) {
+        Schema::create('user_plans', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained()->cascadeOnDelete()->cascadeOnUpdate();
-            $table->string('type');
-            $table->double('amount');
-            $table->boolean('sum')->default(true);
+            $table->foreignId('plan_id')->constrained()->cascadeOnDelete()->cascadeOnUpdate();
+            $table->string('amount');
             $table->boolean('status')->default(true);
-            $table->longText('reference')->nullable();
-            $table->foreignId('withdraw_id')->nullable()->constrained()->cascadeOnDelete()->cascadeOnUpdate();
-            $table->foreignId('user_plan_id')->nullable()->constrained()->cascadeOnDelete()->cascadeOnUpdate();
             $table->timestamps();
         });
     }
@@ -30,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('transactions');
+        Schema::dropIfExists('user_plans');
     }
 };

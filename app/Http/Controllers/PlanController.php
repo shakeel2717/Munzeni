@@ -12,7 +12,8 @@ class PlanController extends Controller
      */
     public function index()
     {
-        //
+        $plans = Plan::get();
+        return view('user.plan.index', compact('plans'));
     }
 
     /**
@@ -28,7 +29,60 @@ class PlanController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validatedData = $request->validate([
+            'plan_id' => 'required|exists:plans,id',
+            'amount' => 'required|min:1|max:99999999999',
+        ]);
+
+        // getting this plan
+        $plan = Plan::findOrFail($validatedData['plan_id']);
+
+        // checking if available balance is enough
+        if (auth()->user()->getBalance() < $validatedData['amount']) {
+            return back()->withErrors(['Insufficient Balance']);
+        }
+
+        // checking if this plan is valid
+        if ($validatedData['amount'] <= $plan->min_invest && $validatedData['amount'] >= $plan->max_invest) {
+            return back()->withErrors(['Min amount to invest ' . $plan->min_invest . ' and max amount: ' . $plan->max_invest]);
+        }
+
+        $amount = $validatedData['amount'];
+        $plan_active_fees = settings('plan_active_fees');
+
+        if ($plan_active_fees > 0) {
+            $fees =  $amount * $plan_active_fees / 100;
+            $amount = $amount - $fees;
+        }
+
+        // activating User Plan
+        $userPlan = auth()->user()->userPlan()->create([
+            'plan_id' => $plan->id,
+            'amount' => $amount,
+            'status' => true,
+        ]);
+
+        $transaction = auth()->user()->transactions()->create([
+            'user_plan_id' => $userPlan->id,
+            'type' => 'plan active',
+            'amount' => $amount,
+            'sum' => false,
+            'status' => false,
+            'reference' => "Invest in Plan : " . $plan->name,
+        ]);
+
+        if ($plan_active_fees > 0) {
+            $transaction = auth()->user()->transactions()->create([
+                'user_plan_id' => $userPlan->id,
+                'type' => 'plan active fees',
+                'amount' => $fees,
+                'sum' => false,
+                'status' => false,
+                'reference' => "Invest fees in Plan : " . $plan->name,
+            ]);
+        }
+
+        return back()->with('success', 'Plan Activated Successfully');
     }
 
     /**

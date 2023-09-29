@@ -48,6 +48,10 @@ class WithdrawController extends Controller
             return back()->withErrors(['Withdraw Temporary Off, Please try again later']);
         }
 
+        if (settings('min_withdraw') > $validatedData['amount']) {
+            return back()->withErrors(['Min Withdraw Amount is: ' . settings('min_withdraw')]);
+        }
+
         $amount = $validatedData['amount'];
 
         // checking if withdrawal fees is enable

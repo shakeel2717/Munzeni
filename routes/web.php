@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\LandingPageController;
+use App\Http\Controllers\PlanController;
 use App\Http\Controllers\user\DashboardController;
 use App\Http\Controllers\WalletController;
 use App\Http\Controllers\WithdrawController;
@@ -12,6 +13,7 @@ Route::prefix('user/')->name('user.')->middleware('auth', 'verified')->group(fun
     Route::resource('/dashboard', DashboardController::class);
     Route::resource('/withdraw', WithdrawController::class);
     Route::resource('/wallet', WalletController::class);
+    Route::resource('/plan', PlanController::class);
 });
 
 

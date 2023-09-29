@@ -21,3 +21,12 @@
         <span>Withdraw Methods</span>
     </a>
 </li>
+
+<li class="menu-title">Investment Plans</li>
+
+<li>
+    <a href="{{ route('user.plan.index') }}" class="waves-effect">
+        <i class="ri-dashboard-line"></i>
+        <span>Investment Plan</span>
+    </a>
+</li>

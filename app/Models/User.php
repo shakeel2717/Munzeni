@@ -4,6 +4,7 @@ namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 
+use Carbon\Carbon;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -24,6 +25,7 @@ class User extends Authenticatable implements MustVerifyEmail
         'email',
         'username',
         'role',
+        'status',
         'password',
     ];
 
@@ -44,6 +46,21 @@ class User extends Authenticatable implements MustVerifyEmail
     public function allWithdraw()
     {
         $in = Transaction::where('user_id', $this->id)->where('type', 'withdraw')->where('sum', false)->sum('amount');
+        return $in;
+    }
+
+    public function totalProfit()
+    {
+        $in = Transaction::where('user_id', $this->id)->where('type', 'daily profit')->where('sum', true)->sum('amount');
+        return $in;
+    }
+
+    public function totalTodayProfit()
+    {
+        $in = Transaction::where('user_id', $this->id)
+            ->whereDate('created_at', Carbon::today())
+            ->where('type', 'daily profit')
+            ->where('sum', true)->sum('amount');
         return $in;
     }
 
@@ -84,6 +101,16 @@ class User extends Authenticatable implements MustVerifyEmail
     public function withdraws()
     {
         return $this->hasMany(Withdraw::class);
+    }
+
+    public function userPlan()
+    {
+        return $this->hasMany(UserPlan::class);
+    }
+
+    public function userActivePlan()
+    {
+        return $this->hasOne(UserPlan::class)->where('status', true);
     }
 
     public function wallet()
