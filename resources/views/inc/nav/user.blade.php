@@ -40,6 +40,12 @@
     </a>
 </li>
 <li>
+    <a href="{{ route('user.kyc.create') }}" class="waves-effect">
+        <i class="ri-dashboard-line"></i>
+        <span>KYC Verification</span>
+    </a>
+</li>
+<li>
     <a href="{{ route('user.password.index') }}" class="waves-effect">
         <i class="ri-dashboard-line"></i>
         <span>Change Password</span>

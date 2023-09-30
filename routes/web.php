@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\KycController;
 use App\Http\Controllers\LandingPageController;
 use App\Http\Controllers\PasswordController;
 use App\Http\Controllers\PlanController;
@@ -16,6 +17,7 @@ Route::prefix('user/')->name('user.')->middleware('auth', 'verified')->group(fun
     Route::resource('/withdraw', WithdrawController::class);
     Route::resource('/wallet', WalletController::class);
     Route::resource('/plan', PlanController::class);
+    Route::resource('/kyc', KycController::class);
     Route::resource('/profile', ProfileController::class);
     Route::resource('/password', PasswordController::class);
 });
