@@ -30,6 +30,6 @@
         </div>
     </div>
     <div class="mt-5 text-center">
-        <p>© 2020 Nazox. All Rights Reserved</p>
+        <p>© 2020 {{ env('APP_NAME') }}. All Rights Reserved</p>
     </div>
 @endsection

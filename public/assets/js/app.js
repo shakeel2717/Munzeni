@@ -1,62 +1,77 @@
-!(function (s) {
+!(function (n) {
     "use strict";
+    function e() {
+        for (var e = document.getElementById("topnav-menu-content").getElementsByTagName("a"), t = 0, n = e.length; t < n; t++)
+            "nav-item dropdown active" === e[t].parentElement.getAttribute("class") && (e[t].parentElement.classList.remove("active"), e[t].nextElementSibling.classList.remove("show"));
+    }
     function t(e) {
-        1 == s("#light-mode-switch").prop("checked") && "light-mode-switch" === e
-            ? (s("#dark-mode-switch").prop("checked", !1),
-              s("#rtl-mode-switch").prop("checked", !1),
-              s("#bootstrap-style").attr("href", "/assets/css/bootstrap.min.css"),
-              s("#app-style").attr("href", "/assets/css/app.min.css"),
+        1 == n("#light-mode-switch").prop("checked") && "light-mode-switch" === e
+            ? (n("html").removeAttr("dir"),
+              n("#dark-mode-switch").prop("checked", !1),
+              n("#rtl-mode-switch").prop("checked", !1),
+              n("#bootstrap-style").attr("href", "/assets/css/bootstrap.min.css"),
+              n("#app-style").attr("href", "/assets/css/app.min.css"),
+              document.body.setAttribute("data-bs-theme", "light"),
               sessionStorage.setItem("is_visited", "light-mode-switch"))
-            : 1 == s("#dark-mode-switch").prop("checked") && "dark-mode-switch" === e
-            ? (s("#light-mode-switch").prop("checked", !1),
-              s("#rtl-mode-switch").prop("checked", !1),
-              s("#bootstrap-style").attr("href", "/assets/css/bootstrap-dark.min.css"),
-              s("#app-style").attr("href", "/assets/css/app-dark.min.css"),
+            : 1 == n("#dark-mode-switch").prop("checked") && "dark-mode-switch" === e
+            ? (n("html").removeAttr("dir"),
+              n("#light-mode-switch").prop("checked", !1),
+              n("#rtl-mode-switch").prop("checked", !1),
+              document.body.setAttribute("data-bs-theme", "dark"),
               sessionStorage.setItem("is_visited", "dark-mode-switch"))
-            : 1 == s("#rtl-mode-switch").prop("checked") &&
+            : 1 == n("#rtl-mode-switch").prop("checked") &&
               "rtl-mode-switch" === e &&
-              (s("#light-mode-switch").prop("checked", !1),
-              s("#dark-mode-switch").prop("checked", !1),
-              s("#bootstrap-style").attr("href", "/assets/css/bootstrap.min.css"),
-              s("#app-style").attr("href", "/assets/css/app-rtl.min.css"),
+              (n("#light-mode-switch").prop("checked", !1),
+              n("#dark-mode-switch").prop("checked", !1),
+              n("#bootstrap-style").attr("href", "/assets/css/bootstrap-rtl.min.css"),
+              n("#app-style").attr("href", "/assets/css/app-rtl.min.css"),
+              n("html").attr("dir", "rtl"),
+              document.body.setAttribute("data-bs-theme", "light"),
               sessionStorage.setItem("is_visited", "rtl-mode-switch"));
     }
-    function e() {
-        document.webkitIsFullScreen || document.mozFullScreen || document.msFullscreenElement || (console.log("pressed"), s("body").removeClass("fullscreen-enable"));
+    function s() {
+        document.webkitIsFullScreen || document.mozFullScreen || document.msFullscreenElement || (console.log("pressed"), n("body").removeClass("fullscreen-enable"));
     }
-    var n;
-    s("#side-menu").metisMenu(),
-        s("#vertical-menu-btn").on("click", function (e) {
-            e.preventDefault(), s("body").toggleClass("sidebar-enable"), 992 <= s(window).width() ? s("body").toggleClass("vertical-collpsed") : s("body").removeClass("vertical-collpsed");
+    if (
+        (n("#side-menu").metisMenu(),
+        n("#vertical-menu-btn").on("click", function (e) {
+            e.preventDefault(), n("body").toggleClass("sidebar-enable"), 992 <= n(window).width() ? n("body").toggleClass("vertical-collpsed") : n("body").removeClass("vertical-collpsed");
         }),
-        s("body,html").click(function (e) {
-            var t = s("#vertical-menu-btn");
-            t.is(e.target) || 0 !== t.has(e.target).length || e.target.closest("div.vertical-menu") || s("body").removeClass("sidebar-enable");
+        n("body,html").click(function (e) {
+            var t = n("#vertical-menu-btn");
+            t.is(e.target) || 0 !== t.has(e.target).length || e.target.closest("div.vertical-menu") || n("body").removeClass("sidebar-enable");
         }),
-        s("#sidebar-menu a").each(function () {
+        n("#sidebar-menu a").each(function () {
             var e = window.location.href.split(/[?#]/)[0];
             this.href == e &&
-                (s(this).addClass("active"),
-                s(this).parent().addClass("mm-active"),
-                s(this).parent().parent().addClass("mm-show"),
-                s(this).parent().parent().prev().addClass("mm-active"),
-                s(this).parent().parent().parent().addClass("mm-active"),
-                s(this).parent().parent().parent().parent().addClass("mm-show"),
-                s(this).parent().parent().parent().parent().parent().addClass("mm-active"));
+                (n(this).addClass("active"),
+                n(this).parent().addClass("mm-active"),
+                n(this).parent().parent().addClass("mm-show"),
+                n(this).parent().parent().prev().addClass("mm-active"),
+                n(this).parent().parent().parent().addClass("mm-active"),
+                n(this).parent().parent().parent().parent().addClass("mm-show"),
+                n(this).parent().parent().parent().parent().parent().addClass("mm-active"));
         }),
-        s(".navbar-nav a").each(function () {
+        n(".navbar-nav a").each(function () {
             var e = window.location.href.split(/[?#]/)[0];
             this.href == e &&
-                (s(this).addClass("active"),
-                s(this).parent().addClass("active"),
-                s(this).parent().parent().addClass("active"),
-                s(this).parent().parent().parent().addClass("active"),
-                s(this).parent().parent().parent().parent().addClass("active"),
-                s(this).parent().parent().parent().parent().parent().addClass("active"));
+                (n(this).addClass("active"),
+                n(this).parent().addClass("active"),
+                n(this).parent().parent().addClass("active"),
+                n(this).parent().parent().parent().addClass("active"),
+                n(this).parent().parent().parent().parent().addClass("active"),
+                n(this).parent().parent().parent().parent().parent().addClass("active"));
         }),
-        s('[data-toggle="fullscreen"]').on("click", function (e) {
+        n(document).ready(function () {
+            var e;
+            0 < n("#sidebar-menu").length &&
+                0 < n("#sidebar-menu .mm-active .active").length &&
+                300 < (e = n("#sidebar-menu .mm-active .active").offset().top) &&
+                ((e -= 300), n(".vertical-menu .simplebar-content-wrapper").animate({ scrollTop: e }, "slow"));
+        }),
+        n('[data-toggle="fullscreen"]').on("click", function (e) {
             e.preventDefault(),
-                s("body").toggleClass("fullscreen-enable"),
+                n("body").toggleClass("fullscreen-enable"),
                 document.fullscreenElement || document.mozFullScreenElement || document.webkitFullscreenElement
                     ? document.cancelFullScreen
                         ? document.cancelFullScreen()
@@ -69,30 +84,36 @@
                     ? document.documentElement.mozRequestFullScreen()
                     : document.documentElement.webkitRequestFullscreen && document.documentElement.webkitRequestFullscreen(Element.ALLOW_KEYBOARD_INPUT);
         }),
-        document.addEventListener("fullscreenchange", e),
-        document.addEventListener("webkitfullscreenchange", e),
-        document.addEventListener("mozfullscreenchange", e),
-        s(".right-bar-toggle").on("click", function (e) {
-            s("body").toggleClass("right-bar-enabled");
+        document.addEventListener("fullscreenchange", s),
+        document.addEventListener("webkitfullscreenchange", s),
+        document.addEventListener("mozfullscreenchange", s),
+        n(".right-bar-toggle").on("click", function (e) {
+            n("body").toggleClass("right-bar-enabled");
         }),
-        s(document).on("click", "body", function (e) {
-            0 < s(e.target).closest(".right-bar-toggle, .right-bar").length || s("body").removeClass("right-bar-enabled");
+        n(document).on("click", "body", function (e) {
+            0 < n(e.target).closest(".right-bar-toggle, .right-bar").length || n("body").removeClass("right-bar-enabled");
         }),
-        s(".dropdown-menu a.dropdown-toggle").on("click", function (e) {
-            return s(this).next().hasClass("show") || s(this).parents(".dropdown-menu").first().find(".show").removeClass("show"), s(this).next(".dropdown-menu").toggleClass("show"), !1;
+        document.getElementById("topnav-menu-content"))
+    ) {
+        for (var a = document.getElementById("topnav-menu-content").getElementsByTagName("a"), o = 0, c = a.length; o < c; o++)
+            a[o].onclick = function (e) {
+                "#" === e.target.getAttribute("href") && (e.target.parentElement.classList.toggle("active"), e.target.nextElementSibling.classList.toggle("show"));
+            };
+        window.addEventListener("resize", e);
+    }
+    var r;
+    [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]')).map(function (e) {
+        return new bootstrap.Tooltip(e);
+    }),
+        [].slice.call(document.querySelectorAll('[data-bs-toggle="popover"]')).map(function (e) {
+            return new bootstrap.Popover(e);
         }),
-        s(function () {
-            s('[data-toggle="tooltip"]').tooltip();
+        n(window).on("load", function () {
+            n("#status").fadeOut(), n("#preloader").delay(350).fadeOut("slow");
         }),
-        s(function () {
-            s('[data-toggle="popover"]').popover();
-        }),
-        window.sessionStorage && ((n = sessionStorage.getItem("is_visited")) ? (s(".right-bar input:checkbox").prop("checked", !1), s("#" + n).prop("checked", !0), t(n)) : sessionStorage.setItem("is_visited", "light-mode-switch")),
-        s("#light-mode-switch, #dark-mode-switch, #rtl-mode-switch").on("change", function (e) {
+        window.sessionStorage && ((r = sessionStorage.getItem("is_visited")) ? (n(".right-bar input:checkbox").prop("checked", !1), n("#" + r).prop("checked", !0), t(r)) : sessionStorage.setItem("is_visited", "light-mode-switch")),
+        n("#light-mode-switch, #dark-mode-switch, #rtl-mode-switch").on("change", function (e) {
             t(e.target.id);
-        }),
-        s(window).on("load", function () {
-            s("#status").fadeOut(), s("#preloader").delay(350).fadeOut("slow");
         }),
         Waves.init();
 })(jQuery);

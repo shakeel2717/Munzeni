@@ -2,7 +2,7 @@
 @section('form')
     <div class="text-center">
         <h4 class="font-size-18 mt-4">Register account</h4>
-        <p class="text-muted">Get your free Nazox account now.</p>
+        <p class="text-muted">Get your free {{ env('APP_NAME') }} account now.</p>
     </div>
     <div class="p-2 mt-5">
         <form class="form-horizontal" action="{{ route('register') }}" method="POST">
@@ -43,7 +43,6 @@
     </div>
     <div class="mt-5 text-center">
         <p>Already have an account ? <a href="{{ route('login') }}" class="font-weight-medium text-primary"> Login</a> </p>
-        <p>© 2020 Nazox. Crafted with <i class="mdi mdi-heart text-danger"></i> by
-            Themesdesign</p>
+        <p>© {{ date('Y') }} {{ env('APP_NAME') }}. All Rights Reserved</p>
     </div>
 @endsection
