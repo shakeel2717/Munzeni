@@ -17,8 +17,8 @@
     </script>
 @endif
 <script>
-    window.addEventListener('deleted', event => {
-        swal("Success!", event.detail.status, "success");
+    window.addEventListener('showAlert', event => {
+        swal("Success!", event.detail[0].message , "success");
     })
 </script>
 <script>

@@ -104,13 +104,10 @@ final class AllKyc extends PowerGridComponent
         $kyc->status = true;
         $kyc->save();
 
-        info("Kyc approved");
-
         $user = $kyc->user;
         $user->kyc_status = 'approved';
         $user->save();
-        info("user Status updated");
-
+        $this->dispatch('showAlert', ['message' => 'Kyc Approved Successfully!']);
     }
 
     public function actions(\App\Models\Kyc $row): array
