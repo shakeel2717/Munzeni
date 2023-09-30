@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\PlanActivation;
 use App\Models\Plan;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class PlanController extends Controller
 {
@@ -55,32 +57,43 @@ class PlanController extends Controller
             $amount = $amount - $fees;
         }
 
-        // activating User Plan
-        $userPlan = auth()->user()->userPlan()->create([
-            'plan_id' => $plan->id,
-            'amount' => $amount,
-            'status' => true,
-        ]);
+        try {
+            DB::beginTransaction();
 
-        $transaction = auth()->user()->transactions()->create([
-            'user_plan_id' => $userPlan->id,
-            'type' => 'plan active',
-            'amount' => $amount,
-            'sum' => false,
-            'status' => false,
-            'reference' => "Invest in Plan : " . $plan->name,
-        ]);
+            // activating User Plan
+            $userPlan = auth()->user()->userPlan()->create([
+                'plan_id' => $plan->id,
+                'amount' => $amount,
+                'status' => true,
+            ]);
 
-        if ($plan_active_fees > 0) {
             $transaction = auth()->user()->transactions()->create([
                 'user_plan_id' => $userPlan->id,
-                'type' => 'plan active fees',
-                'amount' => $fees,
+                'type' => 'plan active',
+                'amount' => $amount,
                 'sum' => false,
                 'status' => false,
-                'reference' => "Invest fees in Plan : " . $plan->name,
+                'reference' => "Invest in Plan : " . $plan->name,
             ]);
+
+            if ($plan_active_fees > 0) {
+                $transaction = auth()->user()->transactions()->create([
+                    'user_plan_id' => $userPlan->id,
+                    'type' => 'plan active fees',
+                    'amount' => $fees,
+                    'sum' => false,
+                    'status' => false,
+                    'reference' => "Invest fees in Plan : " . $plan->name,
+                ]);
+            }
+
+            DB::commit();
+        } catch (\Exception $e) {
+            DB::rollback();
+            return back()->withErrors(["Error: " . $e->getMessage()]);
         }
+
+        PlanActivation::dispatch($userPlan);
 
         return back()->with('success', 'Plan Activated Successfully');
     }

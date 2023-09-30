@@ -17,7 +17,7 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        $user = User::firstOrCreate([
+        $admin = User::firstOrCreate([
             'name' => 'Administrator',
             'username' => 'admin',
             'email' => 'admin@gmail.com',
@@ -32,6 +32,7 @@ class DatabaseSeeder extends Seeder
             'username' => 'shakeel2717',
             'email' => 'shakeel2717@gmail.com',
             'email_verified_at' => now(),
+            'refer' => $admin->username,
             'password' => bcrypt('asdfasdf'),
         ]);
 
@@ -76,7 +77,27 @@ class DatabaseSeeder extends Seeder
 
         $setting = Setting::firstOrCreate([
             'key' => 'plan_active_fees',
+            'value' => 0,
+        ]);
+
+        $setting = Setting::firstOrCreate([
+            'key' => 'direct_level_1_commission',
             'value' => 10,
+        ]);
+
+        $setting = Setting::firstOrCreate([
+            'key' => 'direct_level_2_commission',
+            'value' => 5,
+        ]);
+
+        $setting = Setting::firstOrCreate([
+            'key' => 'trade_level_1_commission',
+            'value' => 2,
+        ]);
+
+        $setting = Setting::firstOrCreate([
+            'key' => 'trade_level_2_commission',
+            'value' => 1,
         ]);
 
         $plan = Plan::firstOrCreate([
