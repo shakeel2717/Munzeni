@@ -9,7 +9,7 @@
     <meta content="Premium Multipurpose Admin & Dashboard Template" name="description" />
     <meta content="Themesdesign" name="author" />
     <!-- App favicon -->
-    <link rel="shortcut icon" href="/assets/images/favicon.ico">
+    <link rel="shortcut icon" href="/favi.ico">
     <!-- Bootstrap Css -->
     <link href="/assets/css/bootstrap.min.css" id="bootstrap-style" rel="stylesheet" type="text/css" />
     <!-- Icons Css -->
@@ -32,21 +32,21 @@
                 <div class="d-flex">
                     <!-- LOGO -->
                     <div class="navbar-brand-box">
-                        <a href="index.html" class="logo logo-dark">
+                        <a href="{{ route('user.dashboard.index') }}" class="logo logo-dark">
                             <span class="logo-sm">
-                                <img src="/assets/images/logo-sm-dark.png" alt="logo-sm-dark" height="22">
+                                <img src="/logo-dark.png" alt="logo-sm-dark" height="22">
                             </span>
                             <span class="logo-lg">
-                                <img src="/assets/images/logo-dark.png" alt="logo-dark" height="20">
+                                <img src="/logo-dark.png" alt="logo-dark" height="40">
                             </span>
                         </a>
 
-                        <a href="index.html" class="logo logo-light">
+                        <a href="{{ route('user.dashboard.index') }}" class="logo logo-light">
                             <span class="logo-sm">
-                                <img src="/assets/images/logo-sm-light.png" alt="logo-sm-light" height="22">
+                                <img src="/logo-light.png" alt="logo-sm-light" height="22">
                             </span>
                             <span class="logo-lg">
-                                <img src="/assets/images/logo-light.png" alt="logo-light" height="20">
+                                <img src="/logo-light.png" alt="logo-light" height="40">
                             </span>
                         </a>
                     </div>
@@ -131,7 +131,7 @@
                     <div class="dropdown d-inline-block user-dropdown">
                         <button type="button" class="btn header-item waves-effect" id="page-header-user-dropdown"
                             data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <img class="rounded-circle header-profile-user" src="/assets/images/users/avatar-2.jpg"
+                            <img class="rounded-circle header-profile-user" src="/avatar.png"
                                 alt="Header Avatar">
                             <span class="d-none d-xl-inline-block ms-1">{{ auth()->user()->name }}</span>
                             <i class="mdi mdi-chevron-down d-none d-xl-inline-block"></i>
