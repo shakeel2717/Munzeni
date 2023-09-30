@@ -15,5 +15,14 @@
         <span>Add Balance</span>
     </a>
 </li>
+
+<li class="menu-title">KYC Request</li>
+
+<li>
+    <a href="{{ route('admin.kyc.index') }}" class="waves-effect">
+        <i class="ri-dashboard-line"></i>
+        <span>All Kyc Request</span>
+    </a>
+</li>
 <hr>
 @include('inc.nav.user')

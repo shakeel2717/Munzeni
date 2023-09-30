@@ -8,4 +8,5 @@ use Illuminate\Support\Facades\Route;
 Route::prefix('admin/')->name('admin.')->middleware('auth', 'verified', 'admin')->group(function () {
     Route::resource('/dashboard', DashboardController::class);
     Route::resource('/finance', FinanceController::class);
+    Route::view('/kyc', 'admin.kyc.index')->name('kyc.index');
 });
