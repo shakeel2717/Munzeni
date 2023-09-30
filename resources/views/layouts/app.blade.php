@@ -138,15 +138,16 @@
                         </button>
                         <div class="dropdown-menu dropdown-menu-end">
                             <!-- item-->
-                            <a class="dropdown-item" href="#"><i class="ri-user-line align-middle me-1"></i>
-                                Profile</a>
-                            <a class="dropdown-item" href="#"><i
-                                    class="ri-wallet-2-line align-middle me-1"></i> My Wallet</a>
-                            <a class="dropdown-item d-block" href="#"><span
-                                    class="badge bg-success float-end mt-1">11</span><i
-                                    class="ri-settings-2-line align-middle me-1"></i> Settings</a>
-                            <a class="dropdown-item" href="#"><i
-                                    class="ri-lock-unlock-line align-middle me-1"></i> Lock screen</a>
+                            <a class="dropdown-item" href="{{ route('user.profile.index') }}">
+                                <i class="ri-user-line align-middle me-1"></i>
+                                Profile
+                            </a>
+                            <a class="dropdown-item" href="{{ route('user.password.index') }}">
+                                <i class="ri-lock-password-line align-middle me-1"></i> Change Password
+                            </a>
+                            <a class="dropdown-item" href="{{ route('user.kyc.index') }}">
+                                <i class="ri-shield-line align-middle me-1"></i> KYC Verification
+                            </a>
                             <div class="dropdown-divider"></div>
                             <form id="logout" action="{{ route('logout') }}" method="POST">
                                 @csrf
