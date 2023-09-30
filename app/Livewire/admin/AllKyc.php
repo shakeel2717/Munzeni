@@ -37,7 +37,8 @@ final class AllKyc extends PowerGridComponent
 
     public function datasource(): Builder
     {
-        return Kyc::query();
+        return Kyc::query()
+            ->where('status', false);
     }
 
     public function relationSearch(): array
@@ -52,10 +53,13 @@ final class AllKyc extends PowerGridComponent
             ->addColumn('user_id')
             ->addColumn('front')
 
-           /** Example of custom column using a closure **/
-            ->addColumn('front_lower', fn (Kyc $model) => strtolower(e($model->front)))
+            ->addColumn('front_image', function (Kyc $model) {
+                return "<img  width='100' src='" . asset('kyc/' . $model->front) . "' alt='front' />";
+            })
 
-            ->addColumn('back')
+            ->addColumn('back_image', function (Kyc $model) {
+                return "<img width='100' src='" . asset('kyc/' . $model->back) . "' alt='back' />";
+            })
             ->addColumn('status')
             ->addColumn('created_at_formatted', fn (Kyc $model) => Carbon::parse($model->created_at)->format('d/m/Y H:i:s'));
     }
@@ -65,11 +69,11 @@ final class AllKyc extends PowerGridComponent
         return [
             Column::make('Id', 'id'),
             Column::make('User id', 'user_id'),
-            Column::make('Front', 'front')
+            Column::make('Front', 'front_image', 'back')
                 ->sortable()
                 ->searchable(),
 
-            Column::make('Back', 'back')
+            Column::make('Back', 'back_image', 'back')
                 ->sortable()
                 ->searchable(),
 
@@ -93,20 +97,29 @@ final class AllKyc extends PowerGridComponent
         ];
     }
 
-    #[\Livewire\Attributes\On('edit')]
-    public function edit($rowId): void
+    #[\Livewire\Attributes\On('approve')]
+    public function approve($rowId): void
     {
-        $this->js('alert('.$rowId.')');
+        $kyc = Kyc::find($rowId);
+        $kyc->status = true;
+        $kyc->save();
+
+        info("Kyc approved");
+
+        $user = $kyc->user;
+        $user->kyc_status = 'approved';
+        $user->save();
+        info("user Status updated");
+
     }
 
     public function actions(\App\Models\Kyc $row): array
     {
         return [
-            Button::add('edit')
-                ->slot('Edit: '.$row->id)
-                ->id()
-                ->class('pg-btn-white dark:ring-pg-primary-600 dark:border-pg-primary-600 dark:hover:bg-pg-primary-700 dark:ring-offset-pg-primary-800 dark:text-pg-primary-300 dark:bg-pg-primary-700')
-                ->dispatch('edit', ['rowId' => $row->id])
+            Button::add('approve')
+                ->slot('Approve')
+                ->class('btn btn-success btn-sm')
+                ->dispatch('approve', ['rowId' => $row->id])
         ];
     }
 

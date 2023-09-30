@@ -22,6 +22,7 @@ return new class extends Migration
             $table->enum('status', ['pending', 'active', 'suspend'])->default('pending');
             $table->string('refer')->default('default');
             $table->rememberToken();
+            $table->enum('kyc_status', ['rejected', 'approved', 'pending', 'under-review'])->default('pending');
             $table->timestamps();
         });
     }
