@@ -129,4 +129,37 @@
             </div>
         </div>
     </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card card-body">
+                <h2 class="card-title">Recent Transactions</h2>
+                <hr>
+                <table class="table table-responsive table-striped table-hover">
+                    <thead>
+                        <tr>
+                            <th>Type</th>
+                            <th>Amount</th>
+                            <th>Reference</th>
+                            <th>Created at</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @forelse (auth()->user()->transactions()->orderBy('id','desc')->take(2)->get() as $transaction)
+                            <tr>
+                                <td class="text-uppercase">{{ $transaction->type }}</td>
+                                <td class="{{ $transaction->status ? 'text-success' : 'text-danger' }}">${{ number_format($transaction->amount, 2) }}</td>
+                                <td>{{ $transaction->reference }}</td>
+                                <td>{{ $transaction->created_at->diffForHumans() }}</td>
+                            </tr>
+                        @empty
+                            <tr>
+                                <td colspan="4" class="text-center">No Record Found</td>
+                            </tr>
+                        @endforelse
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
 @endsection
