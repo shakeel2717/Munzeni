@@ -3,11 +3,37 @@
         <div class="col-md-12">
             <div class="card card-body">
                 <h2 class="card-title">Bitcoin Price</h2>
-                <h2>$456464.4<span class="text-danger">5</span></h2>
+                <h2 wire:poll.5s='fetchLiveRate' class="fetchLiveRate">{{ number_format($bitcoinPrice, 2) }}</h2>
                 <h2 class="card-title">Account Balance: ${{ number_format(auth()->user()->getBalance(),2) }}</h2>
-                <div style="min-height: 400px;" class="bg-dark p-2 rounded">
-                    <h2 class="card-title text-uppercase text-white">bitcoin Price Live Chart</h2>
+                <div class="card">
+                    <div class="card-body" wire:ignore>
+                        <!-- TradingView Widget BEGIN -->
+                        <div class="tradingview-widget-container">
+                            <div id="tradingview_8dffe" style="height: 250px;"></div>
+                            <script type="text/javascript" src="https://s3.tradingview.com/tv.js"></script>
+                            <script type="text/javascript">
+                                new TradingView.widget({
+                                    "autosize": true,
+                                    "symbol": "BINANCE:BTCUSDT",
+                                    "interval": "1",
+                                    "timezone": "Etc/UTC",
+                                    "theme": "light",
+                                    "style": "1",
+                                    "locale": "en",
+                                    "enable_publishing": false,
+                                    "hide_top_toolbar": true,
+                                    "hide_legend": true,
+                                    "save_image": false,
+                                    "hide_volume": true,
+                                    "container_id": "tradingview_8dffe"
+                                });
+                            </script>
+                        </div>
+                        <!-- TradingView Widget END -->
+                    </div>
                 </div>
+
+
             </div>
         </div>
     </div>
@@ -144,7 +170,7 @@
                 @endif
                 @if ($showEvenOddSection)
                     <div class="col-md-4">
-                        <h2>Step: 2 {{ $type }}</h2>
+                        <h2>Step: 2</h2>
                         <hr>
                         <div class="row">
                             <div class="col-md-6">
@@ -207,7 +233,8 @@
                         </div>
                         <div class="row">
                             <div class="col-md-12">
-                                <button wire:click='invested' class="btn btn-primary btn-lg py-4 w-100">INVEST</button>
+                                <button wire:click='invested'
+                                    class="btn btn-primary btn-lg py-4 w-100">INVEST</button>
                             </div>
                         </div>
                     </div>

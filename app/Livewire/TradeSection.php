@@ -3,6 +3,7 @@
 namespace App\Livewire;
 
 use App\Models\TradeHistory;
+use Illuminate\Support\Facades\Http;
 use Livewire\Component;
 
 class TradeSection extends Component
@@ -17,12 +18,15 @@ class TradeSection extends Component
     public $showEvenNumbers = true;
     public $showOddNumbers = false;
     public $amount = 0;
+    public $bitcoinPrice;
     public $type;
 
     public function mount()
     {
         $this->orderOneHistories = TradeHistory::where('type', 'one')->get();
         $this->orderFiveHistories = TradeHistory::where('type', 'five')->get();
+
+        $this->bitcoinPrice =  0000000;
     }
 
     public function invested()
@@ -76,7 +80,20 @@ class TradeSection extends Component
         $this->showInvestSection = true;
     }
 
+    public function fetchLiveRate()
+    {
+        $currency = "BTC";
+        $apiKey = env('BINANCE_API_KEY');
+        $response = Http::withHeaders([
+            'X-MBX-APIKEY' => $apiKey,
+        ])->get('https://api.binance.com/api/v3/ticker/price', [
+            'symbol' => $currency . "USDT",
+        ]);
 
+        info($response->json());
+        $liveRate = $response->json();
+        $this->bitcoinPrice =  $liveRate['price'];
+    }
 
     public function render()
     {
