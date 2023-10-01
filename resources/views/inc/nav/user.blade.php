@@ -41,6 +41,38 @@
     </a>
 </li>
 
+<li class="menu-title">Account Statement</li>
+<li>
+    <a href="{{ route('user.history.deposits') }}" class="waves-effect">
+        <i class="ri-dashboard-line"></i>
+        <span>Deposit Statement</span>
+    </a>
+</li>
+<li>
+    <a href="{{ route('user.history.withdrawals') }}" class="waves-effect">
+        <i class="ri-dashboard-line"></i>
+        <span>Withdrawals Statement</span>
+    </a>
+</li>
+<li>
+    <a href="{{ route('user.history.direct_commissions') }}" class="waves-effect">
+        <i class="ri-dashboard-line"></i>
+        <span>Direct Commission</span>
+    </a>
+</li>
+<li>
+    <a href="{{ route('user.history.indirect_commissions') }}" class="waves-effect">
+        <i class="ri-dashboard-line"></i>
+        <span>In-Direct Commission</span>
+    </a>
+</li>
+<li>
+    <a href="{{ route('user.history.trades') }}" class="waves-effect">
+        <i class="ri-dashboard-line"></i>
+        <span>Trade History</span>
+    </a>
+</li>
+
 <li class="menu-title">Account Settings</li>
 
 <li>

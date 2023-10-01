@@ -7,6 +7,7 @@ use App\Http\Controllers\PlanController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\TradeController;
 use App\Http\Controllers\user\DashboardController;
+use App\Http\Controllers\user\HistoryController;
 use App\Http\Controllers\WalletController;
 use App\Http\Controllers\WithdrawController;
 use Illuminate\Support\Facades\Route;
@@ -22,6 +23,15 @@ Route::prefix('user/')->name('user.')->middleware('auth', 'verified')->group(fun
     Route::resource('/profile', ProfileController::class);
     Route::resource('/password', PasswordController::class);
     Route::resource('/trading', TradeController::class);
+    Route::controller(HistoryController::class)->name('history.')->prefix('history/')->group(function () {
+        Route::view('deposit', 'user.history.deposit')->name('deposits');
+        Route::view('withdrawals', 'user.history.withdrawals')->name('withdrawals');
+        Route::view('trades', 'user.history.trades')->name('trades');
+        Route::view('direct_commission', 'user.history.direct_commission')->name('direct_commissions');
+        Route::view('indirect_commission', 'user.history.indirect_commission')->name('indirect_commissions');
+        Route::view('direct_referrals', 'user.history.direct_referrals')->name('direct_referrals');
+        Route::view('indirect_referrals', 'user.history.indirect_referrals')->name('indirect_referrals');
+    });
 });
 
 
