@@ -16,13 +16,6 @@
     <link href="/assets/css/icons.min.css" rel="stylesheet" type="text/css" />
     <!-- App Css-->
     <link href="/assets/css/app.min.css" id="app-style" rel="stylesheet" type="text/css" />
-
-    <style>
-        .fetchLiveRate {
-            color: red;
-        }
-    </style>
-
 </head>
 
 <body data-sidebar="dark">

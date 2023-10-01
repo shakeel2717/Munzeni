@@ -23,8 +23,8 @@ class TradeSection extends Component
 
     public function mount()
     {
-        $this->orderOneHistories = TradeHistory::where('type', 'one')->get();
-        $this->orderFiveHistories = TradeHistory::where('type', 'five')->get();
+        $this->orderOneHistories = TradeHistory::where('type', 'one')->latest()->limit(5)->get();
+        $this->orderFiveHistories = TradeHistory::where('type', 'five')->latest()->limit(5)->get();
 
         $this->bitcoinPrice =  0000000;
     }
@@ -82,17 +82,9 @@ class TradeSection extends Component
 
     public function fetchLiveRate()
     {
-        $currency = "BTC";
-        $apiKey = env('BINANCE_API_KEY');
-        $response = Http::withHeaders([
-            'X-MBX-APIKEY' => $apiKey,
-        ])->get('https://api.binance.com/api/v3/ticker/price', [
-            'symbol' => $currency . "USDT",
-        ]);
-
-        info($response->json());
-        $liveRate = $response->json();
-        $this->bitcoinPrice =  $liveRate['price'];
+        $this->bitcoinPrice =  fetchLiveResult();
+        $this->orderOneHistories = TradeHistory::where('type', 'one')->latest()->limit(5)->get();
+        $this->orderFiveHistories = TradeHistory::where('type', 'five')->latest()->limit(5)->get();
     }
 
     public function render()

@@ -216,6 +216,7 @@
                                     <h4 class="d-flex align-items-center gap-2">PORTFOLIO: <span
                                             class="btn btn-primary btn-sm text-uppercase">O</span>
                                         [
+                                        <span class="btn btn-primary btn-sm">0</span>
                                         <span class="btn btn-primary btn-sm">2</span>
                                         <span class="btn btn-primary btn-sm ">4</span>
                                         <span class="btn btn-primary btn-sm ">6</span>
