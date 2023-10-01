@@ -23,7 +23,7 @@ class SendProfitToWinner
     public function handle(DeclareResultForTrade $event): void
     {
         // getting all trades
-        $trades = Trading::where('status', false)->get();
+        $trades = Trading::where('status', true)->get();
         foreach ($trades as $trade) {
             // info("Result: " . $event->tradeHistory->result);
             $isEven = ($event->tradeHistory->result % 2 == 0);
@@ -36,21 +36,34 @@ class SendProfitToWinner
             }
             if ($winner == $trade->type) {
                 // info($winner . " is winner");
+                $winnerAmount = $trade->amount * 2;
+                $winner_charges = settings("winner_charges");
+                if ($winner_charges > 0) {
+                    $winnerAmountFees = $winnerAmount * settings("winner_charges") / 100;
+                    $transaction = $trade->user->transactions()->create([
+                        'type' => 'trading fees',
+                        'amount' => $winnerAmountFees,
+                        'sum' => false,
+                        'status' => true,
+                        'reference' => "Trading fees :"  . $winner_charges . "%",
+                    ]);
+                }
                 // sending profits
                 $transaction = $trade->user->transactions()->create([
                     'type' => 'trading profit',
-                    'amount' => $trade->amount * 2,
+                    'amount' => $winnerAmount,
                     'sum' => true,
                     'status' => true,
                     'reference' => "Trading Winner on :"  . $winner,
                 ]);
+
                 // info($trade->user->name . " is winner, Profit Delivered");
-                $trade->status = true;
+                $trade->status = false;
                 $trade->save();
             } else {
                 // info($winner . " is Loser");
                 // info($trade->user->name . " is loser");
-                $trade->status = true;
+                $trade->status = false;
                 $trade->save();
             }
         }

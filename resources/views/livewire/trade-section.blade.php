@@ -70,28 +70,68 @@
 
             <div class="tab-content py-3 text-muted">
                 <div class="tab-pane active" id="home-1" role="tabpanel">
-                    <h2 class="mb-0 text-white bg-primary p-2">Recent Transactions</h2>
                     <div class="card card-body">
-                        <table class="table">
-                            <thead>
-                                <tr>
-                                    <th>Time</th>
-                                    <th>Price</th>
-                                    <th>Result</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @foreach ($orderOneHistories as $history)
-                                    <tr>
-                                        <td>{{ $history->created_at->diffForHumans() }}</td>
-                                        <td>{{ $history->price }}</td>
-                                        <td><span
-                                                class="bg-primary p-2 rounded-circle text-white fw-bold">{{ sprintf('%02d', $history->result) }}</span>
-                                        </td>
-                                    </tr>
-                                @endforeach
-                            </tbody>
-                        </table>
+                        <div class="row">
+                            <div class="col-md-3">
+                                <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist"
+                                    aria-orientation="vertical">
+                                    <a class="nav-link mb-2 active" id="v-pills-home-tab" data-bs-toggle="pill"
+                                        href="#v-pills-home" role="tab" aria-controls="v-pills-home"
+                                        aria-selected="true">Recent Trades</a>
+                                    <a class="nav-link mb-2" id="v-pills-profile-tab" data-bs-toggle="pill"
+                                        href="#v-pills-profile" role="tab" aria-controls="v-pills-profile"
+                                        aria-selected="false">My Trades</a>
+                                </div>
+                            </div>
+                            <div class="col-md-9">
+                                <div class="tab-content text-muted mt-4 mt-md-0" id="v-pills-tabContent">
+                                    <div class="tab-pane fade show active" id="v-pills-home" role="tabpanel"
+                                        aria-labelledby="v-pills-home-tab">
+                                        <table class="table">
+                                            <thead>
+                                                <tr>
+                                                    <th>Time</th>
+                                                    <th>Price</th>
+                                                    <th>Result</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                @foreach ($orderOneHistories as $history)
+                                                    <tr>
+                                                        <td>{{ $history->created_at->diffForHumans() }}</td>
+                                                        <td>{{ $history->price }}</td>
+                                                        <td><span
+                                                                class="bg-primary p-2 rounded-circle text-white fw-bold">{{ sprintf('%02d', $history->result) }}</span>
+                                                        </td>
+                                                    </tr>
+                                                @endforeach
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <div class="tab-pane fade" id="v-pills-profile" role="tabpanel"
+                                        aria-labelledby="v-pills-profile-tab">
+                                        <table class="table">
+                                            <thead>
+                                                <tr>
+                                                    <th>Time</th>
+                                                    <th>Trade Type</th>
+                                                    <th>Amount</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                @foreach ($myOrderOneHistories as $trade)
+                                                    <tr>
+                                                        <td>{{ $trade->created_at->diffForHumans() }}</td>
+                                                        <td>{{ strtoupper($trade->type) }}</td>
+                                                        <td>${{ number_format($trade->amount,2) }}</td>
+                                                    </tr>
+                                                @endforeach
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div class="tab-pane" id="profile-1" role="tabpanel">
@@ -143,15 +183,18 @@
                                 <span wire:click="$set('amount', '5')" class="btn btn-primary btn-sm w-100">$5</span>
                             </div>
                             <div class="col">
-                                <span wire:click="$set('amount', '10')" class="btn btn-primary btn-sm w-100">$10</span>
+                                <span wire:click="$set('amount', '10')"
+                                    class="btn btn-primary btn-sm w-100">$10</span>
                             </div>
                             <div class="col">
-                                <span wire:click="$set('amount', '25')" class="btn btn-primary btn-sm w-100">$25</span>
+                                <span wire:click="$set('amount', '25')"
+                                    class="btn btn-primary btn-sm w-100">$25</span>
                             </div>
                         </div>
                         <div class="row mb-2">
                             <div class="col">
-                                <span wire:click="$set('amount', '50')" class="btn btn-primary btn-sm w-100">$50</span>
+                                <span wire:click="$set('amount', '50')"
+                                    class="btn btn-primary btn-sm w-100">$50</span>
                             </div>
                             <div class="col">
                                 <span wire:click="$set('amount', '100')"

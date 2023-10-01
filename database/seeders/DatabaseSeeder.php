@@ -100,6 +100,11 @@ class DatabaseSeeder extends Seeder
             'value' => 1,
         ]);
 
+        $setting = Setting::firstOrCreate([
+            'key' => 'winner_charges',
+            'value' => 5,
+        ]);
+
         $plan = Plan::firstOrCreate([
             'name' => 'Basic',
             'profit' => 1.5,

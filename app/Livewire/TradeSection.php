@@ -3,6 +3,7 @@
 namespace App\Livewire;
 
 use App\Models\TradeHistory;
+use App\Models\Trading;
 use Illuminate\Support\Facades\Http;
 use Livewire\Component;
 
@@ -10,6 +11,7 @@ class TradeSection extends Component
 {
 
     public $orderOneHistories;
+    public $myOrderOneHistories;
     public $orderFiveHistories;
     public $showAmountSection = true;
     public $showEvenOddSection = false;
@@ -24,6 +26,9 @@ class TradeSection extends Component
     public function mount()
     {
         $this->orderOneHistories = TradeHistory::where('type', 'one')->latest()->limit(5)->get();
+
+        $this->myOrderOneHistories = Trading::where('user_id', auth()->user()->id)->latest()->limit(5)->get();
+
         $this->orderFiveHistories = TradeHistory::where('type', 'five')->latest()->limit(5)->get();
 
         $this->bitcoinPrice =  0000000;
@@ -43,7 +48,7 @@ class TradeSection extends Component
         $trading = auth()->user()->tradings()->create([
             'type' => $this->type,
             'amount' => $this->amount,
-            'status' => false,
+            'status' => true,
         ]);
 
         // adding balance to this user
