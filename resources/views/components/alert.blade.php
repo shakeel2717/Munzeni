@@ -22,8 +22,8 @@
     })
 </script>
 <script>
-    window.addEventListener('alert', event => {
-        swal("Error!", event.detail.status, "error");
+    window.addEventListener('showAlertError', event => {
+        swal("Error!", event.detail[0].message, "error");
     })
 </script>
 <script>

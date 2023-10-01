@@ -17,6 +17,7 @@ class Transaction extends Model
         'sum',
         'reference',
         'withdraw_id',
+        'trading_id'
     ];
 
     public function user()
