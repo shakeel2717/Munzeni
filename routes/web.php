@@ -5,6 +5,7 @@ use App\Http\Controllers\LandingPageController;
 use App\Http\Controllers\PasswordController;
 use App\Http\Controllers\PlanController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\TradeController;
 use App\Http\Controllers\user\DashboardController;
 use App\Http\Controllers\WalletController;
 use App\Http\Controllers\WithdrawController;
@@ -20,6 +21,7 @@ Route::prefix('user/')->name('user.')->middleware('auth', 'verified')->group(fun
     Route::resource('/kyc', KycController::class);
     Route::resource('/profile', ProfileController::class);
     Route::resource('/password', PasswordController::class);
+    Route::resource('/trading', TradeController::class);
 });
 
 

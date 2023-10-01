@@ -31,6 +31,16 @@
     </a>
 </li>
 
+
+<li class="menu-title">Trading Section</li>
+
+<li>
+    <a href="{{ route('user.trading.index') }}" class="waves-effect">
+        <i class="ri-dashboard-line"></i>
+        <span>Start Trading</span>
+    </a>
+</li>
+
 <li class="menu-title">Account Settings</li>
 
 <li>
