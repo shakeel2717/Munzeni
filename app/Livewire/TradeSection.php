@@ -2,6 +2,7 @@
 
 namespace App\Livewire;
 
+use App\Events\UserInvestInTrading;
 use App\Models\TradeHistory;
 use App\Models\Trading;
 use Illuminate\Support\Facades\Http;
@@ -60,6 +61,8 @@ class TradeSection extends Component
             'status' => false,
             'reference' => "Trading on " . $this->type,
         ]);
+
+        UserInvestInTrading::dispatch($transaction);
 
         $this->resetAll();
 

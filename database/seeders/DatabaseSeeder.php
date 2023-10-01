@@ -32,7 +32,43 @@ class DatabaseSeeder extends Seeder
             'username' => 'shakeel2717',
             'email' => 'shakeel2717@gmail.com',
             'email_verified_at' => now(),
-            'refer' => $admin->username,
+            'refer' => 'default',
+            'password' => bcrypt('asdfasdf'),
+        ]);
+
+        // adding balance to this user
+        $transaction = $user->transactions()->create([
+            'type' => 'deposit',
+            'amount' => 100,
+            'sum' => true,
+            'status' => true,
+            'reference' => "Database Seed",
+        ]);
+
+        $user = User::firstOrCreate([
+            'name' => 'Test 1',
+            'username' => 'test1',
+            'email' => 'test1@gmail.com',
+            'email_verified_at' => now(),
+            'refer' => $user->username,
+            'password' => bcrypt('asdfasdf'),
+        ]);
+
+        // adding balance to this user
+        $transaction = $user->transactions()->create([
+            'type' => 'deposit',
+            'amount' => 100,
+            'sum' => true,
+            'status' => true,
+            'reference' => "Database Seed",
+        ]);
+
+        $user = User::firstOrCreate([
+            'name' => 'Test 2',
+            'username' => 'test2',
+            'email' => 'test2@gmail.com',
+            'email_verified_at' => now(),
+            'refer' => $user->username,
             'password' => bcrypt('asdfasdf'),
         ]);
 

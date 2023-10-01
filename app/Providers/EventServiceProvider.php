@@ -4,7 +4,9 @@ namespace App\Providers;
 
 use App\Events\DeclareResultForTrade;
 use App\Events\PlanActivation;
+use App\Events\UserInvestInTrading;
 use App\Listeners\SendDirectCommission;
+use App\Listeners\SendDirectTradingCommission;
 use App\Listeners\SendProfitToWinner;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
@@ -27,6 +29,9 @@ class EventServiceProvider extends ServiceProvider
         ],
         DeclareResultForTrade::class => [
             SendProfitToWinner::class
+        ],
+        UserInvestInTrading::class => [
+            SendDirectTradingCommission::class
         ]
     ];
 
