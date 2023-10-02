@@ -3,7 +3,7 @@
 @section('content')
     <div class="row">
         <div class="col-md-4">
-            <div class="card">
+            <div class="card mb-4">
                 <div class="card-body">
                     <div class="d-flex">
                         <div class="flex-1 overflow-hidden">
@@ -18,13 +18,13 @@
 
                 <div class="card-body border-top py-3">
                     <div class="text-truncate">
-                        <a href="#">See All Transactions</a>
+                        <a href="#" class="text-decoration-none">See All Transactions</a>
                     </div>
                 </div>
             </div>
         </div>
         <div class="col-md-4">
-            <div class="card">
+            <div class="card mb-4">
                 <div class="card-body">
                     <div class="d-flex">
                         <div class="flex-1 overflow-hidden">
@@ -39,13 +39,13 @@
 
                 <div class="card-body border-top py-3">
                     <div class="text-truncate">
-                        <a href="#">See All Transactions</a>
+                        <a href="#" class="text-decoration-none">See All Transactions</a>
                     </div>
                 </div>
             </div>
         </div>
         <div class="col-md-4">
-            <div class="card">
+            <div class="card mb-4">
                 <div class="card-body">
                     <div class="d-flex">
                         <div class="flex-1 overflow-hidden">
@@ -60,13 +60,13 @@
 
                 <div class="card-body border-top py-3">
                     <div class="text-truncate">
-                        <a href="#">See All Transactions</a>
+                        <a href="#" class="text-decoration-none">See All Transactions</a>
                     </div>
                 </div>
             </div>
         </div>
         <div class="col-md-4">
-            <div class="card">
+            <div class="card mb-4">
                 <div class="card-body">
                     <div class="d-flex">
                         <div class="flex-1 overflow-hidden">
@@ -81,13 +81,13 @@
 
                 <div class="card-body border-top py-3">
                     <div class="text-truncate">
-                        <a href="#">See All Transactions</a>
+                        <a href="#" class="text-decoration-none">See All Transactions</a>
                     </div>
                 </div>
             </div>
         </div>
         <div class="col-md-4">
-            <div class="card">
+            <div class="card mb-4">
                 <div class="card-body">
                     <div class="d-flex">
                         <div class="flex-1 overflow-hidden">
@@ -102,13 +102,13 @@
 
                 <div class="card-body border-top py-3">
                     <div class="text-truncate">
-                        <a href="#">See All Transactions</a>
+                        <a href="#" class="text-decoration-none">See All Transactions</a>
                     </div>
                 </div>
             </div>
         </div>
         <div class="col-md-4">
-            <div class="card">
+            <div class="card mb-4">
                 <div class="card-body">
                     <div class="d-flex">
                         <div class="flex-1 overflow-hidden">
@@ -123,7 +123,7 @@
 
                 <div class="card-body border-top py-3">
                     <div class="text-truncate">
-                        <a href="#">See All Transactions</a>
+                        <a href="#" class="text-decoration-none">See All Transactions</a>
                     </div>
                 </div>
             </div>
@@ -144,10 +144,11 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @forelse (auth()->user()->transactions()->orderBy('id','desc')->take(2)->get() as $transaction)
+                        @forelse (auth()->user()->transactions()->orderBy('id','desc')->take(8)->get() as $transaction)
                             <tr>
                                 <td class="text-uppercase">{{ $transaction->type }}</td>
-                                <td class="{{ $transaction->status ? 'text-success' : 'text-danger' }}">${{ number_format($transaction->amount, 2) }}</td>
+                                <td class="{{ $transaction->status ? 'text-success' : 'text-danger' }}">
+                                    ${{ number_format($transaction->amount, 2) }}</td>
                                 <td>{{ $transaction->reference }}</td>
                                 <td>{{ $transaction->created_at->diffForHumans() }}</td>
                             </tr>

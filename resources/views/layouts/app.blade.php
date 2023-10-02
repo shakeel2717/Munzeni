@@ -1,240 +1,153 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
-
-    <meta charset="utf-8" />
-    <title>Dashboard | Nazox - Admin & Dashboard Template</title>
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta content="Premium Multipurpose Admin & Dashboard Template" name="description" />
-    <meta content="Themesdesign" name="author" />
-    <!-- App favicon -->
-    <link rel="shortcut icon" href="/favi.ico">
-    <!-- Bootstrap Css -->
-    <link href="/assets/css/bootstrap.min.css" id="bootstrap-style" rel="stylesheet" type="text/css" />
-    <!-- Icons Css -->
-    <link href="/assets/css/icons.min.css" rel="stylesheet" type="text/css" />
-    <!-- App Css-->
-    <link href="/assets/css/app.min.css" id="app-style" rel="stylesheet" type="text/css" />
+    <title>Layout Project</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="{{ asset('assets/styles.css') }}">
     @vite(['resources/js/app.js'])
     @livewireStyles
 </head>
 
-<body data-sidebar="dark">
-
-    <!-- <body data-layout="horizontal" data-topbar="dark"> -->
-
-    <!-- Begin page -->
-    <div id="layout-wrapper">
-
-
-        <header id="page-topbar">
-            <div class="navbar-header">
-                <div class="d-flex">
-                    <!-- LOGO -->
-                    <div class="navbar-brand-box">
-                        <a href="{{ route('user.dashboard.index') }}" class="logo logo-dark">
-                            <span class="logo-sm">
-                                <img src="/logo-dark.png" alt="logo-sm-dark" height="22">
-                            </span>
-                            <span class="logo-lg">
-                                <img src="/logo-dark.png" alt="logo-dark" height="40">
-                            </span>
+<body>
+    <section class="bg-dark p-3">
+        <div class="container text-white d-flex justify-content-between align-items-center">
+            <button class="navbar-toggler d-block d-lg-none" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <i class="bi bi-list fs-1 text-white"></i>
+            </button>
+            <img src="{{ asset('assets/logo.png') }}" alt="Logo" width="200">
+            <ul class="list-unstyled mb-0 d-flex gap-4 align-items-center">
+                <li class="d-none d-md-block">
+                    <h4 class="mb-0">0.00 USD</h4>
+                </li>
+                <li>
+                    <div class="dropdown">
+                        <a href="#" class="" id="notifications" data-bs-toggle="dropdown"
+                            aria-expanded="false">
+                            <i class="bi bi-bell fs-3 text-white"></i>
                         </a>
-
-                        <a href="{{ route('user.dashboard.index') }}" class="logo logo-light">
-                            <span class="logo-sm">
-                                <img src="/logo-light.png" alt="logo-sm-light" height="22">
-                            </span>
-                            <span class="logo-lg">
-                                <img src="/logo-light.png" alt="logo-light" height="40">
-                            </span>
+                        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="notifications">
+                            <li><a class="dropdown-item" href="#">No new Notification</a></li>
+                        </ul>
+                    </div>
+                </li>
+                <li>
+                    <div class="dropdown">
+                        <a href="#" class="" id="dropdownMenuButton1" data-bs-toggle="dropdown"
+                            aria-expanded="false">
+                            <i class="bi bi-person-circle text-white fs-3"></i>
                         </a>
+                        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuButton1">
+                            <li><a class="dropdown-item" href="#">Profile</a></li>
+                            <li><a class="dropdown-item" href="#">Change Password</a></li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                            <li><a class="dropdown-item" href="#">Sign Out</a></li>
+                        </ul>
                     </div>
-
-                    <button type="button" class="btn btn-sm px-3 font-size-24 header-item waves-effect"
-                        id="vertical-menu-btn">
-                        <i class="ri-menu-2-line align-middle"></i>
-                    </button>
-
-                </div>
-
-                <div class="d-flex">
-
-                    <div class="dropdown d-none d-lg-inline-block ms-1">
-                        <button type="button" class="btn header-item noti-icon waves-effect" data-bs-toggle="dropdown"
-                            aria-haspopup="true" aria-expanded="false">
-                            <i class="ri-apps-2-line"></i>
-                        </button>
-                        <div class="dropdown-menu dropdown-menu-lg dropdown-menu-end">
-                            <div class="px-lg-2">
-                                <div class="row g-0">
-                                    <div class="col">
-                                        <a class="dropdown-icon-item" href="#">
-                                            <img src="/assets/images/brands/github.png" alt="Github">
-                                            <span>Dashboard</span>
-                                        </a>
-                                    </div>
-                                    <div class="col">
-                                        <a class="dropdown-icon-item" href="#">
-                                            <img src="/assets/images/brands/bitbucket.png" alt="bitbucket">
-                                            <span>Deposit</span>
-                                        </a>
-                                    </div>
-                                    <div class="col">
-                                        <a class="dropdown-icon-item" href="#">
-                                            <img src="/assets/images/brands/dribbble.png" alt="dribbble">
-                                            <span>Withdrawals</span>
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="dropdown d-none d-lg-inline-block ms-1">
-                        <button type="button" class="btn header-item noti-icon waves-effect" data-toggle="fullscreen">
-                            <i class="ri-fullscreen-line"></i>
-                        </button>
-                    </div>
-
-                    <div class="dropdown d-inline-block">
-                        <button type="button" class="btn header-item noti-icon waves-effect"
-                            id="page-header-notifications-dropdown" data-bs-toggle="dropdown" aria-expanded="false">
-                            <i class="ri-notification-3-line"></i>
-                            <span class="noti-dot"></span>
-                        </button>
-                        <div class="dropdown-menu dropdown-menu-lg dropdown-menu-end p-0"
-                            aria-labelledby="page-header-notifications-dropdown">
-                            <div class="p-3">
-                                <div class="row align-items-center">
-                                    <div class="col">
-                                        <h6 class="m-0"> Notifications </h6>
-                                    </div>
-                                    <div class="col-auto">
-                                        <a href="#!" class="small"> View All</a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div data-simplebar style="max-height: 230px;">
-
-                            </div>
-                            <div class="p-2 border-top">
-                                <div class="d-grid">
-                                    <a class="btn btn-sm btn-link font-size-14 text-center" href="javascript:void(0)">
-                                        <i class="mdi mdi-arrow-right-circle me-1"></i> View More..
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="dropdown d-inline-block user-dropdown">
-                        <button type="button" class="btn header-item waves-effect" id="page-header-user-dropdown"
-                            data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <img class="rounded-circle header-profile-user" src="/avatar.png" alt="Header Avatar">
-                            <span class="d-none d-xl-inline-block ms-1">{{ auth()->user()->name }}</span>
-                            <i class="mdi mdi-chevron-down d-none d-xl-inline-block"></i>
-                        </button>
-                        <div class="dropdown-menu dropdown-menu-end">
-                            <!-- item-->
-                            <a class="dropdown-item" href="{{ route('user.profile.index') }}">
-                                <i class="ri-user-line align-middle me-1"></i>
-                                Profile
-                            </a>
-                            <a class="dropdown-item" href="{{ route('user.password.index') }}">
-                                <i class="ri-lock-password-line align-middle me-1"></i> Change Password
-                            </a>
-                            <a class="dropdown-item" href="{{ route('user.kyc.index') }}">
-                                <i class="ri-shield-line align-middle me-1"></i> KYC Verification
-                            </a>
-                            <div class="dropdown-divider"></div>
-                            <form id="logout" action="{{ route('logout') }}" method="POST">
-                                @csrf
-                            </form>
-                            <a class="dropdown-item text-danger" onclick="document.getElementById('logout').submit()"
-                                href="javascript:void(0);"><i
-                                    class="ri-shut-down-line align-middle me-1 text-danger"></i> Logout</a>
-                        </div>
-                    </div>
-
-                </div>
+                </li>
+            </ul>
+        </div>
+    </section>
+    <section class="p-3 shadow-sm bg-white">
+        <div class="container text-white d-flex justify-content-between align-items-center">
+            <div class="profile-section text-dark d-flex align-items-center gap-3">
+                <i class="bi bi-person-circle fs-3"></i>
+                <p class="mb-0">Hello, Fill in your account details to make your first deposit</p>
             </div>
-        </header>
-        <div class="vertical-menu">
-            <div data-simplebar class="h-100">
-                <div id="sidebar-menu">
-                    <ul class="metismenu list-unstyled" id="side-menu">
-                        @if (auth()->user()->role == 'admin')
-                            @include('inc/nav/admin')
-                        @else
-                            @include('inc/nav/user')
-                        @endif
+            <div class="profile-action-section">
+                <button class="btn btn-primary px-4">Complete Profile</button>
+            </div>
+        </div>
+    </section>
+    <section>
+        <div class="container d-flex align-items-start">
+            <nav class="navbar navbar-expand-lg">
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav me-2 flex-column justify-content-center">
+                        <li class="list-unstyled nav-item">
+                            <a href="{{ route('user.dashboard.index') }}" class="nav-link text-center">
+                                <i class="bi bi-grid-fill fs-3 text-primary"></i>
+                                <p class="nav-links mb-0">My Account</p>
+                            </a>
+                        </li>
+                        <li class="list-unstyled nav-item">
+                            <a href="#" class="nav-link text-center">
+                                <i class="bi bi-box-arrow-in-down fs-3 text-primary"></i>
+                                <p class="nav-links mb-0">Deposit</p>
+                            </a>
+                        </li>
+                        <li class="list-unstyled nav-item">
+                            <a href="{{ route('user.withdraw.create') }}" class="nav-link text-center">
+                                <i class="bi bi-box-arrow-up fs-3 text-primary"></i>
+                                <p class="nav-links mb-0">Withdrawal</p>
+                            </a>
+                        </li>
+                        <li class="list-unstyled nav-item">
+                            <a href="#" class="nav-link text-center">
+                                <i class="bi bi-hourglass-bottom fs-3 text-primary"></i>
+                                <p class="nav-links mb-0">Transaction History</p>
+                            </a>
+                        </li>
+                        <li class="list-unstyled nav-item">
+                            <a href="#" class="nav-link text-center">
+                                <i class="bi bi-easel2 fs-3 text-primary"></i>
+                                <p class="nav-links mb-0">Trade History</p>
+                            </a>
+                        </li>
+                        <li class="list-unstyled nav-item">
+                            <a href="#" class="nav-link text-center">
+                                <i class="bi bi-people fs-3 text-primary"></i>
+                                <p class="nav-links mb-0">Referral</p>
+                            </a>
+                        </li>
+                        <li class="list-unstyled nav-item">
+                            <a href="#" class="nav-link text-center">
+                                <i class="bi bi-gear fs-3 text-primary"></i>
+                                <p class="nav-links mb-0">Settings</p>
+                            </a>
+                        </li>
                     </ul>
                 </div>
-            </div>
-        </div>
-
-        <div class="main-content">
-            <div class="page-content">
-                <div class="container-fluid">
-                    <!-- start page title -->
-                    <div class="row">
-                        <div class="col-12">
-                            <div class="page-title-box d-sm-flex align-items-center justify-content-between">
-                                <h4 class="mb-sm-0">@yield('title')</h4>
-
-                                <div class="page-title-right">
-                                    <ol class="breadcrumb m-0">
-                                        <li class="breadcrumb-item"><a
-                                                href="{{ route('user.dashboard.index') }}">{{ env('APP_NAME') }}</a>
-                                        </li>
-                                        <li class="breadcrumb-item active">@yield('title')</li>
-                                    </ol>
+            </nav>
+            <div class="content py-4 w-100">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="card card-body shadow-sm border-0 mb-4">
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div class="titles">
+                                    <h2>Download the Munzeni Mobile App</h2>
+                                    <p class="mb-0">And Trade while you are on the go</p>
+                                </div>
+                                <div class="playstore d-none d-md-block">
+                                    <img src="{{ asset('assets/google.webp') }}" alt="Google Play Store"
+                                        width="200">
                                 </div>
                             </div>
                         </div>
                     </div>
-                    @yield('content')
                 </div>
-            </div>
-            <!-- End Page-content -->
-
-            <footer class="footer">
-                <div class="container-fluid">
-                    <div class="row">
-                        <div class="col-sm-6">
-                            <script>
-                                document.write(new Date().getFullYear())
-                            </script> {{ env('APP_NAME') }}. All Rights Reserved
-                        </div>
-                        <div class="col-sm-6">
-                            <div class="text-sm-end d-none d-sm-block">
-                                Crafted with <i class="mdi mdi-heart text-danger"></i> by {{ env('APP_NAME') }}
-                            </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="card card-body">
+                            @yield('content')
                         </div>
                     </div>
                 </div>
-            </footer>
-
+            </div>
         </div>
-        <!-- end main content-->
-
-    </div>
-    <!-- END layout-wrapper -->
-
-    <!-- JAVASCRIPT -->
-    <script src="/assets/libs/jquery/jquery.min.js"></script>
-    <script src="/assets/libs/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <script src="/assets/libs/metismenu/metisMenu.min.js"></script>
-    <script src="/assets/libs/simplebar/simplebar.min.js"></script>
-    <script src="/assets/libs/node-waves/waves.min.js"></script>
+    </section>
 
 
-    <script src="/assets/js/pages/dashboard.init.js"></script>
 
-    <!-- App js -->
-    <script src="/assets/js/app.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
     <x-alert />
     @livewireScripts
 </body>

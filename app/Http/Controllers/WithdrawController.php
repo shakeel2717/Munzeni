@@ -35,7 +35,7 @@ class WithdrawController extends Controller
 
         // checking if available balance is enough
         if (auth()->user()->getBalance() < $validatedData['amount']) {
-            // return back()->withErrors(['Insufficient Balance']);
+            return back()->withErrors(['Insufficient Balance']);
         }
 
         // checking if available balance is enough

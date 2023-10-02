@@ -62,11 +62,11 @@ class TradeSection extends Component
             'reference' => "Trading on " . $this->type,
         ]);
 
-        UserInvestInTrading::dispatch($transaction);
+        event(new UserInvestInTrading($transaction));
 
         $this->resetAll();
 
-        $this->dispatch('showAlert', ['message' => 'Invested Successfully']);
+        $this->emit('showAlert', ['message' => 'Invested Successfully']);
     }
 
     public function resetAll()
