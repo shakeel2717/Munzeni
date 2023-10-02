@@ -16,6 +16,8 @@
     <link href="/assets/css/icons.min.css" rel="stylesheet" type="text/css" />
     <!-- App Css-->
     <link href="/assets/css/app.min.css" id="app-style" rel="stylesheet" type="text/css" />
+    @vite(['resources/js/app.js'])
+    @livewireStyles
 </head>
 
 <body data-sidebar="dark">
@@ -130,8 +132,7 @@
                     <div class="dropdown d-inline-block user-dropdown">
                         <button type="button" class="btn header-item waves-effect" id="page-header-user-dropdown"
                             data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <img class="rounded-circle header-profile-user" src="/avatar.png"
-                                alt="Header Avatar">
+                            <img class="rounded-circle header-profile-user" src="/avatar.png" alt="Header Avatar">
                             <span class="d-none d-xl-inline-block ms-1">{{ auth()->user()->name }}</span>
                             <i class="mdi mdi-chevron-down d-none d-xl-inline-block"></i>
                         </button>
@@ -235,6 +236,7 @@
     <!-- App js -->
     <script src="/assets/js/app.js"></script>
     <x-alert />
+    @livewireScripts
 </body>
 
 </html>

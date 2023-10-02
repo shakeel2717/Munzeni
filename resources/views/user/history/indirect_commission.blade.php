@@ -6,7 +6,7 @@
             <div class="card card-body">
                 <h2 class="card-title">@yield('title')</h2>
                 <hr>
-                <livewire:user.all-transactions :type="['indirect commission']" />
+                <livewire:user.all-transaction :type="['indirect commission']" />
             </div>
         </div>
     </div>
