@@ -17,6 +17,12 @@
     </a>
 </li>
 <li class="list-unstyled nav-item">
+    <a href="{{ route('admin.history.setting') }}" class="nav-link text-center">
+        <i class="bi bi-grid-fill fs-3 text-primary"></i>
+        <p class="nav-links mb-0">Website Setting</p>
+    </a>
+</li>
+<li class="list-unstyled nav-item">
     <a href="{{ route('admin.kyc.index') }}" class="nav-link text-center">
         <i class="bi bi-grid-fill fs-3 text-primary"></i>
         <p class="nav-links mb-0">All Kyc Request</p>
