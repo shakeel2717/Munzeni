@@ -1,28 +1,18 @@
-<li class="menu-title">Menu</li>
-
-<li>
-    <a href="{{ route('admin.dashboard.index') }}" class="waves-effect">
-        <i class="ri-dashboard-line"></i>
-        <span>Admin Dashboard</span>
+<li class="list-unstyled nav-item">
+    <a href="{{ route('admin.dashboard.index') }}" class="nav-link text-center">
+        <i class="bi bi-grid-fill fs-3 text-primary"></i>
+        <p class="nav-links mb-0">Admin Dashboard</p>
     </a>
 </li>
-
-<li class="menu-title">Finance</li>
-
-<li>
-    <a href="{{ route('admin.finance.create') }}" class="waves-effect">
-        <i class="ri-dashboard-line"></i>
-        <span>Add Balance</span>
+<li class="list-unstyled nav-item">
+    <a href="{{ route('admin.finance.create') }}" class="nav-link text-center">
+        <i class="bi bi-grid-fill fs-3 text-primary"></i>
+        <p class="nav-links mb-0">Add Balance</p>
     </a>
 </li>
-
-<li class="menu-title">KYC Request</li>
-
-<li>
-    <a href="{{ route('admin.kyc.index') }}" class="waves-effect">
-        <i class="ri-dashboard-line"></i>
-        <span>All Kyc Request</span>
+<li class="list-unstyled nav-item">
+    <a href="{{ route('admin.kyc.index') }}" class="nav-link text-center">
+        <i class="bi bi-grid-fill fs-3 text-primary"></i>
+        <p class="nav-links mb-0">All Kyc Request</p>
     </a>
 </li>
-<hr>
-@include('inc.nav.user')

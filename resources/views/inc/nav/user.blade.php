@@ -1,6 +1,10 @@
 <nav class="navbar navbar-expand-lg">
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav me-2 flex-column justify-content-center">
+            @if (auth()->user()->role == 'admin')
+                @include('inc.nav.admin')
+            @endif
+
             <li class="list-unstyled nav-item">
                 <a href="{{ route('user.dashboard.index') }}" class="nav-link text-center">
                     <i class="bi bi-grid-fill fs-3 text-primary"></i>

@@ -3,7 +3,7 @@
 @section('content')
     <div class="row">
         <div class="col-md-8 mx-auto">
-            <div class="card">
+            <div class="">
                 <div class="card-body">
                     <h4 class="">Add Funds to User Balance</h4>
                     <hr>
