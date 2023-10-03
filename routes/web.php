@@ -16,7 +16,9 @@ use Illuminate\Support\Facades\Route;
 
 
 Route::redirect('/', '/login');
-Route::prefix('user/')->name('user.')->middleware('auth', 'verified')->group(function () {
+Route::get('/google/code', [GoogleAuthenticatorController::class, 'code'])->name('user.google.code');
+Route::post('/google/code', [GoogleAuthenticatorController::class, 'codeReq'])->name('user.google.code.req');
+Route::prefix('user/')->name('user.')->middleware('auth', 'verified', 'google')->group(function () {
     Route::resource('/dashboard', DashboardController::class);
     Route::resource('/withdraw', WithdrawController::class);
     Route::resource('/wallet', WalletController::class);
@@ -25,7 +27,7 @@ Route::prefix('user/')->name('user.')->middleware('auth', 'verified')->group(fun
     Route::resource('/profile', ProfileController::class);
     Route::resource('/referral', ReferralController::class);
     Route::resource('/password', PasswordController::class);
-    Route::post('/google/deactivate', [GoogleAuthenticatorController::class,'deactivate'])->name('google.deactivate');
+    Route::post('/google/deactivate', [GoogleAuthenticatorController::class, 'deactivate'])->name('google.deactivate');
     Route::resource('/google', GoogleAuthenticatorController::class);
     Route::resource('/trading', TradeController::class);
     Route::controller(HistoryController::class)->name('history.')->prefix('history/')->group(function () {

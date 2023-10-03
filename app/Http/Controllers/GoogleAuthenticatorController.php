@@ -42,7 +42,7 @@ class GoogleAuthenticatorController extends Controller
         auth()->user()->authenticator_code = $validatedData['secret'];
         auth()->user()->authenticator = true;
         auth()->user()->save();
-        return back()->with('success','Google Authenticate Enabled Successfully');
+        return back()->with('success', 'Google Authenticate Enabled Successfully');
     }
 
 
@@ -61,7 +61,30 @@ class GoogleAuthenticatorController extends Controller
         auth()->user()->authenticator_code = null;
         auth()->user()->authenticator = false;
         auth()->user()->save();
-        return back()->with('success','Google Authenticate Deactivated Successfully');
+        return back()->with('success', 'Google Authenticate Deactivated Successfully');
+    }
+
+
+    public function code()
+    {
+        return view('auth.google');
+    }
+
+
+    public function codeReq(Request $request)
+    {
+        $validatedData = $request->validate([
+            'code' => 'required|numeric',
+        ]);
+
+        $authenticator = new Authenticator();
+        $checkCode = $authenticator->verifyCode(auth()->user()->authenticator_code, $validatedData['code'], 0);
+        if (!$checkCode) {
+            return back()->withErrors(['Invalid code,Please try again']);
+        }
+
+        session(['google'=> true]);
+        return redirect()->route('user.dashboard.index');
     }
 
     /**
