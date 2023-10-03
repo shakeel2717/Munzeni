@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\GoogleAuthenticatorController;
 use App\Http\Controllers\KycController;
 use App\Http\Controllers\LandingPageController;
 use App\Http\Controllers\PasswordController;
@@ -24,6 +25,8 @@ Route::prefix('user/')->name('user.')->middleware('auth', 'verified')->group(fun
     Route::resource('/profile', ProfileController::class);
     Route::resource('/referral', ReferralController::class);
     Route::resource('/password', PasswordController::class);
+    Route::post('/google/deactivate', [GoogleAuthenticatorController::class,'deactivate'])->name('google.deactivate');
+    Route::resource('/google', GoogleAuthenticatorController::class);
     Route::resource('/trading', TradeController::class);
     Route::controller(HistoryController::class)->name('history.')->prefix('history/')->group(function () {
         Route::view('deposit', 'user.history.deposit')->name('deposits');

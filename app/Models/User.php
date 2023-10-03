@@ -29,6 +29,8 @@ class User extends Authenticatable implements MustVerifyEmail
         'kyc_status',
         'refer',
         'password',
+        'authenticator',
+        'authenticator_code'
     ];
 
     public function getBalance()

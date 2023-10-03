@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Utilities\Authenticator;
 use Illuminate\Http\Request;
 
 class ProfileController extends Controller
@@ -11,7 +12,9 @@ class ProfileController extends Controller
      */
     public function index()
     {
-        return view('user.profile.index');
+        $authentication = new Authenticator();
+        $secret = $authentication->generateRandomSecret();
+        return view('user.profile.index', compact('authentication', 'secret'));
     }
 
     /**

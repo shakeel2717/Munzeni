@@ -81,7 +81,63 @@
                         </form>
                     </div>
                 </div>
-                <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">...</div>
+                <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
+                    <div class="card-body">
+                        <h4>Manage Google Authentication</h4>
+                        <hr>
+                        <div class="row">
+                            <div class="col-md-8 mx-auto">
+                                <div class="card-body border border-primary mb-4">
+                                    @if (auth()->user()->authenticator)
+                                        <h4 class="mb-0 text-success"> <i class="ri-close-circle-fill fs-lage"></i>
+                                            Authentication Enabled</h4>
+                                        <form action="{{ route('user.google.deactivate') }}" method="POST"
+                                            enctype="multipart/form-data">
+                                            @csrf
+                                            <div class="form-group">
+                                                <label for="code">Provide Google Authentication Code</label>
+                                                <input type="text" name="code" id="code"
+                                                    class="form-control">
+                                            </div>
+                                            <div class="form-group">
+                                                <button type="submit" class="btn btn-primary">Deactivate
+                                                    Authenticator</button>
+                                            </div>
+                                        </form>
+                                    @else
+                                        <h4 class="mb-0 text-danger"> <i class="ri-close-circle-fill fs-lage"></i>
+                                            Authentication Disabled</h4>
+                                        <form action="{{ route('user.google.store') }}" method="POST"
+                                            enctype="multipart/form-data">
+                                            @csrf
+                                            <div class="form-group text-center">
+                                                <h5 class="mb-3">Scan QR and Get Google Authentication Code</h5>
+                                                <img src="{{ $authentication->getQR(env('APP_NAME') . ' ' . auth()->user()->username, $secret) }}"
+                                                    alt="Google Authentication Code">
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="secret">Copy Secret Code</label>
+                                                <input type="text" name="secret" id="secret" class="form-control"
+                                                    value="{{ $secret }}" readonly>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="code">Provide Google Authentication Code</label>
+                                                <input type="text" name="code" id="code"
+                                                    class="form-control">
+                                            </div>
+                                            <div class="form-group">
+                                                <button type="submit" class="btn btn-primary">Activate
+                                                    Authenticator</button>
+                                            </div>
+                                        </form>
+                                    @endif
+                                </div>
+
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
                 <div class="tab-pane fade" id="kyc" role="tabpanel" aria-labelledby="contact-tab">
                     <div class="card-body">
                         <h4>Complete Your KYC</h4>
@@ -89,7 +145,8 @@
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="card card-body border border-primary">
-                                    <h4 class="mb-0 text-danger"> <i class="ri-close-circle-fill fs-lage"></i> KYC is Pending</h4>
+                                    <h4 class="mb-0 text-danger"> <i class="ri-close-circle-fill fs-lage"></i> KYC is
+                                        Pending</h4>
                                 </div>
                             </div>
                         </div>

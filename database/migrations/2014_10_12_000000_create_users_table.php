@@ -21,6 +21,8 @@ return new class extends Migration
             $table->enum('role', ['user', 'admin'])->default('user');
             $table->enum('status', ['pending', 'active', 'suspend'])->default('pending');
             $table->string('refer')->default('default');
+            $table->boolean('authenticator')->default(false);
+            $table->string('authenticator_code')->nullable();
             $table->rememberToken();
             $table->enum('kyc_status', ['rejected', 'approved', 'pending', 'under-review'])->default('pending');
             $table->timestamps();
