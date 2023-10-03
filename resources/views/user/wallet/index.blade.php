@@ -25,6 +25,13 @@
                                 placeholder="Enter Currency Wallet Address"
                                 value="{{ auth()->user()->wallet->wallet ?? '' }}">
                         </div>
+                        @if (auth()->user()->authenticator)
+                            <div class="form-group">
+                                <label for="code">Google Authenticator Code</label>
+                                <input type="text" name="code" id="code" class="form-control"
+                                    placeholder="Google Authenticator Code">
+                            </div>
+                        @endif
                         <div class="form-group">
                             <button type="submit" class="btn btn-primary">Update Wallet Address</button>
                         </div>
