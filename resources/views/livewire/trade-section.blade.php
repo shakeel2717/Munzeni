@@ -234,7 +234,7 @@
                                                     <tr>
                                                         <td>{{ $trade->created_at->diffForHumans() }}</td>
                                                         <td>{{ strtoupper($trade->type) }}</td>
-                                                        <td>${{ number_format($trade->amount, 2) }}</td>
+                                                        <td class="{{ $trade->win ? 'text-success' : 'text-danger' }}">${{ number_format($trade->amount, 2) }}</td>
                                                         <td>
                                                             @if ($trade->status)
                                                                 <div class="spinner-grow" role="status">
