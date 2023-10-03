@@ -48,7 +48,10 @@
                             <li>
                                 <hr class="dropdown-divider">
                             </li>
-                            <li><a class="dropdown-item" href="#">Sign Out</a></li>
+                            <form action="{{ route('logout') }}" method="POST" id="logoutForm">
+                                @csrf
+                            </form>
+                            <li onclick="document.getElementById('logoutForm').submit()"><a class="dropdown-item" href="#">Sign Out</a></li>
                         </ul>
                     </div>
                 </li>
@@ -68,54 +71,7 @@
     </section>
     <section>
         <div class="container d-flex align-items-start">
-            <nav class="navbar navbar-expand-lg">
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul class="navbar-nav me-2 flex-column justify-content-center">
-                        <li class="list-unstyled nav-item">
-                            <a href="{{ route('user.dashboard.index') }}" class="nav-link text-center">
-                                <i class="bi bi-grid-fill fs-3 text-primary"></i>
-                                <p class="nav-links mb-0">My Account</p>
-                            </a>
-                        </li>
-                        <li class="list-unstyled nav-item">
-                            <a href="#" class="nav-link text-center">
-                                <i class="bi bi-box-arrow-in-down fs-3 text-primary"></i>
-                                <p class="nav-links mb-0">Deposit</p>
-                            </a>
-                        </li>
-                        <li class="list-unstyled nav-item">
-                            <a href="{{ route('user.withdraw.create') }}" class="nav-link text-center">
-                                <i class="bi bi-box-arrow-up fs-3 text-primary"></i>
-                                <p class="nav-links mb-0">Withdrawal</p>
-                            </a>
-                        </li>
-                        <li class="list-unstyled nav-item">
-                            <a href="#" class="nav-link text-center">
-                                <i class="bi bi-hourglass-bottom fs-3 text-primary"></i>
-                                <p class="nav-links mb-0">Transaction History</p>
-                            </a>
-                        </li>
-                        <li class="list-unstyled nav-item">
-                            <a href="#" class="nav-link text-center">
-                                <i class="bi bi-easel2 fs-3 text-primary"></i>
-                                <p class="nav-links mb-0">Trade History</p>
-                            </a>
-                        </li>
-                        <li class="list-unstyled nav-item">
-                            <a href="#" class="nav-link text-center">
-                                <i class="bi bi-people fs-3 text-primary"></i>
-                                <p class="nav-links mb-0">Referral</p>
-                            </a>
-                        </li>
-                        <li class="list-unstyled nav-item">
-                            <a href="#" class="nav-link text-center">
-                                <i class="bi bi-gear fs-3 text-primary"></i>
-                                <p class="nav-links mb-0">Settings</p>
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-            </nav>
+            @include('inc.nav.user')
             <div class="content py-4 w-100">
                 <div class="row">
                     <div class="col-md-12">
@@ -126,8 +82,7 @@
                                     <p class="mb-0">And Trade while you are on the go</p>
                                 </div>
                                 <div class="playstore d-none d-md-block">
-                                    <img src="{{ asset('assets/google.webp') }}" alt="Google Play Store"
-                                        width="200">
+                                    <img src="{{ asset('assets/google.webp') }}" alt="Google Play Store" width="200">
                                 </div>
                             </div>
                         </div>
@@ -135,7 +90,7 @@
                 </div>
                 <div class="row">
                     <div class="col-md-12">
-                        <div class="card card-body">
+                        <div class="card card-body" style="min-height: 60vh;">
                             @yield('content')
                         </div>
                     </div>
@@ -143,10 +98,6 @@
             </div>
         </div>
     </section>
-
-
-
-
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
     <x-alert />
     @livewireScripts

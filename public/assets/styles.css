@@ -12,3 +12,10 @@ body {
     background-color: white;
     border-radius: 4px;
 }
+
+a {
+    text-decoration: none;
+}
+.form-group {
+    margin-bottom: 20px;
+}

@@ -1,56 +1,44 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="utf-8" />
-    <title>Login | Nazox - Admin & Dashboard Template</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta content="Premium Multipurpose Admin & Dashboard Template" name="description" />
-    <meta content="Themesdesign" name="author" />
-    <!-- App favicon -->
-    <link rel="shortcut icon" href="/favi.ico">
-    <!-- Bootstrap Css -->
-    <link href="/assets/css/bootstrap.min.css" id="bootstrap-style" rel="stylesheet" type="text/css" />
-    <!-- Icons Css -->
-    <link href="/assets/css/icons.min.css" rel="stylesheet" type="text/css" />
-    <!-- App Css-->
-    <link href="/assets/css/app.min.css" id="app-style" rel="stylesheet" type="text/css" />
 
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Layout Project</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="{{ asset('assets/styles.css') }}">
+    @vite(['resources/js/app.js'])
+    @livewireStyles
 </head>
 
-<body class="auth-body-bg">
-    <div>
-        <div class="container-fluid p-0">
-            <div class="row g-0">
-                <div class="col-lg-4">
-                    <div class="authentication-page-content p-4 d-flex align-items-center min-vh-100">
-                        <div class="w-100">
-                            <div class="row justify-content-center">
-                                <div class="col-lg-9">
-                                    <div>
-                                        @yield('form')
-                                    </div>
-                                </div>
-                            </div>
+<body>
+    <section class="bg-dark p-3">
+        <div class="container text-white d-flex justify-content-between align-items-center">
+            <button class="navbar-toggler d-block d-lg-none" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <i class="bi bi-list fs-1 text-white"></i>
+            </button>
+            <img src="{{ asset('assets/logo.png') }}" alt="Logo" width="200">
+        </div>
+    </section>
+    <section>
+        <div class="container d-flex align-items-center">
+            <div class="content py-4 w-100">
+                <div class="row">
+                    <div class="col-md-8 mx-auto">
+                        <div class="card card-body">
+                            @yield('form')
                         </div>
-                    </div>
-                </div>
-                <div class="col-lg-8">
-                    <div class="authentication-bg">
-                        <div class="bg-overlay"></div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-    <!-- JAVASCRIPT -->
-    <script src="/assets/libs/jquery/jquery.min.js"></script>
-    <script src="/assets/libs/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <script src="/assets/libs/metismenu/metisMenu.min.js"></script>
-    <script src="/assets/libs/simplebar/simplebar.min.js"></script>
-    <script src="/assets/libs/node-waves/waves.min.js"></script>
-
-    <script src="/assets/js/app.js"></script>
-
+    </section>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+    <x-alert />
+    @livewireScripts
 </body>
 
 </html>
