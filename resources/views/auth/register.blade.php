@@ -4,33 +4,42 @@
         <h4 class="font-size-18 mt-4">Register account</h4>
         <p class="text-muted">Get your free {{ env('APP_NAME') }} account now.</p>
     </div>
-    <div class="p-2 mt-5">
+    <div class="p-2">
         <form class="form-horizontal" action="{{ route('register') }}" method="POST">
             @csrf
-            <div class="form-group auth-form-group-custom mb-4">
+            <div class="form-group auth-form-group-custom ">
                 <i class="ri-user-line auti-custom-input-icon"></i>
                 <label for="name">Full Name</label>
                 <input type="text" name="name" class="form-control" id="name" placeholder="Enter Full Name">
             </div>
-            <div class="form-group auth-form-group-custom mb-4">
+            <div class="form-group auth-form-group-custom ">
                 <i class="ri-user-shared-fill auti-custom-input-icon"></i>
                 <label for="username">Username</label>
                 <input type="text" name="username" class="form-control" id="username" placeholder="Enter Username">
             </div>
-            <div class="form-group auth-form-group-custom mb-4">
+            @if ($refer != 'default')
+                <div class="form-group auth-form-group-custom">
+                    <i class="ri-user-shared-fill auti-custom-input-icon"></i>
+                    <label for="refer">Referral</label>
+                    <input type="text" name="refer" class="form-control" id="refer" placeholder="Enter Referral"
+                        value="{{ $refer }}" readonly>
+                </div>
+            @endif
+            <div class="form-group auth-form-group-custom ">
                 <i class="ri-mail-line auti-custom-input-icon"></i>
                 <label for="useremail">Email</label>
                 <input type="email" name="email" class="form-control" id="useremail" placeholder="Enter email">
             </div>
-            <div class="form-group auth-form-group-custom mb-4">
+            <div class="form-group auth-form-group-custom ">
                 <i class="ri-lock-2-line auti-custom-input-icon"></i>
                 <label for="password">Password</label>
                 <input type="password" name="password" class="form-control" id="password" placeholder="Enter password">
             </div>
-            <div class="form-group auth-form-group-custom mb-4">
+            <div class="form-group auth-form-group-custom ">
                 <i class="ri-lock-2-line auti-custom-input-icon"></i>
                 <label for="password_confirmation">Confirm Password</label>
-                <input type="password" name="password_confirmation" class="form-control" id="password_confirmation" placeholder="Enter password">
+                <input type="password" name="password_confirmation" class="form-control" id="password_confirmation"
+                    placeholder="Enter password">
             </div>
             <div class="text-center">
                 <button class="btn btn-primary w-md waves-effect waves-light" type="submit">Create Account</button>
