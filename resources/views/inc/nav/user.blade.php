@@ -44,7 +44,7 @@
                 </a>
             </li>
             <li class="list-unstyled nav-item">
-                <a href="#" class="nav-link text-center">
+                <a href="{{ route('user.profile.index') }}" class="nav-link text-center">
                     <i class="bi bi-gear fs-3 text-primary"></i>
                     <p class="nav-links mb-0">Settings</p>
                 </a>

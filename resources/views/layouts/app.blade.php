@@ -23,7 +23,7 @@
             <img src="{{ asset('assets/logo.png') }}" alt="Logo" width="200">
             <ul class="list-unstyled mb-0 d-flex gap-4 align-items-center">
                 <li class="d-none d-md-block">
-                    <h4 class="mb-0">0.00 USD</h4>
+                    <h4 class="mb-0">${{ number_format(auth()->user()->getBalance(),2) }} USD</h4>
                 </li>
                 <li>
                     <div class="dropdown">
@@ -43,8 +43,8 @@
                             <i class="bi bi-person-circle text-white fs-3"></i>
                         </a>
                         <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuButton1">
-                            <li><a class="dropdown-item" href="#">Profile</a></li>
-                            <li><a class="dropdown-item" href="#">Change Password</a></li>
+                            <li><a class="dropdown-item" href="{{ route('user.profile.index') }}">Profile</a></li>
+                            <li><a class="dropdown-item" href="{{ route('user.profile.index') }}">Change Password</a></li>
                             <li>
                                 <hr class="dropdown-divider">
                             </li>
