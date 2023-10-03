@@ -16,6 +16,10 @@
                     <button class="nav-link" id="contact-tab" data-bs-toggle="tab" data-bs-target="#contact" type="button"
                         role="tab" aria-controls="contact" aria-selected="false">Google Authenticator</button>
                 </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="kyc-tab" data-bs-toggle="tab" data-bs-target="#kyc" type="button"
+                        role="tab" aria-controls="kyc" aria-selected="false">KYC Verification</button>
+                </li>
             </ul>
             <div class="tab-content" id="myTabContent">
                 <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
@@ -78,6 +82,33 @@
                     </div>
                 </div>
                 <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">...</div>
+                <div class="tab-pane fade" id="kyc" role="tabpanel" aria-labelledby="contact-tab">
+                    <div class="card-body">
+                        <h4>Complete Your KYC</h4>
+                        <hr>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="card card-body border border-primary">
+                                    <h4 class="mb-0 text-danger"> <i class="ri-close-circle-fill fs-lage"></i> KYC is Pending</h4>
+                                </div>
+                            </div>
+                        </div>
+                        <form action="{{ route('user.kyc.store') }}" method="POST" enctype="multipart/form-data">
+                            @csrf
+                            <div class="form-group">
+                                <label for="front">Front Side Document</label>
+                                <input type="file" name="front" id="front" class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <label for="back">Back Side Document</label>
+                                <input type="file" name="back" id="back" class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <button type="submit" class="btn btn-primary">Submit for Approval</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
