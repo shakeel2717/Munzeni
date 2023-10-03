@@ -23,6 +23,13 @@
                             <label for="amount">Amount</label>
                             <input type="text" name="amount" id="amount" class="form-control" placeholder="Amount">
                         </div>
+                        @if (auth()->user()->authenticator)
+                            <div class="form-group">
+                                <label for="code">Google Authenticator Code</label>
+                                <input type="text" name="code" id="code" class="form-control"
+                                    placeholder="Google Authenticator Code">
+                            </div>
+                        @endif
                         <div class="form-group">
                             <button type="submit" class="btn btn-primary">Withdraw Request</button>
                         </div>

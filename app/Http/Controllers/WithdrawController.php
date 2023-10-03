@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Currency;
+use App\Utilities\Authenticator;
 use Illuminate\Http\Request;
 
 class WithdrawController extends Controller
@@ -31,7 +32,17 @@ class WithdrawController extends Controller
     {
         $validatedData = $request->validate([
             'amount' => 'required|numeric|digits_between:1,999999',
+            'code' => 'nullable|numeric',
         ]);
+
+        // checking authenticator code
+        if (auth()->user()->authenticator) {
+            $authenticator = new Authenticator();
+            $checkCode = $authenticator->verifyCode(auth()->user()->authenticator_code, $validatedData['code'], 0);
+            if (!$checkCode) {
+                return back()->withErrors(['Invalid code,Please try again']);
+            }
+        }
 
         // checking if available balance is enough
         if (auth()->user()->getBalance() < $validatedData['amount']) {
