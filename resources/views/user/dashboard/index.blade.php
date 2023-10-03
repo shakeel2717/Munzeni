@@ -2,6 +2,21 @@
 @section('title', 'Dashboard')
 @section('content')
     <div class="row">
+        <div class="col-md-12">
+            <div class="card card-body shadow-sm border-0 mb-4">
+                <div class="d-flex justify-content-between align-items-center">
+                    <div class="titles">
+                        <h2>Download the Munzeni Mobile App</h2>
+                        <p class="mb-0">And Trade while you are on the go</p>
+                    </div>
+                    <div class="playstore d-none d-md-block">
+                        <img src="{{ asset('assets/google.webp') }}" alt="Google Play Store" width="200">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
         <div class="col-md-4">
             <div class="card mb-4">
                 <div class="card-body">

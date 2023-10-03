@@ -67,7 +67,7 @@
                 <p class="mb-0">Hello, Fill in your account details to make your first deposit</p>
             </div>
             <div class="profile-action-section">
-                <button class="btn btn-primary px-4">Complete Profile</button>
+                <a href="{{ route('user.profile.index') }}" class="btn btn-primary px-4">Complete Profile</a>
             </div>
         </div>
     </section>
@@ -85,7 +85,8 @@
                 <li class="text-white">
                     <div class="middle-button" style="margin-top: -20px">
                         <a class="btn btn-lg btn-primary rounded-circle" href="{{ route('user.trading.index') }}">
-                            <i class="bi bi-house-door fs-1"></i>
+                            {{-- <i class="bi bi-house-door fs-1"></i> --}}
+                            <img class="py-2" src="{{ asset('home.png') }}" alt="Home" width="25">
                         </a>
                     </div>
                 </li>
@@ -102,22 +103,6 @@
         <div class="container d-flex align-items-start">
             @include('inc.nav.user')
             <div class="content py-4 w-100">
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="card card-body shadow-sm border-0 mb-4">
-                            <div class="d-flex justify-content-between align-items-center">
-                                <div class="titles">
-                                    <h2>Download the Munzeni Mobile App</h2>
-                                    <p class="mb-0">And Trade while you are on the go</p>
-                                </div>
-                                <div class="playstore d-none d-md-block">
-                                    <img src="{{ asset('assets/google.webp') }}" alt="Google Play Store"
-                                        width="200">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
                 <div class="row">
                     <div class="col-md-12">
                         <div class="card card-body" style="min-height: 60vh;">
