@@ -131,7 +131,7 @@
     </div>
     <div class="row">
         <div class="col-md-12">
-            <div class="card card-body">
+            <div class="card card-body overflow-scroll">
                 <h2 class="card-title">Recent Transactions</h2>
                 <hr>
                 <table class="table table-responsive table-striped table-hover">

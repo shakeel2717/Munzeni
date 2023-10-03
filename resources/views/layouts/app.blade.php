@@ -44,14 +44,16 @@
                         </a>
                         <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuButton1">
                             <li><a class="dropdown-item" href="{{ route('user.profile.index') }}">Profile</a></li>
-                            <li><a class="dropdown-item" href="{{ route('user.profile.index') }}">Change Password</a></li>
+                            <li><a class="dropdown-item" href="{{ route('user.profile.index') }}">Change Password</a>
+                            </li>
                             <li>
                                 <hr class="dropdown-divider">
                             </li>
                             <form action="{{ route('logout') }}" method="POST" id="logoutForm">
                                 @csrf
                             </form>
-                            <li onclick="document.getElementById('logoutForm').submit()"><a class="dropdown-item" href="#">Sign Out</a></li>
+                            <li onclick="document.getElementById('logoutForm').submit()"><a class="dropdown-item"
+                                    href="#">Sign Out</a></li>
                         </ul>
                     </div>
                 </li>
@@ -70,6 +72,33 @@
         </div>
     </section>
     <section>
+        <nav class="d-block d-md-none position-fixed bottom-0 bg-dark w-100 left-0 p-2" style="z-index: 5">
+            <ul class="list-unstyled d-flex px-2 justify-content-between align-items-center mb-0">
+                <li class="text-white">
+                    <a class="text-white" href="{{ route('user.dashboard.index') }}"><i
+                            class="bi bi-house-door fs-2"></i></a>
+                </li>
+                <li class="text-white">
+                    <a class="text-white" href="{{ route('user.history.deposits') }}">
+                        <i class="bi bi-clock-history fs-2"></i></a>
+                </li>
+                <li class="text-white">
+                    <div class="middle-button" style="margin-top: -20px">
+                        <a class="btn btn-lg btn-primary rounded-circle" href="{{ route('user.trading.index') }}">
+                            <i class="bi bi-house-door fs-1"></i>
+                        </a>
+                    </div>
+                </li>
+                <li class="text-white">
+                    <a class="text-white" href="{{ route('user.withdraw.create') }}">
+                        <i class="bi bi-minecart-loaded fs-2"></i></a>
+                </li>
+                <li class="text-white">
+                    <a class="text-white" href="{{ route('user.profile.index') }}">
+                        <i class="bi bi-person-circle fs-2"></i></a>
+                </li>
+            </ul>
+        </nav>
         <div class="container d-flex align-items-start">
             @include('inc.nav.user')
             <div class="content py-4 w-100">
@@ -82,7 +111,8 @@
                                     <p class="mb-0">And Trade while you are on the go</p>
                                 </div>
                                 <div class="playstore d-none d-md-block">
-                                    <img src="{{ asset('assets/google.webp') }}" alt="Google Play Store" width="200">
+                                    <img src="{{ asset('assets/google.webp') }}" alt="Google Play Store"
+                                        width="200">
                                 </div>
                             </div>
                         </div>
