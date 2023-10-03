@@ -38,7 +38,7 @@
                 </a>
             </li>
             <li class="list-unstyled nav-item">
-                <a href="#" class="nav-link text-center">
+                <a href="{{ route('user.referral.index') }}" class="nav-link text-center">
                     <i class="bi bi-people fs-3 text-primary"></i>
                     <p class="nav-links mb-0">Referral</p>
                 </a>
