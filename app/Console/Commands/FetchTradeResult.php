@@ -41,6 +41,6 @@ class FetchTradeResult extends Command
         $tradeHistory->result = $lastSecondDecimal;
         $tradeHistory->save();
 
-        event(new DeclareResultForTrade($tradeHistory));
+        event(new DeclareResultForTrade($tradeHistory,$type));
     }
 }

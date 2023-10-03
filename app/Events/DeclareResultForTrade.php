@@ -17,7 +17,7 @@ class DeclareResultForTrade
     /**
      * Create a new event instance.
      */
-    public function __construct(public $tradeHistory)
+    public function __construct(public $tradeHistory, public $type)
     {
         //
     }

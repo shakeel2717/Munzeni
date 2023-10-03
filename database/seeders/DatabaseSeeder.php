@@ -146,6 +146,20 @@ class DatabaseSeeder extends Seeder
             'value' => 5,
         ]);
 
+
+        $setting = Setting::firstOrCreate([
+            'key' => 'one_mi_trade_profit',
+            'value' => 2,
+        ]);
+
+
+        $setting = Setting::firstOrCreate([
+            'key' => 'five_mi_trade_profit',
+            'value' => 5,
+        ]);
+
+
+
         $plan = Plan::firstOrCreate([
             'name' => 'Basic',
             'profit' => 1.5,

@@ -23,7 +23,7 @@ class SendProfitToWinner
     public function handle(DeclareResultForTrade $event): void
     {
         // getting all trades
-        $trades = Trading::where('status', true)->get();
+        $trades = Trading::where('status', true)->where('method', $event->type)->get();
         foreach ($trades as $trade) {
             // info("Result: " . $event->tradeHistory->result);
             $isEven = ($event->tradeHistory->result % 2 == 0);
@@ -35,8 +35,14 @@ class SendProfitToWinner
                 $winner = 'odd';
             }
             if ($winner == $trade->type) {
+                // getting trade profit
+                if ($event->type == 'one') {
+                    $trade_profit = settings('one_mi_trade_profit');
+                } else {
+                    $trade_profit = settings('five_mi_trade_profit');
+                }
                 // info($winner . " is winner");
-                $winnerAmount = $trade->amount * 2;
+                $winnerAmount = $trade->amount * $trade_profit;
                 $winner_charges = settings("winner_charges");
                 if ($winner_charges > 0) {
                     $winnerAmountFees = $winnerAmount * settings("winner_charges") / 100;
@@ -54,15 +60,15 @@ class SendProfitToWinner
                     'amount' => $winnerAmount,
                     'sum' => true,
                     'status' => true,
-                    'reference' => "Trading Winner on :"  . $winner,
+                    'reference' => "Trading Winner On: " . strtoupper($event->type) . " Mi" . " with :"  . $winner,
                 ]);
 
-                info($trade->user->name . " is winner, Profit Delivered");
+                // info($trade->user->name . " is winner, Profit Delivered");
                 $trade->status = false;
                 $trade->profit = ($winnerAmount - $trade->amount) - $winnerAmountFees;
                 $trade->save();
             } else {
-                info($winner . " is Loser");
+                // info($winner . " is Loser");
                 // info($trade->user->name . " is loser");
                 $trade->status = false;
                 $trade->save();
