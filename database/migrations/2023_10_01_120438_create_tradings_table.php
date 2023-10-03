@@ -15,8 +15,10 @@ return new class extends Migration
             $table->id();
             $table->foreignId('user_id')->constrained()->cascadeOnDelete()->cascadeOnUpdate();
             $table->enum('type', ['even', 'odd']);
+            $table->enum('method', ['one', 'five']);
             $table->boolean('status')->default(true);
             $table->double('amount');
+            $table->double('profit')->nullable();
             $table->timestamps();
         });
     }

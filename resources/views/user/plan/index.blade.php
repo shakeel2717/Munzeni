@@ -25,7 +25,7 @@
                             <div class="font-size-14 mt-4 pt-2">
                                 <ul class="list-unstyled plan-features">
                                     <li>Min Investment: ${{ number_format($plan->min_invest, 2) }}</li>
-                                    <li>Max Investment: ${{ number_format($plan->max_invest, 2) }}</li>
+                                    <li>Max Investment: {{ ($plan->max_invest > 999999) ? '' : '$' }}{{ ($plan->max_invest > 999999) ? 'Unlimited' : number_format($plan->max_invest, 2) }}</li>
                                     <li>Instant Withdrawal</li>
                                     <li>Daily Withdrawal</li>
                                     <li>Min Withdrawals : {{ settings('min_withdraw') }}</li>
@@ -34,7 +34,7 @@
 
                             <div class="mt-5">
                                 <h1 class="fw-bold mb-1"><sup class="mr-1"><small>$</small></sup>{{ $plan->min_invest }} -
-                                    <sup class="mr-1"><small>$</small></sup>{{ $plan->max_invest }}
+                                    <sup class="mr-1"><small>{{ ($plan->max_invest > 999999) ? '' : '$' }}</small></sup>{{ ($plan->max_invest > 999999) ? 'Unlimited' : $plan->max_invest }}
                                 </h1>
                                 <p class="text-muted">Per month</p>
                             </div>
@@ -42,7 +42,7 @@
                             <div class="mt-5 mb-3">
                                 <form action="{{ route('user.plan.store') }}" method="POST">
                                     @csrf
-                                    <div class="input-group px-5">
+                                    <div class="input-group">
                                         <input type="hidden" name="plan_id" value="{{ $plan->id }}">
                                         <input type="number" class="form-control" name="amount"
                                             placeholder="Amount to Invest" min="{{ $plan->min_invest }}"

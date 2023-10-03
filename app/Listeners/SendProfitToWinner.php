@@ -57,11 +57,12 @@ class SendProfitToWinner
                     'reference' => "Trading Winner on :"  . $winner,
                 ]);
 
-                // info($trade->user->name . " is winner, Profit Delivered");
+                info($trade->user->name . " is winner, Profit Delivered");
                 $trade->status = false;
+                $trade->profit = ($winnerAmount - $trade->amount) - $winnerAmountFees;
                 $trade->save();
             } else {
-                // info($winner . " is Loser");
+                info($winner . " is Loser");
                 // info($trade->user->name . " is loser");
                 $trade->status = false;
                 $trade->save();

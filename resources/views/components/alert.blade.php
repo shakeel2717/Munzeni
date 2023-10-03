@@ -18,12 +18,12 @@
 @endif
 <script>
     window.addEventListener('showAlert', event => {
-        swal("Success!", event.detail[0].message , "success");
+        swal("Success!", event.detail.message , "success");
     })
 </script>
 <script>
     window.addEventListener('showAlertError', event => {
-        swal("Error!", event.detail[0].message, "error");
+        swal("Error!", event.detail.message, "error");
     })
 </script>
 <script>

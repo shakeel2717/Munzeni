@@ -20,15 +20,21 @@
                 </a>
             </li>
             <li class="list-unstyled nav-item">
-                <a href="#" class="nav-link text-center">
-                    <i class="bi bi-hourglass-bottom fs-3 text-primary"></i>
-                    <p class="nav-links mb-0">Transaction History</p>
+                <a href="{{ route('user.trading.index') }}" class="nav-link text-center">
+                    <i class="bi bi-bar-chart fs-3 text-primary"></i>
+                    <p class="nav-links mb-0">Trading</p>
+                </a>
+            </li>
+            <li class="list-unstyled nav-item">
+                <a href="{{ route('user.plan.index') }}" class="nav-link text-center">
+                    <i class="bi bi-easel2 fs-3 text-primary"></i>
+                    <p class="nav-links mb-0">Mining</p>
                 </a>
             </li>
             <li class="list-unstyled nav-item">
                 <a href="{{ route('user.history.deposits') }}" class="nav-link text-center">
-                    <i class="bi bi-easel2 fs-3 text-primary"></i>
-                    <p class="nav-links mb-0">Trade History</p>
+                    <i class="bi bi-hourglass-bottom fs-3 text-primary"></i>
+                    <p class="nav-links mb-0">Transaction History</p>
                 </a>
             </li>
             <li class="list-unstyled nav-item">

@@ -141,6 +141,11 @@ class DatabaseSeeder extends Seeder
             'value' => 5,
         ]);
 
+        $setting = Setting::firstOrCreate([
+            'key' => 'bitcoin_rate_update',
+            'value' => 5,
+        ]);
+
         $plan = Plan::firstOrCreate([
             'name' => 'Basic',
             'profit' => 1.5,

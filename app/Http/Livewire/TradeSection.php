@@ -12,8 +12,9 @@ class TradeSection extends Component
 {
 
     public $orderOneHistories;
-    public $myOrderOneHistories;
-    public $orderFiveHistories;
+    public $myOrderOneHistories = [];
+    public $myOrderFiveHistories = [];
+    public $orderFiveHistories = [];
     public $showAmountSection = true;
     public $showEvenOddSection = false;
     public $showInvestSection = false;
@@ -24,11 +25,14 @@ class TradeSection extends Component
     public $bitcoinPrice;
     public $type;
 
+    public $boxType = 'one';
+
     public function mount()
     {
         $this->orderOneHistories = TradeHistory::where('type', 'one')->latest()->limit(5)->get();
 
-        $this->myOrderOneHistories = Trading::where('user_id', auth()->user()->id)->latest()->limit(5)->get();
+        $this->myOrderOneHistories = Trading::where('user_id', auth()->user()->id)->where('method', 'one')->latest()->limit(5)->get();
+        $this->myOrderFiveHistories = Trading::where('user_id', auth()->user()->id)->where('method', 'five')->latest()->limit(5)->get();
 
         $this->orderFiveHistories = TradeHistory::where('type', 'five')->latest()->limit(5)->get();
 
@@ -39,7 +43,7 @@ class TradeSection extends Component
     {
         // checking if available balance is enough
         if (auth()->user()->getBalance() < floatval($this->amount)) {
-            $this->dispatch('showAlertError', ['message' => 'Insufficient Balance']);
+            $this->dispatchBrowserEvent('showAlertError', ['message' => 'Insufficient Balance']);
             $this->resetAll();
             return;
         }
@@ -50,6 +54,7 @@ class TradeSection extends Component
             'type' => $this->type,
             'amount' => $this->amount,
             'status' => true,
+            'method' => $this->boxType,
         ]);
 
         // adding balance to this user
@@ -65,8 +70,9 @@ class TradeSection extends Component
         event(new UserInvestInTrading($transaction));
 
         $this->resetAll();
+        $this->fetchLiveRate();
 
-        $this->emit('showAlert', ['message' => 'Invested Successfully']);
+        $this->dispatchBrowserEvent('showAlert', ['message' => 'Invested Successfully']);
     }
 
     public function resetAll()
@@ -93,6 +99,8 @@ class TradeSection extends Component
         $this->bitcoinPrice =  fetchLiveResult();
         $this->orderOneHistories = TradeHistory::where('type', 'one')->latest()->limit(5)->get();
         $this->orderFiveHistories = TradeHistory::where('type', 'five')->latest()->limit(5)->get();
+        $this->myOrderOneHistories = Trading::where('user_id', auth()->user()->id)->where('method', 'one')->latest()->limit(5)->get();
+        $this->myOrderFiveHistories = Trading::where('user_id', auth()->user()->id)->where('method', 'five')->latest()->limit(5)->get();
     }
 
     public function render()
