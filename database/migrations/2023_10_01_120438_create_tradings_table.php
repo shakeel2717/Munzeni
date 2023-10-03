@@ -17,6 +17,7 @@ return new class extends Migration
             $table->enum('type', ['even', 'odd']);
             $table->enum('method', ['one', 'five']);
             $table->boolean('status')->default(true);
+            $table->boolean('win')->nullable();
             $table->double('amount');
             $table->double('profit')->nullable();
             $table->timestamps();

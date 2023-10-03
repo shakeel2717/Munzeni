@@ -66,10 +66,12 @@ class SendProfitToWinner
                 // info($trade->user->name . " is winner, Profit Delivered");
                 $trade->status = false;
                 $trade->profit = ($winnerAmount - $trade->amount) - $winnerAmountFees;
+                $trade->win = true;
                 $trade->save();
             } else {
                 // info($winner . " is Loser");
                 // info($trade->user->name . " is loser");
+                $trade->win = false;
                 $trade->status = false;
                 $trade->save();
             }

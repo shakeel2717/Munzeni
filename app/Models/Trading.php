@@ -9,7 +9,7 @@ class Trading extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['user_id', 'type', 'amount', 'status','profit','method'];
+    protected $fillable = ['user_id', 'type', 'amount', 'status','profit','method','win'];
 
     public function user()
     {
