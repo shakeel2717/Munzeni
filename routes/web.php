@@ -15,7 +15,7 @@ use App\Http\Controllers\WithdrawController;
 use Illuminate\Support\Facades\Route;
 
 
-Route::redirect('/', '/login');
+Route::resource('/', LandingPageController::class);
 Route::get('/google/code', [GoogleAuthenticatorController::class, 'code'])->name('user.google.code');
 Route::post('/google/code', [GoogleAuthenticatorController::class, 'codeReq'])->name('user.google.code.req');
 Route::prefix('user/')->name('user.')->middleware('auth', 'verified', 'google')->group(function () {

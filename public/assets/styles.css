@@ -108,7 +108,16 @@ label {
     color: #0f171c !important;
 }
 
-.pricing-box:hover .btn{
+.pricing-box:hover .btn {
     background-color: #0f171c !important;
     color: white;
+}
+
+.crypto-back {
+    background-image: url(/assets/back.jpg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-color: rgba(0, 0, 0, 0.8);
+    background-blend-mode: multiply;
 }
