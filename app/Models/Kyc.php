@@ -9,7 +9,19 @@ class Kyc extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['user_id', 'front', 'back', 'status'];
+    protected $fillable = [
+        'user_id',
+        'front',
+        'back',
+        'status',
+        'name',
+        'dob',
+        'mobile',
+        'gender',
+        'country',
+        'address',
+        'zip',
+    ];
 
     public function user()
     {

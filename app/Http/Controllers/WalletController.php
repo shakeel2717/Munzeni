@@ -44,6 +44,8 @@ class WalletController extends Controller
             if (!$checkCode) {
                 return back()->withErrors(['Invalid code,Please try again']);
             }
+        } else {
+            return back()->withErrors(['Please Activate Google Authentication on your account first.']);
         }
 
 

@@ -36,7 +36,64 @@ a {
     margin-bottom: 20px;
 }
 
+.form-control {
+    background-color: #0f171c;
+    border: none;
+    color: white;
+}
+
+.form-control:focus {
+    background-color: #0f171c;
+    color: white;
+}
+
+/* select all input that have readonly attribute */
+
+
+.form-control[readonly] {
+    background-color: #0f171c !important;
+    color: white !important;
+}
+
+label {
+    margin-bottom: 10px;
+}
+
 .card {
     margin-bottom: 20px;
     border: 2px solid #0f171c;
+}
+
+.bg-half-dark {
+    background-color: #0f171c;
+}
+
+/* Style for WebKit browsers (Chrome, Safari) */
+::-webkit-scrollbar {
+    width: 12px;
+    /* Adjust the width as needed */
+}
+
+::-webkit-scrollbar-track {
+    background-color: #333;
+    /* Background color of the track */
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: #666;
+    /* Color of the scrollbar thumb */
+}
+
+/* Style for Firefox */
+/* Firefox supports scrollbar-color property */
+* {
+    scrollbar-width: thin;
+    scrollbar-color: #666 #333;
+}
+
+/* Style for Microsoft Edge */
+/* Edge supports scrollbar-color property */
+* {
+    scrollbar-width: thin;
+    scrollbar-color: #666 #333;
 }

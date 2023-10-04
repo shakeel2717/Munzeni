@@ -5,24 +5,28 @@
         <div class="col-md-12">
             <ul class="nav nav-tabs" id="myTab" role="tablist">
                 <li class="nav-item" role="presentation">
-                    <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home" type="button"
-                        role="tab" aria-controls="home" aria-selected="true">My Profile</button>
+                    <button class="nav-link {{ !isset($_GET['tab']) ? 'active' : '' }}" id="home-tab" data-bs-toggle="tab"
+                        data-bs-target="#home" type="button" role="tab" aria-controls="home" aria-selected="true"> <i class="bi bi-person-circle"></i> My
+                        Profile</button>
                 </li>
                 <li class="nav-item" role="presentation">
-                    <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile" type="button"
-                        role="tab" aria-controls="profile" aria-selected="false">Change Password</button>
+                    <button class="nav-link {{ isset($_GET['tab']) && $_GET['tab'] == 'password' ? 'show active' : '' }}"
+                        id="password-tab" data-bs-toggle="tab" data-bs-target="#password" type="button" role="tab"
+                        aria-controls="password" aria-selected="false"><i class="bi bi-key"></i> Change
+                        Password</button>
                 </li>
                 <li class="nav-item" role="presentation">
-                    <button class="nav-link" id="contact-tab" data-bs-toggle="tab" data-bs-target="#contact" type="button"
-                        role="tab" aria-controls="contact" aria-selected="false">Google Authenticator</button>
+                    <button class="nav-link {{ isset($_GET['tab']) && $_GET['tab'] == 'google' ? 'show active' : '' }}" id="contact-tab" data-bs-toggle="tab" data-bs-target="#contact" type="button"
+                        role="tab" aria-controls="contact" aria-selected="false"><i class="bi bi-shield-lock-fill"></i> Google Authenticator</button>
                 </li>
                 <li class="nav-item" role="presentation">
-                    <button class="nav-link" id="kyc-tab" data-bs-toggle="tab" data-bs-target="#kyc" type="button"
-                        role="tab" aria-controls="kyc" aria-selected="false">KYC Verification</button>
+                    <button class="nav-link {{ isset($_GET['tab']) && $_GET['tab'] == 'kyc' ? 'show active' : '' }}" id="kyc-tab" data-bs-toggle="tab" data-bs-target="#kyc" type="button"
+                        role="tab" aria-controls="kyc" aria-selected="false"><i class="bi bi-file-person"></i> KYC Verification</button>
                 </li>
             </ul>
             <div class="tab-content" id="myTabContent">
-                <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                <div class="tab-pane fade {{ !isset($_GET['tab']) ? 'show active' : '' }}" id="home" role="tabpanel"
+                    aria-labelledby="home-tab">
                     <div class="card-body">
                         <h4>Update Profile Record</h4>
                         <hr>
@@ -54,7 +58,8 @@
                         </form>
                     </div>
                 </div>
-                <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+                <div class="tab-pane fade {{ isset($_GET['tab']) && $_GET['tab'] == 'password' ? 'show active' : '' }}"
+                    id="password" role="tabpanel" aria-labelledby="password-tab">
                     <div class="card-body">
                         <h4>Change Your Password</h4>
                         <hr>
@@ -81,7 +86,7 @@
                         </form>
                     </div>
                 </div>
-                <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
+                <div class="tab-pane fade {{ isset($_GET['tab']) && $_GET['tab'] == 'google' ? 'show active' : '' }}" id="contact" role="tabpanel" aria-labelledby="contact-tab">
                     <div class="card-body">
                         <h4>Manage Google Authentication</h4>
                         <hr>
@@ -138,7 +143,7 @@
 
                     </div>
                 </div>
-                <div class="tab-pane fade" id="kyc" role="tabpanel" aria-labelledby="contact-tab">
+                <div class="tab-pane fade {{ isset($_GET['tab']) && $_GET['tab'] == 'kyc' ? 'show active' : '' }}" id="kyc" role="tabpanel" aria-labelledby="contact-tab">
                     <div class="card-body">
                         <h4>Complete Your KYC</h4>
                         <hr>

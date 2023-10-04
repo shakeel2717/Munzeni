@@ -3,7 +3,7 @@
 @section('content')
     <div class="row">
         <div class="col-md-12">
-            <div class="card card-body shadow-sm border-0 mb-4">
+            <div class="card card-body shadow-sm border-0">
                 <div class="d-flex justify-content-between align-items-center">
                     <div class="titles">
                         <h2>Download the Munzeni Mobile App</h2>
@@ -18,128 +18,116 @@
     </div>
     <div class="row">
         <div class="col-md-4">
-            <div class="card mb-4">
+            <div class="card">
                 <div class="card-body">
-                    <div class="d-flex">
-                        <div class="flex-1 overflow-hidden">
+                    <div class="d-flex justify-content-between">
+                        <div>
                             <p class="text-truncate font-size-14 mb-2">Available Balance</p>
                             <h4 class="mb-0">${{ number_format(auth()->user()->getBalance(),2) }}</h4>
                         </div>
-                        <div class="text-primary ms-auto">
-                            <i class="ri-stack-line font-size-24"></i>
-                        </div>
+                        <i class="bi bi-wallet2 fs-2"></i>
+                    </div>
+                    <div class="text-primary ms-auto">
+                        <i class="ri-stack-line font-size-24"></i>
                     </div>
                 </div>
-
-                <div class="card-body border-top border-light py-3">
-                    <div class="text-truncate">
-                        <a href="#" class="text-decoration-none">See All Transactions</a>
-                    </div>
+                <div class="card-body bg-half-dark py-3">
+                    <a href="#" class="text-white">See All Transactions</a>
                 </div>
             </div>
         </div>
         <div class="col-md-4">
-            <div class="card mb-4">
+            <div class="card">
                 <div class="card-body">
-                    <div class="d-flex">
-                        <div class="flex-1 overflow-hidden">
+                    <div class="d-flex justify-content-between">
+                        <div>
                             <p class="text-truncate font-size-14 mb-2">Total Income</p>
                             <h4 class="mb-0">${{ number_format(auth()->user()->allIncome(),2) }}</h4>
                         </div>
-                        <div class="text-primary ms-auto">
-                            <i class="ri-stack-line font-size-24"></i>
-                        </div>
+                        <i class="bi bi-wallet2 fs-2"></i>
+                    </div>
+                    <div class="text-primary ms-auto">
+                        <i class="ri-stack-line font-size-24"></i>
                     </div>
                 </div>
-
-                <div class="card-body border-top py-3">
-                    <div class="text-truncate">
-                        <a href="#" class="text-decoration-none">See All Transactions</a>
-                    </div>
+                <div class="card-body bg-half-dark py-3">
+                    <a href="#" class="text-white">See All Transactions</a>
                 </div>
             </div>
         </div>
         <div class="col-md-4">
-            <div class="card mb-4">
+            <div class="card">
                 <div class="card-body">
-                    <div class="d-flex">
-                        <div class="flex-1 overflow-hidden">
+                    <div class="d-flex justify-content-between">
+                        <div>
                             <p class="text-truncate font-size-14 mb-2">Total Withdarawls</p>
                             <h4 class="mb-0">${{ number_format(auth()->user()->allWithdraw(),2) }}</h4>
                         </div>
-                        <div class="text-primary ms-auto">
-                            <i class="ri-stack-line font-size-24"></i>
-                        </div>
+                        <i class="bi bi-wallet2 fs-2"></i>
+                    </div>
+                    <div class="text-primary ms-auto">
+                        <i class="ri-stack-line font-size-24"></i>
                     </div>
                 </div>
-
-                <div class="card-body border-top py-3">
-                    <div class="text-truncate">
-                        <a href="#" class="text-decoration-none">See All Transactions</a>
-                    </div>
+                <div class="card-body bg-half-dark py-3">
+                    <a href="#" class="text-white">See All Transactions</a>
                 </div>
             </div>
         </div>
         <div class="col-md-4">
-            <div class="card mb-4">
+            <div class="card">
                 <div class="card-body">
-                    <div class="d-flex">
-                        <div class="flex-1 overflow-hidden">
+                    <div class="d-flex justify-content-between">
+                        <div>
                             <p class="text-truncate font-size-14 mb-2">Total Daily Profit</p>
                             <h4 class="mb-0">${{ number_format(auth()->user()->totalProfit(),2) }}</h4>
                         </div>
-                        <div class="text-primary ms-auto">
-                            <i class="ri-stack-line font-size-24"></i>
-                        </div>
+                        <i class="bi bi-wallet2 fs-2"></i>
+                    </div>
+                    <div class="text-primary ms-auto">
+                        <i class="ri-stack-line font-size-24"></i>
                     </div>
                 </div>
-
-                <div class="card-body border-top py-3">
-                    <div class="text-truncate">
-                        <a href="#" class="text-decoration-none">See All Transactions</a>
-                    </div>
+                <div class="card-body bg-half-dark py-3">
+                    <a href="#" class="text-white">See All Transactions</a>
                 </div>
             </div>
         </div>
         <div class="col-md-4">
-            <div class="card mb-4">
+            <div class="card">
                 <div class="card-body">
-                    <div class="d-flex">
-                        <div class="flex-1 overflow-hidden">
+                    <div class="d-flex justify-content-between">
+                        <div>
                             <p class="text-truncate font-size-14 mb-2">Today Daily Profit</p>
                             <h4 class="mb-0">${{ number_format(auth()->user()->totalTodayProfit(),2) }}</h4>
                         </div>
-                        <div class="text-primary ms-auto">
-                            <i class="ri-stack-line font-size-24"></i>
-                        </div>
+                        <i class="bi bi-wallet2 fs-2"></i>
+                    </div>
+                    <div class="text-primary ms-auto">
+                        <i class="ri-stack-line font-size-24"></i>
                     </div>
                 </div>
-
-                <div class="card-body border-top py-3">
-                    <div class="text-truncate">
-                        <a href="#" class="text-decoration-none">See All Transactions</a>
-                    </div>
+                <div class="card-body bg-half-dark py-3">
+                    <a href="#" class="text-white">See All Transactions</a>
                 </div>
             </div>
         </div>
         <div class="col-md-4">
-            <div class="card mb-4">
+            <div class="card">
                 <div class="card-body">
-                    <div class="d-flex">
-                        <div class="flex-1 overflow-hidden">
+                    <div class="d-flex justify-content-between">
+                        <div>
                             <p class="text-truncate font-size-14 mb-2">Total Direct Commission</p>
                             <h4 class="mb-0">${{ number_format(auth()->user()->directCommission(),2) }}</h4>
                         </div>
-                        <div class="text-primary ms-auto">
-                            <i class="ri-stack-line font-size-24"></i>
-                        </div>
+                        <i class="bi bi-wallet2 fs-2"></i>
+                    </div>
+                    <div class="text-primary ms-auto">
+                        <i class="ri-stack-line font-size-24"></i>
                     </div>
                 </div>
-
-                <div class="card-body border-top py-3">
-                    <div class="text-truncate">
-                        <a href="#" class="text-decoration-none">See All Transactions</a>
-                    </div>
+                <div class="card-body bg-half-dark py-3">
+                    <a href="#" class="text-white">See All Transactions</a>
                 </div>
             </div>
         </div>

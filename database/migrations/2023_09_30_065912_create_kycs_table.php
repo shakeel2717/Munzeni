@@ -16,6 +16,13 @@ return new class extends Migration
             $table->foreignId('user_id')->constrained()->cascadeOnDelete()->cascadeOnUpdate();
             $table->string('front');
             $table->string('back');
+            $table->string('name')->nullable();
+            $table->string('dob')->nullable();
+            $table->string('mobile')->nullable();
+            $table->string('gender')->nullable();
+            $table->string('country')->nullable();
+            $table->string('address')->nullable();
+            $table->string('zip')->nullable();
             $table->boolean('status')->default(false);
             $table->timestamps();
         });

@@ -8,9 +8,9 @@
     {{-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"> --}}
     <link rel="stylesheet" href="/assets/css/bootstrap.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
-    <link rel="stylesheet" href="{{ asset('assets/styles.css') }}">
     @vite(['resources/js/app.js'])
     @livewireStyles
+    <link rel="stylesheet" href="{{ asset('assets/styles.css') }}">
 </head>
 
 <body>
@@ -45,8 +45,12 @@
                         </a>
                         <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuButton1">
                             <li><a class="dropdown-item" href="{{ route('user.profile.index') }}">Profile</a></li>
-                            <li><a class="dropdown-item" href="{{ route('user.profile.index') }}">Change Password</a>
+                            <li><a class="dropdown-item"
+                                    href="{{ route('user.profile.index', ['tab' => 'password']) }}">Change Password</a>
                             </li>
+                            <li><a class="dropdown-item"
+                                href="{{ route('user.profile.index', ['tab' => 'kyc']) }}">KYC Verification</a>
+                        </li>
                             <li>
                                 <hr class="dropdown-divider">
                             </li>
@@ -81,7 +85,7 @@
                 </li>
                 <li class="text-white">
                     <a class="text-white" href="{{ route('user.history.deposits') }}">
-                        <i class="bi bi-clock-history fs-2"></i></a>
+                        <i class="bi bi-hourglass fs-2"></i></a>
                 </li>
                 <li class="text-white">
                     <div class="middle-button" style="margin-top: -20px">
@@ -93,7 +97,7 @@
                 </li>
                 <li class="text-white">
                     <a class="text-white" href="{{ route('user.withdraw.create') }}">
-                        <i class="bi bi-minecart-loaded fs-2"></i></a>
+                        <i class="bi bi-hammer fs-2"></i></a>
                 </li>
                 <li class="text-white">
                     <a class="text-white" href="{{ route('user.profile.index') }}">
