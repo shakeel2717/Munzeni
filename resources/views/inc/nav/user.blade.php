@@ -31,7 +31,7 @@
             </li>
             <li class="{{ request()->is('user/plan*') ? 'active-nav' : '' }}">
                 <a href="{{ route('user.plan.index') }}" class="nav-link text-center">
-                    <i class="bi bi-easel2 fs-3"></i>
+                    <i class="bi bi-hammer fs-3"></i>
                     <p class="nav-links mb-0">Mining</p>
                 </a>
             </li>

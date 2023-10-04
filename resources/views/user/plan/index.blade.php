@@ -28,6 +28,7 @@
                                     <li>Max Investment:
                                         {{ $plan->max_invest > 999999 ? '' : '$' }}{{ $plan->max_invest > 999999 ? 'Unlimited' : number_format($plan->max_invest, 2) }}
                                     </li>
+                                    <li>Daily Profit: <b>{{ $plan->profit }}</b>%</li>
                                     <li>Instant Withdrawal</li>
                                     <li>Daily Withdrawal</li>
                                     <li>Min Withdrawals : {{ settings('min_withdraw') }}</li>
@@ -39,7 +40,7 @@
                                     <sup
                                         class="mr-1"><small>{{ $plan->max_invest > 999999 ? '' : '$' }}</small></sup>{{ $plan->max_invest > 999999 ? 'Unlimited' : $plan->max_invest }}
                                 </h3>
-                                <p class="text-muted">Per month</p>
+                                <p class="text-muted">/ {{ $plan->duration }} Days</p>
                             </div>
 
                             <div class="mt-5 mb-3">
