@@ -13,6 +13,7 @@ class UserPlan extends Model
         'user_id',
         'plan_id',
         'amount',
+        'expiry_date',
         'status'
     ];
 

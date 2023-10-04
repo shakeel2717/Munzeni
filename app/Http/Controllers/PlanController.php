@@ -64,8 +64,11 @@ class PlanController extends Controller
             $userPlan = auth()->user()->userPlan()->create([
                 'plan_id' => $plan->id,
                 'amount' => $amount,
+                'expiry_date' => now()->addDays($plan->duration),
                 'status' => true,
             ]);
+
+
 
             $transaction = auth()->user()->transactions()->create([
                 'user_plan_id' => $userPlan->id,

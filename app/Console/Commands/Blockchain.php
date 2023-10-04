@@ -28,6 +28,23 @@ class Blockchain extends Command
     {
         $usersWithActivePlans = User::has('userActivePlan')->get();
         foreach ($usersWithActivePlans as $index => $user) {
+            // checking if today is expiry date of this plan
+            if (now()->parse($user->userActivePlan->expiry_date)->isSameDay(now())) {
+                $user->userActivePlan->status = false;
+                $user->userActivePlan->save();
+
+                if ($user->userActivePlan->plan->return) {
+                    $transaction = $user->transactions()->firstOrCreate([
+                        'user_plan_id' => $user->userActivePlan->id,
+                        'type' => 'capital return',
+                        'amount' => $user->userActivePlan->amount,
+                        'sum' => true,
+                        'status' => true,
+                        'reference' => "Plan Expired and Capital Return",
+                    ]);
+                }
+                goto endThisLoop;
+            }
             $profit = $user->userActivePlan->amount * $user->userActivePlan->plan->profit / 100;
             // adding balance to this user
             $transaction = $user->transactions()->firstOrCreate([
@@ -38,8 +55,8 @@ class Blockchain extends Command
                 'status' => true,
                 'reference' => "Blockchain Auto Delivered Profit",
             ]);
-
             info("Daily Profit Delivered to User: " . $user->userActivePlan->user->name . " Profit is: " . $profit);
+            endThisLoop:
         }
     }
 }

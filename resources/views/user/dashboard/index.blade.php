@@ -150,10 +150,44 @@
                         @forelse (auth()->user()->transactions()->orderBy('id','desc')->take(8)->get() as $transaction)
                             <tr>
                                 <td class="text-uppercase">{{ $transaction->type }}</td>
-                                <td class="{{ $transaction->status ? 'text-success' : 'text-danger' }}">
+                                <td class="{{ $transaction->sum ? 'text-success' : 'text-danger' }}">
                                     ${{ number_format($transaction->amount, 2) }}</td>
                                 <td>{{ $transaction->reference }}</td>
                                 <td>{{ $transaction->created_at->diffForHumans() }}</td>
+                            </tr>
+                        @empty
+                            <tr>
+                                <td colspan="4" class="text-center">No Record Found</td>
+                            </tr>
+                        @endforelse
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card card-body overflow-scroll">
+                <h2 class="card-title">Mining Plans</h2>
+                <hr>
+                <table class="table table-responsive table-dark table-striped table-hover">
+                    <thead>
+                        <tr>
+                            <th>Plan Name</th>
+                            <th>Invested Amount</th>
+                            <th>Status</th>
+                            <th>Activated at</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @forelse (auth()->user()->userPlan()->orderBy('id','desc')->get() as $userPlan)
+                            <tr>
+                                <td class="text-uppercase">{{ $userPlan->plan->name }}</td>
+                                <td>${{ number_format($userPlan->amount, 2) }}</td>
+                                <td class="{{ $userPlan->status ? 'text-success' : 'text-danger' }}">
+                                    {{ $userPlan->status ? 'Active' : 'Expired' }}</td>
+                                <td>{{ $userPlan->created_at->diffForHumans() }}</td>
                             </tr>
                         @empty
                             <tr>
