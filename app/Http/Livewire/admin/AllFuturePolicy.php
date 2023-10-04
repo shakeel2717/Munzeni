@@ -2,7 +2,7 @@
 
 namespace App\Http\Livewire\admin;
 
-use App\Models\Kyc;
+use App\Models\Future;
 use Illuminate\Support\Carbon;
 use Illuminate\Database\Eloquent\Builder;
 use PowerComponents\LivewirePowerGrid\Rules\{Rule, RuleActions};
@@ -10,10 +10,12 @@ use PowerComponents\LivewirePowerGrid\Traits\{ActionButton, WithExport};
 use PowerComponents\LivewirePowerGrid\Filters\Filter;
 use PowerComponents\LivewirePowerGrid\{Button, Column, Exportable, Footer, Header, PowerGrid, PowerGridComponent, PowerGridColumns};
 
-final class AllKycRequest extends PowerGridComponent
+final class AllFuturePolicy extends PowerGridComponent
 {
     use ActionButton;
     use WithExport;
+
+    public $status;
 
     /*
     |--------------------------------------------------------------------------
@@ -24,7 +26,7 @@ final class AllKycRequest extends PowerGridComponent
     */
     public function setUp(): array
     {
-        $this->showCheckBox();
+        // $this->showCheckBox();
 
         return [
             Exportable::make('export')
@@ -48,11 +50,11 @@ final class AllKycRequest extends PowerGridComponent
     /**
      * PowerGrid datasource.
      *
-     * @return Builder<\App\Models\Kyc>
+     * @return Builder<\App\Models\Future>
      */
     public function datasource(): Builder
     {
-        return Kyc::query()->where('status', false);
+        return Future::query();
     }
 
     /*
@@ -70,11 +72,7 @@ final class AllKycRequest extends PowerGridComponent
      */
     public function relationSearch(): array
     {
-        return [
-            "User" => [
-                'username'
-            ]
-        ];
+        return [];
     }
 
     /*
@@ -92,19 +90,15 @@ final class AllKycRequest extends PowerGridComponent
     {
         return PowerGrid::columns()
             ->addColumn('id')
-            ->addColumn('user', fn (Kyc $model) => strtoupper(e($model->user->username)))
-            ->addColumn('front_format', function (Kyc $model) {
-                return '<img src="/kyc/' . $model->front . '" alt="" width="200" />';
-            })
+            ->addColumn('trade')
 
             /** Example of custom column using a closure **/
-            ->addColumn('front_lower', fn (Kyc $model) => strtolower(e($model->front)))
+            ->addColumn('trade_lower', fn (Future $model) => strtolower(e($model->trade)))
 
-            ->addColumn('back_format', function (Kyc $model) {
-                return '<img src="/kyc/' . $model->back . '" alt="" width="200" />';
-            })
+            ->addColumn('type')
             ->addColumn('status')
-            ->addColumn('created_at_formatted', fn (Kyc $model) => Carbon::parse($model->created_at)->format('d/m/Y H:i:s'));
+            ->addColumn('timestamp')
+            ->addColumn('created_at_formatted', fn (Future $model) => Carbon::parse($model->created_at)->format('d/m/Y H:i:s'));
     }
 
     /*
@@ -124,16 +118,18 @@ final class AllKycRequest extends PowerGridComponent
     public function columns(): array
     {
         return [
-            Column::make('Id', 'id'),
-            Column::make('User id', 'user'),
-            Column::make('Front', 'front_format', 'front')
+            Column::make('Trade', 'trade')
                 ->sortable()
                 ->searchable(),
 
-            Column::make('Back', 'back_format', 'back')
+            Column::make('Type', 'type')
                 ->sortable()
                 ->searchable(),
 
+            Column::make('Status', 'status')
+                ->toggleable(),
+
+            Column::make('Timestamp', 'timestamp'),
             Column::make('Created at', 'created_at_formatted', 'created_at')
                 ->sortable(),
 
@@ -148,8 +144,8 @@ final class AllKycRequest extends PowerGridComponent
     public function filters(): array
     {
         return [
-            Filter::inputText('front')->operators(['contains']),
-            Filter::inputText('back')->operators(['contains']),
+            Filter::inputText('trade')->operators(['contains']),
+            Filter::inputText('type')->operators(['contains']),
             Filter::boolean('status'),
             Filter::datetimepicker('created_at'),
         ];
@@ -164,7 +160,7 @@ final class AllKycRequest extends PowerGridComponent
     */
 
     /**
-     * PowerGrid Kyc Action Buttons.
+     * PowerGrid Future Action Buttons.
      *
      * @return array<int, Button>
      */
@@ -175,20 +171,16 @@ final class AllKycRequest extends PowerGridComponent
         return [
             //    Button::make('edit', 'Edit')
             //        ->class('bg-indigo-500 cursor-pointer text-white px-3 py-2.5 m-1 rounded text-sm')
-            //        ->route('kyc.edit', function(\App\Models\Kyc $model) {
+            //        ->route('future.edit', function(\App\Models\Future $model) {
             //             return $model->id;
             //        }),
 
             //    Button::make('destroy', 'Delete')
             //        ->class('bg-red-500 cursor-pointer text-white px-3 py-2 m-1 rounded text-sm')
-            //        ->route('kyc.destroy', function(\App\Models\Kyc $model) {
+            //        ->route('future.destroy', function(\App\Models\Future $model) {
             //             return $model->id;
             //        })
             //        ->method('delete')
-
-            Button::make('approve', 'Approve')
-                ->class('btn btn-success btn-sm')
-                ->emit('approve', ['id' => 'id']),
 
             Button::make('delete', 'Delete')
                 ->class('btn btn-danger btn-sm')
@@ -201,42 +193,18 @@ final class AllKycRequest extends PowerGridComponent
         return array_merge(
             parent::getListeners(),
             [
-                'approve'   => 'approve',
                 'delete'   => 'delete',
-                'confirmedDelete' => 'confirmedDelete'
             ]
         );
     }
 
-
-    public function approve($id)
-    {
-        $kyc = Kyc::find($id['id']);
-        $kyc->status = true;
-        $kyc->save();
-
-        $user = $kyc->user;
-        $user->kyc_status = 'approved';
-        $user->save();
-
-        $this->dispatchBrowserEvent('showAlert', ['message' => 'Kyc Approved Successfully!']);
-    }
-
-
     public function delete($id)
     {
-        $this->dispatchBrowserEvent('warning', ['id' => $id['id']]);
-        
+        $user = Future::find($id['id']);
+        $user->delete();
+
+        $this->dispatchBrowserEvent('showAlert', ['message' => 'Future Trade Deleted Successfully']);
     }
-
-    public function confirmedDelete($id)
-    {
-        $kyc = Kyc::find($id);
-        $kyc->delete();
-
-        $this->dispatchBrowserEvent('showAlert', ['message' => 'Kyc Deleted Successfully!']);
-    }
-
 
     /*
     |--------------------------------------------------------------------------
@@ -247,7 +215,7 @@ final class AllKycRequest extends PowerGridComponent
     */
 
     /**
-     * PowerGrid Kyc Action Rules.
+     * PowerGrid Future Action Rules.
      *
      * @return array<int, RuleActions>
      */
@@ -259,7 +227,7 @@ final class AllKycRequest extends PowerGridComponent
 
            //Hide button edit for ID 1
             Rule::button('edit')
-                ->when(fn($kyc) => $kyc->id === 1)
+                ->when(fn($future) => $future->id === 1)
                 ->hide(),
         ];
     }
