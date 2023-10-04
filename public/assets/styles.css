@@ -97,3 +97,18 @@ label {
     scrollbar-width: thin;
     scrollbar-color: #666 #333;
 }
+
+.pricing-box:hover {
+    background-color: rgb(255, 207, 1) !important;
+}
+
+.pricing-box:hover li,
+.pricing-box:hover h5,
+.pricing-box:hover h3 {
+    color: #0f171c !important;
+}
+
+.pricing-box:hover .btn{
+    background-color: #0f171c !important;
+    color: white;
+}

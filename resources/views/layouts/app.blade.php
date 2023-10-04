@@ -48,9 +48,9 @@
                             <li><a class="dropdown-item"
                                     href="{{ route('user.profile.index', ['tab' => 'password']) }}">Change Password</a>
                             </li>
-                            <li><a class="dropdown-item"
-                                href="{{ route('user.profile.index', ['tab' => 'kyc']) }}">KYC Verification</a>
-                        </li>
+                            <li><a class="dropdown-item" href="{{ route('user.profile.index', ['tab' => 'kyc']) }}">KYC
+                                    Verification</a>
+                            </li>
                             <li>
                                 <hr class="dropdown-divider">
                             </li>
@@ -65,17 +65,19 @@
             </ul>
         </div>
     </section>
-    <section class="p-3 shadow-sm">
-        <div class="container text-white d-flex justify-content-between align-items-center">
-            <div class="profile-section text-white d-flex align-items-center gap-3">
-                <i class="bi bi-person-circle fs-3"></i>
-                <p class="mb-0">Hello, Fill in your account details to make your first deposit</p>
+    @if (!auth()->user()->authenticator)
+        <section class="p-3 shadow-sm bg-secondary">
+            <div class="container text-white d-flex justify-content-between align-items-center">
+                <div class="profile-section text-white d-flex align-items-center gap-3">
+                    <i class="bi bi-shield-lock fs-3"></i>
+                    <p class="mb-0">For your Account Security, Please activate Google Authentication.</p>
+                </div>
+                <div class="profile-action-section">
+                    <a href="{{ route('user.profile.index',['tab' => 'google']) }}" class="btn btn-primary px-4">Activate 2fa</a>
+                </div>
             </div>
-            <div class="profile-action-section">
-                <a href="{{ route('user.profile.index') }}" class="btn btn-primary px-4">Complete Profile</a>
-            </div>
-        </div>
-    </section>
+        </section>
+    @endif
     <section>
         <nav class="d-block d-md-none position-fixed bottom-0 bg-dark w-100 left-0 p-2" style="z-index: 5">
             <ul class="list-unstyled d-flex px-2 justify-content-between align-items-center mb-0">

@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg">
+<nav class="navbar navbar-expand-lg mt-3">
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav me-2 flex-column justify-content-center">
             @if (auth()->user()->role == 'admin')
