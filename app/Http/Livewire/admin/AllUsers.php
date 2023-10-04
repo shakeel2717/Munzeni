@@ -98,6 +98,7 @@ final class AllUsers extends PowerGridComponent
 
             /** Example of custom column using a closure **/
             ->addColumn('name_lower', fn (User $model) => strtolower(e($model->name)))
+            ->addColumn('balance', fn (User $model) => number_format($model->getBalance(), 2))
 
             ->addColumn('email')
             ->addColumn('username')
@@ -157,6 +158,7 @@ final class AllUsers extends PowerGridComponent
             Column::make('Refer', 'refer')
                 ->sortable()
                 ->searchable(),
+                Column::make('BALANCE', 'balance'),
 
             Column::make('Authenticator', 'authenticator')
                 ->toggleable(),

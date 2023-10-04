@@ -200,4 +200,38 @@
             </div>
         </div>
     </div>
+    <!-- Button trigger modal -->
+    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+        Launch demo modal
+    </button>
+
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content bg-dark">
+                <div class="modal-body">
+                    <h3 class="text-center">Deposit Bonus</h3>
+                    <p>
+                        1. 10% bonus will be refunded starting from the first recharge of $10. Please contact the platform
+                        customer service to receive the first recharge bonus.
+                    </p>
+                    <p>(For more tips on making money, you can consult the platform customer service manager, who will
+                        provide better solutions)</p>
+                    <div class="text-center">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+@endsection
+@section('scripts')
+    @if (session('showNotification'))
+        <script>
+            window.addEventListener('DOMContentLoaded', function() {
+                var myModal = new bootstrap.Modal(document.getElementById('exampleModal'));
+                myModal.show();
+            });
+        </script>
+    @endif
 @endsection
