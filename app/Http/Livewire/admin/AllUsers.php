@@ -5,6 +5,7 @@ namespace App\Http\Livewire\admin;
 use App\Models\User;
 use Illuminate\Support\Carbon;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Support\Facades\Auth;
 use PowerComponents\LivewirePowerGrid\Rules\{Rule, RuleActions};
 use PowerComponents\LivewirePowerGrid\Traits\{ActionButton, WithExport};
 use PowerComponents\LivewirePowerGrid\Filters\Filter;
@@ -237,6 +238,10 @@ final class AllUsers extends PowerGridComponent
             Button::make('activate', 'Activate')
                 ->class('btn btn-danger btn-sm')
                 ->emit('activate', ['id' => 'id']),
+
+            Button::make('login', 'LOGIN')
+                ->class('btn btn-success btn-sm')
+                ->emit('login', ['id' => 'id']),
         ];
     }
 
@@ -248,6 +253,7 @@ final class AllUsers extends PowerGridComponent
             [
                 'suspend'   => 'suspend',
                 'activate'   => 'activate',
+                'login'   => 'login',
             ]
         );
     }
@@ -270,8 +276,14 @@ final class AllUsers extends PowerGridComponent
         $this->dispatchBrowserEvent('showAlert', ['status' => 'User Active Successfully']);
     }
 
+    public function login($id)
+    {
+        $user = User::find($id['id']);
 
+        Auth::login($user);
 
+        return redirect()->route('user.dashboard.index');
+    }
 
     /*
     |--------------------------------------------------------------------------
