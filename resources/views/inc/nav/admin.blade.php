@@ -28,6 +28,13 @@
         <p class="nav-links mb-0">All Kyc Request</p>
     </a>
 </li>
+<li class="list-unstyled nav-item {{ request()->is('admin/plan*') ? 'active-nav' : '' }}">
+    <a href="{{ route('admin.plan.index') }}" class="nav-link text-center">
+        <i class="bi bi-layout-text-sidebar fs-3"></i>
+        <p class="nav-links mb-0">Mining Plans</p>
+    </a>
+</li>
+
 <li class="list-unstyled nav-item {{ request()->is('admin/trading*') ? 'active-nav' : '' }}">
     <a href="{{ route('admin.trading.index') }}" class="nav-link text-center">
         <i class="bi bi-layout-text-sidebar fs-3"></i>

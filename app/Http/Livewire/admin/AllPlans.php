@@ -2,7 +2,7 @@
 
 namespace App\Http\Livewire\admin;
 
-use App\Models\Future;
+use App\Models\Plan;
 use Illuminate\Support\Carbon;
 use Illuminate\Database\Eloquent\Builder;
 use PowerComponents\LivewirePowerGrid\Rules\{Rule, RuleActions};
@@ -10,12 +10,16 @@ use PowerComponents\LivewirePowerGrid\Traits\{ActionButton, WithExport};
 use PowerComponents\LivewirePowerGrid\Filters\Filter;
 use PowerComponents\LivewirePowerGrid\{Button, Column, Exportable, Footer, Header, PowerGrid, PowerGridComponent, PowerGridColumns};
 
-final class AllFuturePolicy extends PowerGridComponent
+final class AllPlans extends PowerGridComponent
 {
     use ActionButton;
     use WithExport;
 
-    public $status;
+    public $name;
+    public $profit;
+    public $duration;
+    public $min_invest;
+    public $max_invest;
 
     /*
     |--------------------------------------------------------------------------
@@ -50,11 +54,11 @@ final class AllFuturePolicy extends PowerGridComponent
     /**
      * PowerGrid datasource.
      *
-     * @return Builder<\App\Models\Future>
+     * @return Builder<\App\Models\Plan>
      */
     public function datasource(): Builder
     {
-        return Future::query();
+        return Plan::query();
     }
 
     /*
@@ -90,15 +94,17 @@ final class AllFuturePolicy extends PowerGridComponent
     {
         return PowerGrid::columns()
             ->addColumn('id')
-            ->addColumn('trade')
+            ->addColumn('name')
 
             /** Example of custom column using a closure **/
-            ->addColumn('trade_lower', fn (Future $model) => strtolower(e($model->trade)))
+            ->addColumn('name_lower', fn (Plan $model) => strtolower(e($model->name)))
 
-            ->addColumn('type')
-            ->addColumn('status')
-            ->addColumn('timestamp')
-            ->addColumn('created_at_formatted', fn (Future $model) => Carbon::parse($model->created_at)->format('d/m/Y H:i:s'));
+            ->addColumn('profit')
+            ->addColumn('duration')
+            ->addColumn('min_invest')
+            ->addColumn('max_invest')
+            ->addColumn('return')
+            ->addColumn('created_at_formatted', fn (Plan $model) => Carbon::parse($model->created_at)->format('d/m/Y H:i:s'));
     }
 
     /*
@@ -118,22 +124,39 @@ final class AllFuturePolicy extends PowerGridComponent
     public function columns(): array
     {
         return [
-            Column::make('Trade', 'trade')
+            Column::make('Name', 'name')
                 ->sortable()
+                ->editOnClick()
                 ->searchable(),
 
-            Column::make('Type', 'type')
+            Column::make('Profit', 'profit')
                 ->sortable()
+                ->editOnClick()
                 ->searchable(),
 
-            Column::make('Status', 'status')
-                ->toggleable(),
+            Column::make('Duration', 'duration')
+                ->sortable()
+                ->editOnClick()
+                ->searchable(),
 
-            Column::make('Timestamp', 'timestamp'),
-            Column::make('Created at', 'created_at_formatted', 'created_at')
-                ->sortable(),
+            Column::make('Min invest', 'min_invest')
+                ->sortable()
+                ->editOnClick()
+                ->searchable(),
+
+            Column::make('Max invest', 'max_invest')
+                ->sortable()
+                ->editOnClick()
+                ->searchable(),
 
         ];
+    }
+
+    public function onUpdatedEditable($id, $field, $value): void
+    {
+        Plan::query()->find($id)->update([
+            $field => $value,
+        ]);
     }
 
     /**
@@ -144,9 +167,10 @@ final class AllFuturePolicy extends PowerGridComponent
     public function filters(): array
     {
         return [
-            Filter::inputText('trade')->operators(['contains']),
-            Filter::inputText('type')->operators(['contains']),
-            Filter::boolean('status'),
+            Filter::inputText('name')->operators(['contains']),
+            Filter::inputText('profit')->operators(['contains']),
+            Filter::inputText('duration')->operators(['contains']),
+            Filter::boolean('return'),
             Filter::datetimepicker('created_at'),
         ];
     }
@@ -160,38 +184,37 @@ final class AllFuturePolicy extends PowerGridComponent
     */
 
     /**
-     * PowerGrid Future Action Buttons.
+     * PowerGrid Plan Action Buttons.
      *
      * @return array<int, Button>
      */
 
+    //  public function actions(): array
+    //  {
+    //      return [
+    //          Button::make('delete', 'Delete')
+    //              ->class('btn btn-danger btn-sm')
+    //              ->emit('delete', ['id' => 'id']),
+    //      ];
+    //  }
 
-    public function actions(): array
-    {
-        return [
-            Button::make('delete', 'Delete')
-                ->class('btn btn-danger btn-sm')
-                ->emit('delete', ['id' => 'id']),
-        ];
-    }
+    //  protected function getListeners(): array
+    //  {
+    //      return array_merge(
+    //          parent::getListeners(),
+    //          [
+    //              'delete'   => 'delete',
+    //          ]
+    //      );
+    //  }
 
-    protected function getListeners(): array
-    {
-        return array_merge(
-            parent::getListeners(),
-            [
-                'delete'   => 'delete',
-            ]
-        );
-    }
+    //  public function delete($id)
+    //  {
+    //      $user = Plan::find($id['id']);
+    //      $user->delete();
 
-    public function delete($id)
-    {
-        $user = Future::find($id['id']);
-        $user->delete();
-
-        $this->dispatchBrowserEvent('showAlert', ['message' => 'Future Trade Deleted Successfully']);
-    }
+    //      $this->dispatchBrowserEvent('showAlert', ['message' => 'Future Trade Deleted Successfully']);
+    //  }
 
     /*
     |--------------------------------------------------------------------------
@@ -202,7 +225,7 @@ final class AllFuturePolicy extends PowerGridComponent
     */
 
     /**
-     * PowerGrid Future Action Rules.
+     * PowerGrid Plan Action Rules.
      *
      * @return array<int, RuleActions>
      */
@@ -214,7 +237,7 @@ final class AllFuturePolicy extends PowerGridComponent
 
            //Hide button edit for ID 1
             Rule::button('edit')
-                ->when(fn($future) => $future->id === 1)
+                ->when(fn($plan) => $plan->id === 1)
                 ->hide(),
         ];
     }

@@ -3,6 +3,7 @@
 use App\Http\Controllers\admin\DashboardController;
 use App\Http\Controllers\admin\FinanceController;
 use App\Http\Controllers\admin\HistoryController;
+use App\Http\Controllers\admin\PlanController;
 use App\Http\Controllers\admin\TradingController;
 use Illuminate\Support\Facades\Route;
 
@@ -16,5 +17,6 @@ Route::prefix('admin/')->name('admin.')->middleware('auth', 'verified', 'admin')
     });
     Route::resource('/finance', FinanceController::class);
     Route::resource('/trading', TradingController::class);
+    Route::resource('/plan', PlanController::class);
     Route::view('/kyc', 'admin.kyc.index')->name('kyc.index');
 });
