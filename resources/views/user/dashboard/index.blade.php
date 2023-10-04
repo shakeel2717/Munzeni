@@ -32,7 +32,7 @@
                     </div>
                 </div>
                 <div class="card-body bg-half-dark py-3">
-                    <a href="#" class="text-white">See All Transactions</a>
+                    <a href="{{ route('user.history.deposits') }}" class="text-white">See All Transactions</a>
                 </div>
             </div>
         </div>
@@ -51,7 +51,7 @@
                     </div>
                 </div>
                 <div class="card-body bg-half-dark py-3">
-                    <a href="#" class="text-white">See All Transactions</a>
+                    <a href="{{ route('user.history.deposits') }}" class="text-white">See All Transactions</a>
                 </div>
             </div>
         </div>
@@ -70,7 +70,7 @@
                     </div>
                 </div>
                 <div class="card-body bg-half-dark py-3">
-                    <a href="#" class="text-white">See All Transactions</a>
+                    <a href="{{ route('user.history.deposits') }}" class="text-white">See All Transactions</a>
                 </div>
             </div>
         </div>
@@ -89,7 +89,7 @@
                     </div>
                 </div>
                 <div class="card-body bg-half-dark py-3">
-                    <a href="#" class="text-white">See All Transactions</a>
+                    <a href="{{ route('user.history.deposits') }}" class="text-white">See All Transactions</a>
                 </div>
             </div>
         </div>
@@ -108,7 +108,7 @@
                     </div>
                 </div>
                 <div class="card-body bg-half-dark py-3">
-                    <a href="#" class="text-white">See All Transactions</a>
+                    <a href="{{ route('user.history.deposits') }}" class="text-white">See All Transactions</a>
                 </div>
             </div>
         </div>
@@ -127,7 +127,7 @@
                     </div>
                 </div>
                 <div class="card-body bg-half-dark py-3">
-                    <a href="#" class="text-white">See All Transactions</a>
+                    <a href="{{ route('user.history.deposits') }}" class="text-white">See All Transactions</a>
                 </div>
             </div>
         </div>
