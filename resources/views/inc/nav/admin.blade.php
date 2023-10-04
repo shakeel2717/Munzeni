@@ -1,30 +1,30 @@
-<li class="list-unstyled nav-item">
+<li class="list-unstyled nav-item {{ request()->is('admin/dashboard*') ? 'active-nav' : '' }}">
     <a href="{{ route('admin.dashboard.index') }}" class="nav-link text-center">
-        <i class="bi bi-grid-fill fs-3 text-primary"></i>
+        <i class="bi bi-grid-fill fs-3"></i>
         <p class="nav-links mb-0">Admin Dashboard</p>
     </a>
 </li>
-<li class="list-unstyled nav-item">
+<li class="list-unstyled nav-item {{ request()->is('admin/finance*') ? 'active-nav' : '' }}">
     <a href="{{ route('admin.finance.create') }}" class="nav-link text-center">
-        <i class="bi bi-grid-fill fs-3 text-primary"></i>
+        <i class="bi bi-grid-fill fs-3"></i>
         <p class="nav-links mb-0">Add Balance</p>
     </a>
 </li>
-<li class="list-unstyled nav-item">
+<li class="list-unstyled nav-item {{ request()->is('admin/history*') ? 'active-nav' : '' }}">
     <a href="{{ route('admin.history.users') }}" class="nav-link text-center">
-        <i class="bi bi-grid-fill fs-3 text-primary"></i>
+        <i class="bi bi-grid-fill fs-3"></i>
         <p class="nav-links mb-0">All Users</p>
     </a>
 </li>
-<li class="list-unstyled nav-item">
+<li class="list-unstyled nav-item {{ request()->is('admin/history*') ? 'active-nav' : '' }}">
     <a href="{{ route('admin.history.setting') }}" class="nav-link text-center">
-        <i class="bi bi-grid-fill fs-3 text-primary"></i>
+        <i class="bi bi-grid-fill fs-3"></i>
         <p class="nav-links mb-0">Website Setting</p>
     </a>
 </li>
-<li class="list-unstyled nav-item">
+<li class="list-unstyled nav-item {{ request()->is('admin/kyc*') ? 'active-nav' : '' }}">
     <a href="{{ route('admin.kyc.index') }}" class="nav-link text-center">
-        <i class="bi bi-grid-fill fs-3 text-primary"></i>
+        <i class="bi bi-grid-fill fs-3"></i>
         <p class="nav-links mb-0">All Kyc Request</p>
     </a>
 </li>

@@ -5,11 +5,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Layout Project</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    {{-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"> --}}
+    <link rel="stylesheet" href="/assets/css/bootstrap.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
-    <link rel="stylesheet" href="{{ asset('assets/styles.css') }}">
     @vite(['resources/js/app.js'])
     @livewireStyles
+    <link rel="stylesheet" href="{{ asset('assets/styles.css') }}">
 </head>
 
 <body>
@@ -27,8 +28,8 @@
         <div class="container d-flex align-items-center">
             <div class="content py-4 w-100">
                 <div class="row">
-                    <div class="col-md-8 mx-auto">
-                        <div class="card card-body">
+                    <div class="col-md-6 mx-auto">
+                        <div class="card bg-dark card-body">
                             @yield('form')
                         </div>
                     </div>
