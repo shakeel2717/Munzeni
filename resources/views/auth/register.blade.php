@@ -20,7 +20,7 @@
             @if ($refer != 'default')
                 <div class="form-group auth-form-group-custom">
                     <i class="ri-user-shared-fill auti-custom-input-icon"></i>
-                    <label for="refer">Referral</label>
+                    <label for="refer">Referral Code</label>
                     <input type="text" name="refer" class="form-control" id="refer" placeholder="Enter Referral"
                         value="{{ $refer }}" readonly>
                 </div>

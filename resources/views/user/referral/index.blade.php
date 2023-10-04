@@ -10,7 +10,7 @@
                         <p class="mb-0">Copy Referral Link</p>
                         <div class="input-group">
                             <input type="text" class="form-control" name="refer" id="referLink"
-                                value="{{ route('register', ['refer' => auth()->user()->username]) }}">
+                                value="{{ route('register', ['refer' => auth()->user()->user_code]) }}">
                             <button onclick="copyInputValue('referLink')"
                                 class="btn btn-primary">Copy</button>
                         </div>

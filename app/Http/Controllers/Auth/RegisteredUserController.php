@@ -38,11 +38,28 @@ class RegisteredUserController extends Controller
             'refer' => ['nullable', 'string'],
         ]);
 
+        if ($request->refer != 'default') {
+            $upliner = User::where('user_code', $request->refer)->firstOrFail();
+            $upliner = $upliner->username;
+        } else {
+            $upliner = 'default';
+        }
+
+        generateCode:
+        $code = "MZ" . rand(0000000, 99999999);
+        // checking if this is not available
+        $checkCode = User::where('user_code', $code)->count();
+        if ($checkCode > 0) {
+            goto generateCode;
+        }
+
+
         $user = User::create([
             'name' => $request->name,
             'username' => $request->username,
             'email' => $request->email,
-            'refer' => $request->refer ?? 'default',
+            'refer' => $upliner ?? 'default',
+            'user_code' => $code,
             'password' => Hash::make($request->password),
         ]);
 

@@ -29,6 +29,7 @@ class User extends Authenticatable implements MustVerifyEmail
         'kyc_status',
         'refer',
         'password',
+        'user_code',
         'authenticator',
         'authenticator_code'
     ];

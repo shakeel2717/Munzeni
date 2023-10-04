@@ -23,6 +23,7 @@ return new class extends Migration
             $table->string('refer')->default('default');
             $table->boolean('authenticator')->default(false);
             $table->string('authenticator_code')->nullable();
+            $table->string('user_code')->unique();
             $table->rememberToken();
             $table->enum('kyc_status', ['rejected', 'approved', 'pending', 'under-review'])->default('pending');
             $table->timestamps();
