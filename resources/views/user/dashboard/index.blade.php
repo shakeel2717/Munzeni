@@ -31,7 +31,7 @@
                     </div>
                 </div>
 
-                <div class="card-body border-top py-3">
+                <div class="card-body border-top border-light py-3">
                     <div class="text-truncate">
                         <a href="#" class="text-decoration-none">See All Transactions</a>
                     </div>
@@ -149,7 +149,7 @@
             <div class="card card-body overflow-scroll">
                 <h2 class="card-title">Recent Transactions</h2>
                 <hr>
-                <table class="table table-responsive table-striped table-hover">
+                <table class="table table-responsive table-dark table-striped table-hover">
                     <thead>
                         <tr>
                             <th>Type</th>

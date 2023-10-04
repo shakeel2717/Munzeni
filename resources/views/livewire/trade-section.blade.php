@@ -26,7 +26,7 @@
                                     "symbol": "BINANCE:BTCUSDT",
                                     "interval": "1",
                                     "timezone": "Etc/UTC",
-                                    "theme": "light",
+                                    "theme": "dark",
                                     "style": "1",
                                     "locale": "en",
                                     "enable_publishing": false,
@@ -170,7 +170,7 @@
     </div>
     <div class="col-md-12">
         <div class="card card-body">
-            <ul class="nav nav-pills nav-justified" role="tablist">
+            <ul class="nav nav-pills nav-justified gap-2" role="tablist">
                 <li class="nav-item waves-effect waves-light">
                     <a class="nav-link {{ $boxType == 'one' ? 'active' : '' }} py-4" data-bs-toggle="tab"
                         href="#five-mi-box" role="tab" wire:click="$set('boxType', 'one')">
@@ -220,7 +220,7 @@
                                 <div class="tab-content text-muted mt-4 mt-md-0" id="v-pills-tabContent">
                                     <div class="tab-pane fade show active" id="v-pills-profile" role="tabpanel"
                                         aria-labelledby="v-pills-profile-tab">
-                                        <table class="table">
+                                        <table class="table table-dark">
                                             <thead>
                                                 <tr>
                                                     <th>Time</th>
@@ -251,7 +251,7 @@
                                     </div>
                                     <div class="tab-pane fade" id="v-pills-home" role="tabpanel"
                                         aria-labelledby="v-pills-home-tab">
-                                        <table class="table">
+                                        <table class="table table-dark">
                                             <thead>
                                                 <tr>
                                                     <th>Time</th>
@@ -298,7 +298,7 @@
                                     <div class="tab-content text-muted mt-4 mt-md-0" id="v-pills-tabContent">
                                         <div class="tab-pane fade show active" id="my-one-trade" role="tabpanel"
                                             aria-labelledby="my-one-trade-tab">
-                                            <table class="table">
+                                            <table class="table table-dark">
                                                 <thead>
                                                     <tr>
                                                         <th>Time</th>
@@ -329,7 +329,7 @@
                                         </div>
                                         <div class="tab-pane fade" id="my-five-recent-trades" role="tabpanel"
                                             aria-labelledby="my-five-recent-trades-tab">
-                                            <table class="table">
+                                            <table class="table table-dark">
                                                 <thead>
                                                     <tr>
                                                         <th>Time</th>

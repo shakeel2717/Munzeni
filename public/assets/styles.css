@@ -1,5 +1,5 @@
 body {
-    background-color: rgb(240, 239, 239);
+    background-color: #0f171c;
 }
 
 
@@ -9,17 +9,34 @@ body {
 }
 
 .nav-link:hover {
-    background-color: white;
+    background-color: rgb(255, 207, 1);
     border-radius: 4px;
+    color: #0f171c;
+}
+
+.active-nav {
+    background-color: rgb(255, 207, 1);
+    border-radius: 4px;
+    color: #0f171c;
+}
+
+.active-nav a {
+    color: #0f171c;
+}
+
+.nav-link {
+    color: white;
 }
 
 a {
     text-decoration: none;
 }
+
 .form-group {
     margin-bottom: 20px;
 }
 
 .card {
     margin-bottom: 20px;
+    border: 2px solid #0f171c;
 }

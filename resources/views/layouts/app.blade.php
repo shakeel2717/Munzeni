@@ -5,7 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Layout Project</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    {{-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"> --}}
+    <link rel="stylesheet" href="/assets/css/bootstrap.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
     <link rel="stylesheet" href="{{ asset('assets/styles.css') }}">
     @vite(['resources/js/app.js'])
@@ -60,9 +61,9 @@
             </ul>
         </div>
     </section>
-    <section class="p-3 shadow-sm bg-white">
+    <section class="p-3 shadow-sm">
         <div class="container text-white d-flex justify-content-between align-items-center">
-            <div class="profile-section text-dark d-flex align-items-center gap-3">
+            <div class="profile-section text-white d-flex align-items-center gap-3">
                 <i class="bi bi-person-circle fs-3"></i>
                 <p class="mb-0">Hello, Fill in your account details to make your first deposit</p>
             </div>
