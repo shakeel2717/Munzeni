@@ -7,7 +7,23 @@
                         <h5 class="card-title">Bitcoin Price</h5>
                         <h2 wire:poll.{{ settings('bitcoin_rate_update') }}s='fetchLiveRate' class="fetchLiveRate">
                             {{ number_format($bitcoinPrice, 2) }}</h2>
-                        <h5 class="card-title">Account Balance: ${{ number_format(auth()->user()->getBalance(),2) }}</h5>
+                        {{-- <!-- TradingView Widget BEGIN -->
+                        <div class="tradingview-widget-container">
+                            <div class="tradingview-widget-container__widget"></div>
+                            <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-single-quote.js" async>
+                                {
+                                    "symbol": "BINANCE:BTCUSDT",
+                                    "width": "100%",
+                                    "height": "100%",
+                                    "colorTheme": "dark",
+                                    "isTransparent": false,
+                                    "locale": "en"
+                                }
+                            </script>
+                        </div>
+                        <!-- TradingView Widget END --> --}}
+                        <h5 class="card-title">Account Balance: ${{ number_format(auth()->user()->getBalance(),2) }}
+                        </h5>
                     </div>
                     <div class="right-spinner">
                         <div class="spinner-border" role="status" wire:loading>
@@ -234,7 +250,8 @@
                                                     <tr>
                                                         <td>{{ $trade->created_at->diffForHumans() }}</td>
                                                         <td>{{ strtoupper($trade->type) }}</td>
-                                                        <td class="{{ $trade->win ? 'text-success' : 'text-danger' }}">${{ number_format($trade->amount, 2) }}</td>
+                                                        <td class="{{ $trade->win ? 'text-success' : 'text-danger' }}">
+                                                            ${{ number_format($trade->amount, 2) }}</td>
                                                         <td>
                                                             @if ($trade->status)
                                                                 <div class="spinner-grow" role="status">
