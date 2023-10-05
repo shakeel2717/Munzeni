@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Layout Project</title>
+    <title>{{ env('APP_NAME') }}</title>
     {{-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"> --}}
     <link rel="stylesheet" href="/assets/css/bootstrap.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
@@ -73,7 +73,8 @@
                     <p class="mb-0">For your Account Security, Please activate Google Authentication.</p>
                 </div>
                 <div class="profile-action-section">
-                    <a href="{{ route('user.profile.index',['tab' => 'google']) }}" class="btn btn-primary px-4">Activate 2fa</a>
+                    <a href="{{ route('user.profile.index', ['tab' => 'google']) }}"
+                        class="btn btn-primary px-4">Activate 2fa</a>
                 </div>
             </div>
         </section>

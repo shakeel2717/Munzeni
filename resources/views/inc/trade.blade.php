@@ -121,7 +121,7 @@
                         <div class="row">
                             <div class="col-md-12">
                                 <button wire:click='invested'
-                                    class="btn btn-primary btn-lg py-2 mt-2 w-100">INVEST</button>
+                                    class="btn btn-primary btn-lg py-2 mt-2 w-100" {{ $disabledInvestButton ? 'disabled' : '' }}>INVEST</button>
                             </div>
                         </div>
                     </div>

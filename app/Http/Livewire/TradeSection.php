@@ -24,6 +24,10 @@ class TradeSection extends Component
     public $amount = 0;
     public $bitcoinPrice;
     public $type;
+    public $timestamp;
+    public $oneTimeSecond;
+    public $fiveTimeSecond;
+    public $disabledInvestButton = false;
 
     public $boxType = 'one';
 
@@ -37,9 +41,32 @@ class TradeSection extends Component
         $this->orderFiveHistories = TradeHistory::where('type', 'five')->latest()->limit(5)->get();
 
         $this->bitcoinPrice =  0000000;
+        $this->oneTimeSecond = date('s');
+        $this->fiveTimeSecond = date('s');
     }
 
-    public function invested()
+    public function updateOneTimeSecond()
+    {
+        $this->oneTimeSecond = 60 - date('s');
+        if ($this->oneTimeSecond < 20) {
+            $this->disabledInvestButton = true;
+            $this->resetAll();
+        }
+
+        $secondsRemaining = 300 - date('s');
+        $minutes = floor($secondsRemaining / 60);
+        $seconds = $secondsRemaining % 60;
+
+        $this->fiveTimeSecond = sprintf('%02d:%02d', $minutes, $seconds);
+
+        if ($secondsRemaining < 20) {
+            $this->disabledInvestButton = true;
+            $this->resetAll();
+        }
+        $this->timestamp = date('YmdHi');
+    }
+
+      public function invested()
     {
         // checking if available balance is enough
         if (auth()->user()->getBalance() < floatval($this->amount)) {
@@ -96,7 +123,7 @@ class TradeSection extends Component
 
     public function fetchLiveRate()
     {
-        $this->bitcoinPrice = number_format(fetchLiveResult(),2,'.','');
+        $this->bitcoinPrice = number_format(fetchLiveResult(), 2, '.', '');
 
         $parts = explode('.', $this->bitcoinPrice);
         $before = $parts[0] . '.' . substr($parts[1], 0, -1);

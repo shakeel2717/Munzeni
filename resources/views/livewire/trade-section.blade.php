@@ -72,8 +72,9 @@
                                 <span class="mb-0 display-6 fw-bold">1Mi</span> <br>
                                 <span class="text-uppercase">Curt</span>
                             </div>
-                            <div class="right">
-                                <span class="mb-0 display-6 fw-bold">00:00:00</span> <br>
+                            <div class="right" wire:poll.2s='updateOneTimeSecond'>
+                                <span class="mb-0 display-6 fw-bold" id="countdown">00:{{ $oneTimeSecond }}</span> <br>
+                                <h3 class="mb-0">{{ $timestamp }}</h3>
                             </div>
                         </div>
                     </a>
@@ -87,7 +88,8 @@
                                 <span class="text-uppercase">Long</span>
                             </div>
                             <div class="right">
-                                <span class="mb-0 display-6 fw-bold">00:00:00</span> <br>
+                                <span class="mb-0 display-6 fw-bold" id="countdown">{{ $fiveTimeSecond }}</span> <br>
+                                <h3 class="mb-0">{{ $timestamp }}</h3>
                             </div>
                         </div>
                     </a>
