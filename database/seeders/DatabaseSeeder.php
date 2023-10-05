@@ -166,6 +166,26 @@ class DatabaseSeeder extends Seeder
             'value' => 'https://telegram.org/',
         ]);
 
+        $setting = Setting::firstOrCreate([
+            'key' => 'facebook_link',
+            'value' => 'https://telegram.org/',
+        ]);
+
+        $setting = Setting::firstOrCreate([
+            'key' => 'instagram_link',
+            'value' => 'https://telegram.org/',
+        ]);
+
+        $setting = Setting::firstOrCreate([
+            'key' => 'tiktok_link',
+            'value' => 'https://telegram.org/',
+        ]);
+
+        $setting = Setting::firstOrCreate([
+            'key' => 'youtube_link',
+            'value' => 'https://telegram.org/',
+        ]);
+
 
 
         $plan = Plan::firstOrCreate([

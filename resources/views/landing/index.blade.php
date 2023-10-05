@@ -261,11 +261,21 @@
     </section>
     <div class="livechat position-fixed" style="bottom: 20px; right: 20px;">
         <a class="rounded-circle" href="{{ settings('telegram_link') ?? 'https://telegram.org/' }}"><i
-                class="bi fs-1 bi-telegram"></i></a>
+                class="bi fs-1 bi-question-circle"></i></a>
     </div>
     <footer class="bg-secondary p-3">
         <h4 class="text-center text-white">Copyrights {{ date('Y') }} {{ env('APP_NAME') }}. All Rights Reserved
         </h4>
+        <hr>
+        <div class="socials text-center">
+            <ul class="d-flex justify-content-center list-unstyled gap-4">
+                <li><a href="{{ settings('facebook_link') }}"><i class="bi fs-2 bi-facebook"></i></a></li>
+                <li><a href="{{ settings('youtube_link') }}"><i class="bi fs-2 bi-youtube"></i></a></li>
+                <li><a href="{{ settings('instagram_link') }}"><i class="bi fs-2 bi-instagram"></i></a></li>
+                <li><a href="{{ settings('tiktok_link') }}"><i class="bi fs-2 bi-tiktok"></i></a></li>
+                <li><a href="{{ settings('telegram_link') }}"><i class="bi fs-2 bi-telegram"></i></a></li>
+            </ul>
+        </div>
     </footer>
 </body>
 

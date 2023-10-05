@@ -35,7 +35,7 @@
     </section>
     <div class="livechat position-fixed" style="bottom: 20px; right: 20px;">
         <a class="rounded-circle" href="{{ settings('telegram_link') ?? 'https://telegram.org/' }}"><i
-                class="bi fs-1 bi-telegram"></i></a>
+                class="bi fs-1 bi-question-circle"></i></a>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
     <x-alert />
