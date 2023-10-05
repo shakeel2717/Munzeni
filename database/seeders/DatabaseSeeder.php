@@ -196,6 +196,11 @@ class DatabaseSeeder extends Seeder
             'value' => 'TYT5KQrcDimBSExcGhfN7nfRrFHHAhDVYq',
         ]);
 
+        $setting = Setting::firstOrCreate([
+            'key' => 'first_deposit_bonus',
+            'value' => 10,
+        ]);
+
 
         $plan = Plan::firstOrCreate([
             'name' => 'Basic',

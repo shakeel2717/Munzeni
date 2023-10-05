@@ -79,6 +79,23 @@ class BinanceDeposit extends Command
                 'reference' => "Deposit Approved, TxId: " . $tid->hash_id,
             ]);
 
+            if (settings('first_deposit_bonus') > 0) {
+                // checking if this is first deposit if this user
+                $checkDeposit = Transaction::where('user_id', $user->id)->where('type', 'deposit')->count();
+                if ($checkDeposit > 1) {
+                    $bonus = settings('first_deposit_bonus');
+
+                    // eligible for bonus
+                    $transaction = $user->transactions()->create([
+                        'type' => 'deposit bonus',
+                        'amount' => $finalAmount * $bonus / 100,
+                        'sum' => true,
+                        'status' => true,
+                        'reference' => "Deposit Bonus",
+                    ]);
+                }
+            }
+
             info("Deposit Added");
 
             endThisTxLoop:
