@@ -78,6 +78,9 @@ class TradeSection extends Component
     if($minutes < 3){
         $this->disabledFiveInvestButton = true;
     }
+    else {
+        $this->disabledFiveInvestButton = false;
+    }
 
     // Format the time for the 5-minute timer
     $this->fiveTimeSecond = sprintf('%02d:%02d', $minutes, $seconds);
