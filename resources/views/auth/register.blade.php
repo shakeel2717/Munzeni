@@ -28,10 +28,16 @@
                 <label for="useremail">Email</label>
                 <input type="email" name="email" class="form-control" id="useremail" placeholder="Enter email">
             </div>
-            <div class="form-group auth-form-group-custom ">
-                <i class="ri-lock-2-line auti-custom-input-icon"></i>
+            <div class="form-group auth-form-group-custom">
                 <label for="password">Password</label>
-                <input type="password" name="password" class="form-control" id="password" placeholder="Enter password">
+                <div class="input-group">
+                    <input type="password" name="password" class="form-control" id="password" placeholder="Enter password">
+                    <div class="input-group-append">
+                        <span class="input-group-text">
+                            <i class="bi bi-eye-slash-fill" id="togglePassword"></i>
+                        </span>
+                    </div>
+                </div>
             </div>
             <div class="form-group auth-form-group-custom ">
                 <i class="ri-lock-2-line auti-custom-input-icon"></i>
@@ -43,7 +49,8 @@
                 <button class="btn btn-primary w-md waves-effect waves-light" type="submit">Create Account</button>
             </div>
             <div class="mt-4 text-center">
-                <p class="mb-0">By registering you agree to the {{ env('APP_NAME') }} <a href="#" class="text-primary">Terms of
+                <p class="mb-0">By registering you agree to the {{ env('APP_NAME') }} <a href="#"
+                        class="text-primary">Terms of
                         Use</a></p>
             </div>
         </form>
@@ -52,4 +59,21 @@
         <p>Already have an account ? <a href="{{ route('login') }}" class="font-weight-medium text-primary"> Login</a> </p>
         <p>© {{ date('Y') }} {{ env('APP_NAME') }}. All Rights Reserved</p>
     </div>
+@endsection
+@section('footer')
+    <script>
+        const passwordInput = document.getElementById('password');
+        const passwordInputConfirm = document.getElementById('password_confirmation');
+        const togglePasswordButton = document.getElementById('togglePassword');
+
+        togglePasswordButton.addEventListener('click', function() {
+            if (passwordInput.type === 'password') {
+                passwordInput.type = 'text';
+                passwordInputConfirm.type = 'text';
+            } else {
+                passwordInput.type = 'password';
+                passwordInputConfirm.type = 'password';
+            }
+        });
+    </script>
 @endsection
