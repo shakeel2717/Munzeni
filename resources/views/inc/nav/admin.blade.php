@@ -16,7 +16,32 @@
         <p class="nav-links mb-0">All Users</p>
     </a>
 </li>
-<li class="list-unstyled nav-item {{ request()->is('admin/history*') ? 'active-nav' : '' }}">
+<li class="list-unstyled nav-item">
+    <a href="{{ route('admin.history.withdraw') }}" class="nav-link text-center">
+        <i class="bi bi-layout-text-sidebar fs-3"></i>
+        <p class="nav-links mb-0">Pending Withdrawal</p>
+    </a>
+</li>
+<li class="list-unstyled nav-item">
+    <a href="{{ route('admin.history.withdraw.approved') }}" class="nav-link text-center">
+        <i class="bi bi-layout-text-sidebar fs-3"></i>
+        <p class="nav-links mb-0">Approved Withdrawal</p>
+    </a>
+</li>
+<li class="list-unstyled nav-item">
+    <a href="{{ route('admin.history.deposits') }}" class="nav-link text-center">
+        <i class="bi bi-layout-text-sidebar fs-3"></i>
+        <p class="nav-links mb-0">All Deposits</p>
+    </a>
+</li>
+<li class="list-unstyled nav-item">
+    <a href="{{ route('admin.history.all') }}" class="nav-link text-center">
+        <i class="bi bi-layout-text-sidebar fs-3"></i>
+        <p class="nav-links mb-0">All Transactions</p>
+    </a>
+</li>
+
+<li class="list-unstyled nav-item">
     <a href="{{ route('admin.history.setting') }}" class="nav-link text-center">
         <i class="bi bi-gear-wide-connected fs-3"></i>
         <p class="nav-links mb-0">Website Setting</p>

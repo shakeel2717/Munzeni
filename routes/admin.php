@@ -14,6 +14,10 @@ Route::prefix('admin/')->name('admin.')->middleware('auth', 'verified', 'admin')
     Route::controller(HistoryController::class)->prefix('history')->name('history.')->group(function () {
         Route::view('users', 'admin.history.users')->name('users');
         Route::view('setting', 'admin.history.setting')->name('setting');
+        Route::view('withdraws', 'admin.history.withdraw')->name('withdraw');
+        Route::view('withdraws-approve', 'admin.history.withdrawApprove')->name('withdraw.approved');
+        Route::view('deposits', 'admin.history.deposits')->name('deposits');
+        Route::view('all', 'admin.history.all')->name('all');
     });
     Route::resource('/finance', FinanceController::class);
     Route::resource('/trading', TradingController::class);

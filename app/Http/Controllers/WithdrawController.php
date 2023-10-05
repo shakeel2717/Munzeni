@@ -46,6 +46,11 @@ class WithdrawController extends Controller
             return back()->withErrors(['Please Activate Google Authentication on your account first.']);
         }
 
+        // checking if this user kyc ic complete
+        if (auth()->user()->kyc_status = !'approved') {
+            return back()->withErrors(['Please Complete your KYC First.']);
+        }
+
         // checking if available balance is enough
         if (auth()->user()->getBalance() < $validatedData['amount']) {
             return back()->withErrors(['Insufficient Balance']);
@@ -87,7 +92,7 @@ class WithdrawController extends Controller
             'amount' => $amount,
             'sum' => false,
             'status' => false,
-            'reference' => "Withdrawal Request to : " . auth()->user()->wallet->wallet,
+            'reference' => "Withdrawal Request: " . auth()->user()->wallet->wallet . " Currency: " . auth()->user()->wallet->currency->code,
         ]);
 
         if (settings('withdraw_fees') > 0) {

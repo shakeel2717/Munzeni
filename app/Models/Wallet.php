@@ -10,4 +10,10 @@ class Wallet extends Model
     use HasFactory;
 
     protected $fillable = ['user_id', 'currency_id', 'wallet'];
+
+
+    protected function currency()
+    {
+        return $this->belongsTo(Currency::class);
+    }
 }

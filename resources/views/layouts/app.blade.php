@@ -103,9 +103,9 @@
                     <a class="text-white" href="{{ route('user.plan.index') }}">
                         <i class="bi bi-hammer fs-2"></i></a>
                 </li>
-                <li class="text-white {{ request()->is('user/profile*') ? 'active-nav' : '' }} px-2">
-                    <a class="text-white" href="{{ route('user.profile.index') }}">
-                        <i class="bi bi-person-circle fs-2"></i></a>
+                <li class="text-white {{ request()->is('user/deposit*') ? 'active-nav' : '' }} px-2">
+                    <a class="text-white" href="{{ route('user.deposit.index') }}">
+                        <i class="bi bi-wallet2 fs-2"></i></a>
                 </li>
             </ul>
         </nav>
