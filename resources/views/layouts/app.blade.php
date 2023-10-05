@@ -98,7 +98,7 @@
                     </div>
                 </li>
                 <li class="text-white">
-                    <a class="text-white" href="{{ route('user.withdraw.create') }}">
+                    <a class="text-white" href="{{ route('user.plan.index') }}">
                         <i class="bi bi-hammer fs-2"></i></a>
                 </li>
                 <li class="text-white">
@@ -113,7 +113,7 @@
                 <div class="row">
                     <div class="col-md-12">
                         <div class="card card-body" style="min-height: 60vh;">
-                            @yield('content')
+                            @yield('content')`
                         </div>
                     </div>
                 </div>
