@@ -3,6 +3,7 @@
 namespace App\Http\Livewire\admin;
 
 use App\Models\Transaction;
+use App\Models\Withdraw;
 use Illuminate\Support\Carbon;
 use Illuminate\Database\Eloquent\Builder;
 use PowerComponents\LivewirePowerGrid\Rules\{Rule, RuleActions};
@@ -180,25 +181,64 @@ final class AllTransaction extends PowerGridComponent
      * @return array<int, Button>
      */
 
-    /*
+
     public function actions(): array
     {
-       return [
-           Button::make('edit', 'Edit')
-               ->class('bg-indigo-500 cursor-pointer text-white px-3 py-2.5 m-1 rounded text-sm')
-               ->route('transaction.edit', function(\App\Models\Transaction $model) {
-                    return $model->id;
-               }),
+        return [
+            Button::make('approve', 'Approve')
+                ->class('btn btn-primary btn-sm')
+                ->emit('approve', ['id' => 'id']),
 
-           Button::make('destroy', 'Delete')
-               ->class('bg-red-500 cursor-pointer text-white px-3 py-2 m-1 rounded text-sm')
-               ->route('transaction.destroy', function(\App\Models\Transaction $model) {
-                    return $model->id;
-               })
-               ->method('delete')
+            Button::make('reject', 'Reject')
+                ->class('btn btn-danger btn-sm')
+                ->emit('reject', ['id' => 'id']),
         ];
     }
-    */
+
+
+    protected function getListeners(): array
+    {
+        return array_merge(
+            parent::getListeners(),
+            [
+                'approve'   => 'approve',
+                'reject'   => 'reject',
+            ]
+        );
+    }
+
+    public function approve($id)
+    {
+        $transaction = Transaction::find($id['id']);
+
+        $withdraw = Withdraw::find($transaction->withdraw_id);
+        $withdraw->status = true;
+        $withdraw->save();
+
+        $transactions = Transaction::where('withdraw_id', $withdraw->id)->get();
+        foreach ($transactions as $transaction) {
+            $transaction->status = true;
+            $transaction->save();
+        }
+
+        $this->dispatchBrowserEvent('showAlert', ['message' => 'Withdraw Request Approved Successfully']);
+    }
+
+    public function reject($id)
+    {
+        $transaction = Transaction::find($id['id']);
+
+        $withdraw = Withdraw::find($transaction->withdraw_id);
+        $withdraw->delete();
+
+        $transactions = Transaction::where('withdraw_id', $withdraw->id)->get();
+        foreach ($transactions as $transaction) {
+            $transaction->delete();
+        }
+
+        $this->dispatchBrowserEvent('showAlert', ['message' => 'Withdraw Request Deleted Successfully']);
+    }
+
 
     /*
     |--------------------------------------------------------------------------
@@ -214,16 +254,27 @@ final class AllTransaction extends PowerGridComponent
      * @return array<int, RuleActions>
      */
 
-    /*
+
     public function actionRules(): array
     {
-       return [
+        return [
 
-           //Hide button edit for ID 1
-            Rule::button('edit')
-                ->when(fn($transaction) => $transaction->id === 1)
+            //Hide button edit for ID 1
+            Rule::button('approve')
+                ->when(fn ($transaction) => $transaction->type != 'withdraw')
+                ->hide(),
+
+            Rule::button('reject')
+                ->when(fn ($transaction) => $transaction->type != 'withdraw')
+                ->hide(),
+
+            Rule::button('approve')
+                ->when(fn ($transaction) => $transaction->status != false)
+                ->hide(),
+
+            Rule::button('reject')
+                ->when(fn ($transaction) => $transaction->status != false)
                 ->hide(),
         ];
     }
-    */
 }

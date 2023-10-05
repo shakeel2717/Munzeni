@@ -266,7 +266,7 @@ final class AllUsers extends PowerGridComponent
         $user->status = 'suspend';
         $user->save();
 
-        $this->dispatchBrowserEvent('showAlert', ['status' => 'User Suspended Successfully']);
+        $this->dispatchBrowserEvent('showAlert', ['message' => 'User Suspended Successfully']);
     }
 
     public function activate($id)
@@ -275,7 +275,7 @@ final class AllUsers extends PowerGridComponent
         $user->status = 'active';
         $user->save();
 
-        $this->dispatchBrowserEvent('showAlert', ['status' => 'User Active Successfully']);
+        $this->dispatchBrowserEvent('showAlert', ['message' => 'User Active Successfully']);
     }
 
     public function login($id)
