@@ -22,7 +22,7 @@
                 aria-label="Toggle navigation">
                 <i class="bi bi-list fs-1 text-white"></i>
             </button>
-            <img src="{{ asset('assets/logo.png') }}" alt="Logo" width="200">
+            <a href="{{ route('index') }}"><img src="{{ asset('assets/logo.png') }}" alt="Logo" width="200"></a>
             <ul class="list-unstyled mb-0 d-flex gap-4 align-items-center">
                 <li class="d-none d-md-block">
                     <h4 class="mb-0">${{ number_format(auth()->user()->getBalance(),2) }} USD</h4>

@@ -16,7 +16,7 @@
 <body>
     <nav class="d-flex justify-content-between p-4 position-fixed top-0 bg-dark w-100">
         <div class="brand">
-            <img src="{{ asset('logo-light.png') }}" alt="{{ env('APP_NAME') }}">
+            <a href="{{ route('index') }}"><img src="{{ asset('logo-light.png') }}" alt="{{ env('APP_NAME') }}"></a>
         </div>
         <ul class="nav gap-5 d-none d-sm-flex">
             <li class=""><a class="fs-5" href="{{ route('index') }}">Home</a></li>

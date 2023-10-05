@@ -17,7 +17,7 @@
 <body>
     <section class="bg-dark p-3">
         <div class="container text-white text-center">
-            <img src="{{ asset('assets/logo.png') }}" alt="Logo" width="200">
+            <a href="{{ route('index') }}"><img src="{{ asset('assets/logo.png') }}" alt="Logo" width="200"></a>
         </div>
     </section>
     <section>
