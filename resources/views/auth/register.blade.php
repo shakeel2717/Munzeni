@@ -17,14 +17,12 @@
                 <label for="username">Username</label>
                 <input type="text" name="username" class="form-control" id="username" placeholder="Enter Username">
             </div>
-            @if ($refer != 'default')
-                <div class="form-group auth-form-group-custom">
-                    <i class="ri-user-shared-fill auti-custom-input-icon"></i>
-                    <label for="refer">Referral Code</label>
-                    <input type="text" name="refer" class="form-control" id="refer" placeholder="Enter Referral"
-                        value="{{ $refer }}" readonly>
-                </div>
-            @endif
+            <div class="form-group auth-form-group-custom">
+                <i class="ri-user-shared-fill auti-custom-input-icon"></i>
+                <label for="refer">Referral Code</label>
+                <input type="text" name="refer" class="form-control" id="refer" placeholder="Enter Referral"
+                    value="{{ $refer }}" readonly>
+            </div>
             <div class="form-group auth-form-group-custom ">
                 <i class="ri-mail-line auti-custom-input-icon"></i>
                 <label for="useremail">Email</label>
