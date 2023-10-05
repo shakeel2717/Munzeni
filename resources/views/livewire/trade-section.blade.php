@@ -5,10 +5,10 @@
                 <div class="live-stats d-flex justify-content-between align-items-center">
                     <div class="left-side">
                         <h5 class="card-title">Bitcoin Price</h5>
-                        <h2 wire:poll.{{ settings('bitcoin_rate_update') }}s='fetchLiveRate' class="fetchLiveRate">
-                            {!! $bitcoinPrice !!}</h2>
+                        {{-- <h2 wire:poll.{{ settings('bitcoin_rate_update') }}s='fetchLiveRate' class="fetchLiveRate">
+                            {!! $bitcoinPrice !!}</h2> --}}
                         <!-- TradingView Widget BEGIN -->
-                        {{-- <div class="tradingview-widget-container">
+                        <div class="tradingview-widget-container" wire:ignore >
                             <div class="tradingview-widget-container__widget"></div>
                             <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-single-quote.js" async>
                                 {
@@ -20,16 +20,16 @@
                                     "locale": "en"
                                 }
                             </script>
-                        </div> --}}
+                        </div>
                         <!-- TradingView Widget END -->
                         <h5 class="card-title">Account Balance: ${{ number_format(auth()->user()->getBalance(),2) }}
                         </h5>
                     </div>
-                    <div class="right-spinner">
+                    {{-- <div class="right-spinner">
                         <div class="spinner-border" role="status" wire:loading>
                             <span class="visually-hidden">Loading...</span>
                         </div>
-                    </div>
+                    </div> --}}
                 </div>
             </div>
         </div>

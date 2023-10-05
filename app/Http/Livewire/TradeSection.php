@@ -59,7 +59,7 @@ class TradeSection extends Component
 
         $this->fiveTimeSecond = sprintf('%02d:%02d', $minutes, $seconds);
 
-        if ($secondsRemaining < 20) {
+        if ($secondsRemaining < 60) {
             $this->disabledInvestButton = true;
             $this->resetAll();
         }
