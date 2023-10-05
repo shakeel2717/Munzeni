@@ -7,6 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>{{ env('APP_NAME') }}</title>
     <link rel="stylesheet" href="{{ asset('assets/css/bootstrap.css') }}">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
     <link rel="stylesheet" href="{{ asset('assets/styles.css') }}">
 </head>
 
@@ -256,6 +257,10 @@
             </div>
         </div>
     </section>
+    <div class="livechat position-fixed" style="bottom: 20px; right: 20px;">
+        <a class="rounded-circle" href="{{ settings('telegram_link') ?? 'https://telegram.org/' }}"><i
+                class="bi fs-1 bi-telegram"></i></a>
+    </div>
     <footer class="bg-secondary p-3">
         <h4 class="text-center text-white">Copyrights {{ date('Y') }} {{ env('APP_NAME') }}. All Rights Reserved
         </h4>
