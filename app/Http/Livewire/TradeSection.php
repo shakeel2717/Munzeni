@@ -96,7 +96,15 @@ class TradeSection extends Component
 
     public function fetchLiveRate()
     {
-        $this->bitcoinPrice =  fetchLiveResult();
+        $this->bitcoinPrice = number_format(fetchLiveResult(),2,'.','');
+
+        $parts = explode('.', $this->bitcoinPrice);
+        $before = $parts[0] . '.' . substr($parts[1], 0, -1);
+        $lastDigit = substr($parts[1], -1);
+
+        $lastDigitWithSpan = '<span style="color: red;">' . $lastDigit . '</span>';
+
+        $this->bitcoinPrice = $before . $lastDigitWithSpan;
         $this->orderOneHistories = TradeHistory::where('type', 'one')->latest()->limit(5)->get();
         $this->orderFiveHistories = TradeHistory::where('type', 'five')->latest()->limit(5)->get();
         $this->myOrderOneHistories = Trading::where('user_id', auth()->user()->id)->where('method', 'one')->latest()->limit(5)->get();

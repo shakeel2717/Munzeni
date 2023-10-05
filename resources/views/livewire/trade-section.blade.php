@@ -5,10 +5,10 @@
                 <div class="live-stats d-flex justify-content-between align-items-center">
                     <div class="left-side">
                         <h5 class="card-title">Bitcoin Price</h5>
-                        {{-- <h2 wire:poll.{{ settings('bitcoin_rate_update') }}s='fetchLiveRate' class="fetchLiveRate">
-                            {{ number_format($bitcoinPrice, 2) }}</h2> --}}
+                        <h2 wire:poll.{{ settings('bitcoin_rate_update') }}s='fetchLiveRate' class="fetchLiveRate">
+                            {!! $bitcoinPrice!!}</h2>
                         <!-- TradingView Widget BEGIN -->
-                        <div class="tradingview-widget-container">
+                        {{-- <div class="tradingview-widget-container">
                             <div class="tradingview-widget-container__widget"></div>
                             <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-single-quote.js" async>
                                 {
@@ -20,7 +20,7 @@
                                     "locale": "en"
                                 }
                             </script>
-                        </div>
+                        </div> --}}
                         <!-- TradingView Widget END -->
                         <h5 class="card-title">Account Balance: ${{ number_format(auth()->user()->getBalance(),2) }}
                         </h5>
@@ -31,30 +31,32 @@
                         </div>
                     </div>
                 </div>
-                <div class="card">
-                    <div class="card-body" wire:ignore>
-                        <div class="tradingview-widget-container">
-                            <div id="tradingview_8dffe" style="height: 250px;"></div>
-                            <script type="text/javascript" src="https://s3.tradingview.com/tv.js"></script>
-                            <script type="text/javascript">
-                                new TradingView.widget({
-                                    "autosize": true,
-                                    "symbol": "BINANCE:BTCUSDT",
-                                    "interval": "1",
-                                    "timezone": "Etc/UTC",
-                                    "theme": "dark",
-                                    "style": "1",
-                                    "locale": "en",
-                                    "enable_publishing": false,
-                                    "hide_top_toolbar": true,
-                                    "hide_legend": true,
-                                    "save_image": false,
-                                    "hide_volume": true,
-                                    "container_id": "tradingview_8dffe"
-                                });
-                            </script>
-                        </div>
-                    </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-body p-0" wire:ignore style="height: 400px;">
+                <div class="tradingview-widget-container">
+                    <div id="tradingview_8dffe"></div>
+                    <script type="text/javascript" src="https://s3.tradingview.com/tv.js"></script>
+                    <script type="text/javascript">
+                        new TradingView.widget({
+                            "autosize": true,
+                            "symbol": "BINANCE:BTCUSDT",
+                            "interval": "1",
+                            "timezone": "Etc/UTC",
+                            "theme": "dark",
+                            "style": "1",
+                            "locale": "en",
+                            "enable_publishing": false,
+                            "hide_top_toolbar": true,
+                            "hide_legend": true,
+                            "save_image": false,
+                            "hide_volume": true,
+                            "container_id": "tradingview_8dffe"
+                        });
+                    </script>
                 </div>
             </div>
         </div>
@@ -176,7 +178,7 @@
                         <div class="row">
                             <div class="col-md-12">
                                 <button wire:click='invested'
-                                    class="btn btn-primary btn-lg py-4 w-100">INVEST</button>
+                                    class="btn btn-primary btn-lg py-2 mt-2 w-100">INVEST</button>
                             </div>
                         </div>
                     </div>
