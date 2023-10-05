@@ -261,7 +261,7 @@
     </section>
     <div class="livechat position-fixed" style="bottom: 20px; right: 20px;">
         <a class="rounded-circle" href="{{ settings('telegram_link') ?? 'https://telegram.org/' }}"><i
-                class="bi fs-1 bi-question-circle"></i></a>
+            class="bi fs-1 bi-chat-fill"></i></a>
     </div>
     <footer class="bg-secondary p-3">
         <h4 class="text-center text-white">Copyrights {{ date('Y') }} {{ env('APP_NAME') }}. All Rights Reserved
