@@ -169,6 +169,37 @@
                         <form action="{{ route('user.kyc.store') }}" method="POST" enctype="multipart/form-data">
                             @csrf
                             <div class="form-group">
+                                <label for="name">Full Name</label>
+                                <input type="text" name="name" id="name" class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <label for="dob">Date Of Birth</label>
+                                <input type="date" name="dob" id="dob" class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <label for="mobile">Mobile</label>
+                                <input type="text" name="mobile" id="mobile" class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <label for="gender">Gender</label>
+                                <select name="gender" class="form-control" id="gender">
+                                    <option value="male">Male</option>
+                                    <option value="female">FeMale</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="country">Country Name</label>
+                                <input type="text" name="country" id="country" class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <label for="address">Complete Address</label>
+                                <input type="text" name="address" id="address" class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <label for="zip">ZIP Code</label>
+                                <input type="text" name="zip" id="zip" class="form-control">
+                            </div>
+                            <div class="form-group">
                                 <label for="front">Front Side Document</label>
                                 <input type="file" name="front" id="front" class="form-control">
                             </div>

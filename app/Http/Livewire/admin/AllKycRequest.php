@@ -130,6 +130,30 @@ final class AllKycRequest extends PowerGridComponent
                 ->sortable()
                 ->searchable(),
 
+            Column::make('Name', 'name')
+                ->sortable()
+                ->searchable(),
+
+            Column::make('DOB', 'dob')
+                ->sortable()
+                ->searchable(),
+
+            Column::make('Gender', 'gender')
+                ->sortable()
+                ->searchable(),
+
+            Column::make('Mobile', 'mobile')
+                ->sortable()
+                ->searchable(),
+
+            Column::make('Address', 'address')
+                ->sortable()
+                ->searchable(),
+
+            Column::make('Zip', 'zip')
+                ->sortable()
+                ->searchable(),
+
             Column::make('Back', 'back_format', 'back')
                 ->sortable()
                 ->searchable(),
@@ -226,7 +250,6 @@ final class AllKycRequest extends PowerGridComponent
     public function delete($id)
     {
         $this->dispatchBrowserEvent('warning', ['id' => $id['id']]);
-        
     }
 
     public function confirmedDelete($id)

@@ -31,6 +31,13 @@ class KycController extends Controller
         $validatedData = $request->validate([
             'front' => 'required|image',
             'back' => 'required|image',
+            'name' => 'required',
+            'dob' => 'required',
+            'mobile' => 'required',
+            'gender' => 'required',
+            'country' => 'required',
+            'address' => 'required',
+            'zip' => 'required',
         ]);
 
         // checking if already applied
@@ -50,7 +57,14 @@ class KycController extends Controller
             'user_id' => auth()->user()->id,
         ], [
             'front' => $front_name,
-            'back' => $back_name
+            'back' => $back_name,
+            'name' => $validatedData['name'],
+            'dob' => $validatedData['dob'],
+            'mobile' => $validatedData['mobile'],
+            'gender' => $validatedData['gender'],
+            'country' => $validatedData['country'],
+            'address' => $validatedData['address'],
+            'zip' => $validatedData['zip'],
         ]);
 
         return back()->with('success', 'Kyc Approval Request sent successfully');
