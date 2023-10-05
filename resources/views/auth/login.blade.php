@@ -17,7 +17,12 @@
                 <label for="password">Password</label>
                 <input type="password" name="password" class="form-control" id="password" placeholder="Enter password">
             </div>
-            <div class="text-">
+            <div class="d-flex justify-content-between">
+                <div class="form-group">
+                    <label for="remember">
+                        <input type="checkbox" name="remember" id="remember" class="form-control-checkbox">
+                        Remeber Me</label>
+                </div>
                 <p><a href="{{ route('password.request') }}">Forget Password?</a></p>
             </div>
             <div class="text-center">
