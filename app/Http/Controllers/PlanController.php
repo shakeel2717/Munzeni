@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Events\PlanActivation;
 use App\Models\Plan;
+use App\Models\UserPlan;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -38,6 +39,12 @@ class PlanController extends Controller
 
         // getting this plan
         $plan = Plan::findOrFail($validatedData['plan_id']);
+
+        // chekcing if this user have valid active plan
+        $checkPlan = UserPlan::where('user_id', auth()->user()->id)->where('status', true)->count();
+        if ($checkPlan > 0) {
+            return back()->withErrors(['You already have a active plan.']);
+        }
 
         // checking if available balance is enough
         if (auth()->user()->getBalance() < $validatedData['amount']) {
