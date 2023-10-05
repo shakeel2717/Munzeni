@@ -37,6 +37,12 @@ class WalletController extends Controller
             'code' => 'nullable|numeric',
         ]);
 
+        // checking if this wallet is already added for another users
+        $checkwallet = Wallet::where('wallet', $validatedData['wallet'])->where('user_id', '!=', auth()->user()->id)->count();
+        if ($checkwallet > 0) {
+            return back()->withErrors(['This Wallet Is already Added by Someone else, Please add another.']);
+        }
+
         // checking authenticator code
         if (auth()->user()->authenticator) {
             $authenticator = new Authenticator();
@@ -48,7 +54,7 @@ class WalletController extends Controller
             return back()->withErrors(['Please Activate Google Authentication on your account first.']);
         }
 
-
+        
         $wallet = Wallet::updateOrCreate([
             'user_id' => auth()->user()->id,
         ], [
