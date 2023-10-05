@@ -43,7 +43,7 @@
                 <button class="btn btn-primary w-md waves-effect waves-light" type="submit">Create Account</button>
             </div>
             <div class="mt-4 text-center">
-                <p class="mb-0">By registering you agree to the Nazox <a href="#" class="text-primary">Terms of
+                <p class="mb-0">By registering you agree to the {{ env('APP_NAME') }} <a href="#" class="text-primary">Terms of
                         Use</a></p>
             </div>
         </form>
