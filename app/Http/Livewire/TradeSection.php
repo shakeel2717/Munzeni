@@ -27,7 +27,8 @@ class TradeSection extends Component
     public $timestamp;
     public $oneTimeSecond;
     public $fiveTimeSecond;
-    public $disabledInvestButton = false;
+    public $disabledOneInvestButton = false;
+    public $disabledFiveInvestButton = false;
 
     public $boxType = 'one';
 
@@ -55,8 +56,14 @@ class TradeSection extends Component
 
     // Check if the one-minute timer needs to reset
     if ($this->oneTimeSecond < 20) {
-        $this->disabledInvestButton = true;
+        $this->disabledOneInvestButton = true;
+    } else {
+        $this->disabledOneInvestButton = false;
     }
+
+    // if ($this->oneTimeSecond < 180) {
+    //     $this->disabledFiveInvestButton = true;
+    // }
 
     // Calculate minutes and seconds for the 5-minute timer
     $minutes = floor($secondsRemaining / 60);
@@ -66,7 +73,10 @@ class TradeSection extends Component
     if ($secondsRemaining <= 0) {
         $minutes = 4;
         $seconds = 59;
-        $this->disabledInvestButton = true;
+    }
+
+    if($minutes < 3){
+        $this->disabledFiveInvestButton = true;
     }
 
     // Format the time for the 5-minute timer
