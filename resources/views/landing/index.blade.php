@@ -15,7 +15,7 @@
         <div class="brand">
             <img src="{{ asset('logo-light.png') }}" alt="{{ env('APP_NAME') }}">
         </div>
-        <ul class="nav gap-5">
+        <ul class="nav gap-5 d-none d-sm-flex">
             <li class=""><a class="fs-5" href="{{ route('index') }}">Home</a></li>
             <li class=""><a class="fs-5" href="{{ route('user.dashboard.index') }}">Dashboard</a></li>
             <li class=""><a class="fs-5" href="{{ route('login') }}">Sign In</a></li>
@@ -25,11 +25,11 @@
             <a href="{{ route('register') }}" class="btn btn-outline-primary px-5">Get Started</a>
         </div>
     </nav>
-    <section class="min-vh-100 bg-secondary d-flex align-items-center crypto-back">
+    <section class="min-vh-100 bg-secondary d-flex align-items-center crypto-back pb-5" style="padding-top: 200px;">
         <div class="container d-flex align-items-center">
             <div class="row">
                 <div class="col-md-8">
-                    <h2 class="text-white" style="font-size: 75px">Online trading with
+                    <h2 class="text-white" style="font-size: 50px">Online trading with
                         better-than-market
                         conditions</h2>
                     <br>
@@ -43,7 +43,7 @@
             </div>
         </div>
     </section>
-    <section class="min-vh-100 d-flex align-items-center">
+    <section class="min-vh-100 d-flex align-items-center py-5">
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
@@ -52,87 +52,190 @@
                         manual
                         processing, including on weekends.</p>
                     <h4 class="text-center fs-4 mb-5 text-white">Platform we are used</h4>
-                    <div class="gallery text-center">
-                        <img width="200" src="{{ asset('assets/brand/1.png') }}" alt="logo">
-                        <img width="200" src="{{ asset('assets/brand/2.png') }}" alt="logo">
-                        <img width="200" src="{{ asset('assets/brand/3.png') }}" alt="logo">
-                        <img width="200" src="{{ asset('assets/brand/4.png') }}" alt="logo">
-                        <img width="200" src="{{ asset('assets/brand/5.png') }}" alt="logo">
+                    <div class="gallery text-center d-flex flex-wrap">
+                        <div class="col">
+                            <img width="200" src="{{ asset('assets/brand/1.png') }}" alt="logo">
+                        </div>
+                        <div class="col">
+                            <img width="200" src="{{ asset('assets/brand/2.png') }}" alt="logo">
+                        </div>
+                        <div class="col">
+                            <img width="200" src="{{ asset('assets/brand/3.png') }}" alt="logo">
+                        </div>
+                        <div class="col">
+                            <img width="200" src="{{ asset('assets/brand/4.png') }}" alt="logo">
+                        </div>
+                        <div class="col">
+                            <img width="200" src="{{ asset('assets/brand/5.png') }}" alt="logo">
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
-    <section class="min-vh-100 d-flex align-items-center bg-dark">
+    <section class="min-vh-100 py-5 d-flex align-items-center bg-dark pb-5">
         <div class="container">
             <div class="row">
-                <div class="col-md-6">
+                <div class="col-md-6 py-4">
                     <h1 class="mb-5  text-white display-2 fw-bold">About {{ env('APP_NAME') }}</h1>
-                    <p class="text-primary mb-5 fs-4 ">Why Choose Us?</p>
+                    <p class="text-primary mb-5 fs-4 ">Welcome to Munzeni - The Future</p>
                     <p class="text-white">
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Esse modi, porro, sit vitae corrupti
-                        dolor minima eligendi dolores ea cum, excepturi non ut totam quis a expedita neque voluptatum
-                        nobis.0
+                        At Munzeni, we are pioneering the future of financial growth and sustainability from the heart
+                        of Asia, Singapore. As a premier binary trading website, mining, and investment company, we
+                        combine cutting-edge technology with ethical practices to redefine the landscape of finance.
                     </p>
+                    <ul class="text-white list-unstyled pe-4">
+                        <li>
+                            <h4>Responsible Mining:</h4>
+                        </li>
+                        <li>
+                            <p>We are committed to responsible mining practices that prioritize sustainability and
+                                environmental consciousness. Our mining operations utilize state-of-the-art technology
+                                to ensure efficiency while minimizing our ecological footprint, contributing to a
+                                greener, healthier planet.
+                            </p>
+                        </li>
+
+                        <li>
+                            <h4>Innovative Investments</h4>
+                        </li>
+                        <li>
+                            <p>Explore a world of innovative investments curated to suit your financial aspirations. Our
+                                investment strategies are designed to optimize returns while aligning with our core
+                                values of sustainability and ethical conduct, making your investments a force for
+                                positive change.
+                            </p>
+                        </li>
+                        <li>
+                            <h4>Singaporean Integrity:</h4>
+                        </li>
+                        <li>
+                            <p>Based in Singapore, a global hub of financial excellence, we uphold the values of
+                                integrity, transparency, and reliability that are synonymous with this thriving economic
+                                center. Your trust is our greatest asset, and we strive to honor it in every aspect of
+                                our operations.
+                            </p>
+                        </li>
+                        <li>
+                            <h4>Community-Centric Approach</h4>
+                        </li>
+                        <li>
+                            <p> Our dedication extends beyond profits to the communities we serve. We actively engage
+                                with local stakeholders, supporting initiatives that enhance the well-being of society
+                                and reinforce our commitment to being a responsible corporate citizen.
+                            </p>
+                        </li>
+                        <li>
+                            <h4>Global Reach, Local Expertise:</h4>
+                        </li>
+                        <li>
+                            <p>With a global reach, we offer our services to clients both locally and internationally.
+                                Our expert team, deeply rooted in Singapore's financial landscape, possesses the
+                                expertise and knowledge needed to navigate the complexities of the global financial
+                                markets.
+
+                            </p>
+                        </li>
+                    </ul>
                     <p class="text-white">
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Esse modi, porro, sit vitae corrupti
-                        dolor minima eligendi dolores ea cum, excepturi non ut totam quis a expedita neque voluptatum
-                        nobis.Lorem ipsum dolor sit amet consectetur adipisicing elit. Esse modi, porro, sit vitae
-                        corrupti
-                        dolor minima eligendi dolores ea cum, excepturi non ut totam quis a expedita neque voluptatum
-                        nobis.
-                    </p>
-                    <p class="text-white">
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Esse modi, porro, sit vitae corrupti
-                        dolor minima eligendi dolores ea cum, excepturi non ut totam quis a expedita neque voluptatum
-                        nobis.Lorem ipsum dolor sit amet consectetur adipisicing elit. Esse modi, porro, sit vitae
-                        corrupti
-                        dolor minima eligendi dolores ea cum, excepturi non ut totam quis a expedita neque voluptatum
-                        nobis.
+                        Join us at Munzeni as we embark on a journey of innovation, sustainability, and growth.
+                        Together, let's shape a future where financial success is harmonized with environmental
+                        consciousness and societal well-being.
                     </p>
                     <hr>
                     <div class="">
                         <a href="{{ route('register') }}" class="btn btn-primary px-4 py-2 fs-4">Create Account</a>
                     </div>
                 </div>
-                <div class="col-md-6 text-center">
-                    <img src="{{ asset('assets/girl.jpg') }}" alt="Girl" height="600">
+                <div class="col-md-6 d-flex align-items-center justify-content-center py-4">
+                    <img class="w-100" src="{{ asset('assets/img1.jpg') }}" alt="Girl" height="750">
                 </div>
             </div>
         </div>
     </section>
-    <section class="min-vh-100 d-flex align-items-center bg-dark">
+    <section class="min-vh-100 d-flex align-items-center bg-dark py-5">
         <div class="container">
             <div class="row">
-                <div class="col-md-6 text-center d-flex align-items-center">
-                    <img src="{{ asset('assets/building.jpg') }}" alt="Girl" height="600">
+                <div class="col-md-4 d-flex align-items-center justify-content-center">
+                    <img class="w-100" src="{{ asset('assets/img2.jpg') }}" alt="Girl" height="">
                 </div>
-                <div class="col-md-6">
-                    <h1 class="mb-5  text-white display-2 fw-bold">Our Mission & Vision</h1>
-                    <p class="text-primary mb-5 fs-4 ">Our Mission!</p>
-                    <p class="text-white">
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Esse modi, porro, sit vitae corrupti
-                        dolor minima eligendi dolores ea cum, excepturi non ut totam quis a expedita neque voluptatum
-                        nobis.Lorem ipsum dolor sit amet consectetur adipisicing elit. Esse modi, porro, sit vitae
-                        corrupti
-                        dolor minima eligendi dolores ea cum, excepturi non ut totam quis a expedita neque voluptatum
-                        nobis.
-                    </p>
-                    <p class="text-primary mb-5 fs-4 ">Our Vision!</p>
-                    <p class="text-white">
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Esse modi, porro, sit vitae corrupti
-                        dolor minima eligendi dolores ea cum, excepturi non ut totam quis a expedita neque voluptatum
-                        nobis.0
-                    </p>
-                    <p class="text-white">
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Esse modi, porro, sit vitae corrupti
-                        dolor mi eligendi dolores ea cum, excepturi non ut totam quis a expedita neque voluptatum
-                        nobis.
-                    </p>
-                    <hr>
-                    <div class="">
-                        <a href="{{ route('register') }}" class="btn btn-primary px-4 py-2 fs-4">Create Account</a>
+                <div class="col-md-8">
+                    <div class="card card-body p-5 mt-5 w-100">
+                        <h1 class="mb-5  text-white display-2 fw-bold">Why Choose Us</h1>
+                        <p class="text-primary mb-5 fs-4 ">Why Choice Munzeni??</p>
+                        <p class="text-white">
+                            At Munzeni, we invite you to choose us as your trusted partner on a journey towards a
+                            brighter
+                            future. As we evolve into a world-class corporation, our unwavering commitment to
+                            sustainability, health, and excellence sets us apart.
+                        </p>
+                        <ul class="text-white list-unstyled pe-4">
+                            <li>
+                                <h4>Sustainable Practices:</h4>
+                            </li>
+                            <li>
+                                <p>We prioritize sustainability at every step, embedding responsible trading and mining
+                                    practices into our DNA. Our mission is to not only succeed as a business but to
+                                    succeed
+                                    in a way that leaves a positive, lasting impact on the environment and society.
+                                </p>
+                            </li>
+
+                            <li>
+                                <h4>Innovative Solutions:</h4>
+                            </li>
+                            <li>
+                                <p>Innovation is our cornerstone. Our dedicated team constantly seeks inventive
+                                    strategies
+                                    to maximize efficiency, reduce waste, and drive positive change. By choosing us, you
+                                    opt
+                                    for cutting-edge solutions that align with your vision for a sustainable future.
+                                </p>
+                            </li>
+                            <li>
+                                <h4>Integrity and Ethics:</h4>
+                            </li>
+                            <li>
+                                <p>Our integrity is non-negotiable. We uphold the highest ethical standards in all our
+                                    interactions and transactions. Transparency, honesty, and trust are the pillars of
+                                    our
+                                    relationships, ensuring your confidence in every aspect of our partnership.
+                                </p>
+                            </li>
+                            <li>
+                                <h4>Global Excellence:</h4>
+                            </li>
+                            <li>
+                                <p> Striving for excellence on a global stage is part of our DNA. We relentlessly pursue
+                                    the
+                                    highest standards of quality, service, and performance. Our aspiration to be a
+                                    world-class corporation drives us to continuously improve and deliver beyond
+                                    expectations.
+                                </p>
+                            </li>
+                            <li>
+                                <h4>Community and Stakeholder Engagement:</h4>
+                            </li>
+                            <li>
+                                <p>Your success is intertwined with the well-being of the communities we operate in. We
+                                    engage with stakeholders and invest in initiatives that uplift and empower,
+                                    reinforcing
+                                    our dedication to creating a world where every entity thrives.
+                                </p>
+                            </li>
+                        </ul>
+                        <p class="text-primary fs-4 ">{{ env('APP_NAME') }} Mission??</p>
+                        <p class="text-white">
+                            Empowering a sustainable and healthier world through our commitment to excellence,
+                            innovation, and responsible trading and mining practices, striving to attain world-class
+                            status in all our endeavors
+                        </p>
+                        <div class="">
+                            <a href="{{ route('register') }}" class="btn btn-primary px-4 py-2 fs-4">Create
+                                Account</a>
+                        </div>
                     </div>
+
                 </div>
             </div>
         </div>
