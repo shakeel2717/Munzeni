@@ -8,6 +8,7 @@ use App\Http\Controllers\PlanController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\TradeController;
 use App\Http\Controllers\user\DashboardController;
+use App\Http\Controllers\user\DepositController;
 use App\Http\Controllers\user\HistoryController;
 use App\Http\Controllers\user\ReferralController;
 use App\Http\Controllers\WalletController;
@@ -23,6 +24,8 @@ Route::prefix('user/')->name('user.')->middleware('auth', 'verified', 'google')-
     Route::resource('/withdraw', WithdrawController::class);
     Route::resource('/wallet', WalletController::class);
     Route::resource('/plan', PlanController::class);
+    Route::post('/deposit/verify', [DepositController::class, 'verify'])->name('deposit.verify');
+    Route::resource('/deposit', DepositController::class);
     Route::resource('/kyc', KycController::class);
     Route::resource('/profile', ProfileController::class);
     Route::resource('/referral', ReferralController::class);

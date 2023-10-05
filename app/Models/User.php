@@ -134,6 +134,16 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->hasOne(Kyc::class);
     }
 
+    public function pending_tids()
+    {
+        return $this->hasMany(Tid::class)->where('status', false);
+    }
+
+    public function tids()
+    {
+        return $this->hasMany(Tid::class);
+    }
+
     public function tradings()
     {
         return $this->hasMany(Trading::class);

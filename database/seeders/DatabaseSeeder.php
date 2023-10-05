@@ -109,6 +109,11 @@ class DatabaseSeeder extends Seeder
         ]);
 
         $setting = Setting::firstOrCreate([
+            'key' => 'min_deposit',
+            'value' => 10,
+        ]);
+
+        $setting = Setting::firstOrCreate([
             'key' => 'min_withdraw',
             'value' => 10,
         ]);
@@ -186,6 +191,10 @@ class DatabaseSeeder extends Seeder
             'value' => 'https://telegram.org/',
         ]);
 
+        $setting = Setting::firstOrCreate([
+            'key' => 'binance_usdt_deposit_address',
+            'value' => 'TYT5KQrcDimBSExcGhfN7nfRrFHHAhDVYq',
+        ]);
 
 
         $plan = Plan::firstOrCreate([
