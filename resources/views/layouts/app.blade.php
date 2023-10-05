@@ -81,13 +81,13 @@
         </section>
     @endif
     <section>
-        <nav class="d-block d-md-none position-fixed bottom-0 bg-dark w-100 left-0 p-2" style="z-index: 5">
+        <nav class="d-block d-md-none position-fixed bottom-0 bg-dark w-100 left-0 p-2" style="z-index: 10">
             <ul class="list-unstyled d-flex px-2 justify-content-between align-items-center mb-0">
-                <li class="text-white">
+                <li class="text-white {{ request()->is('user/dashboard*') ? 'active-nav' : '' }} px-2">
                     <a class="text-white" href="{{ route('user.dashboard.index') }}"><i
                             class="bi bi-house-door fs-2"></i></a>
                 </li>
-                <li class="text-white">
+                <li class="text-white {{ request()->is('user/history*') ? 'active-nav' : '' }} px-2">
                     <a class="text-white" href="{{ route('user.history.deposits') }}">
                         <i class="bi bi-hourglass fs-2"></i></a>
                 </li>
@@ -99,11 +99,11 @@
                         </a>
                     </div>
                 </li>
-                <li class="text-white">
+                <li class="text-white {{ request()->is('user/plan*') ? 'active-nav' : '' }} px-2">
                     <a class="text-white" href="{{ route('user.plan.index') }}">
                         <i class="bi bi-hammer fs-2"></i></a>
                 </li>
-                <li class="text-white">
+                <li class="text-white {{ request()->is('user/profile*') ? 'active-nav' : '' }} px-2">
                     <a class="text-white" href="{{ route('user.profile.index') }}">
                         <i class="bi bi-person-circle fs-2"></i></a>
                 </li>
@@ -122,7 +122,7 @@
             </div>
         </div>
     </section>
-    <div class="livechat position-fixed" style="bottom: 60px; right: 20px;">
+    <div class="livechat position-fixed" style="bottom: 60px; right: 20px;z-index: 5;">
         <a class="rounded-circle" href="{{ settings('telegram_link') ?? 'https://telegram.org/' }}"><i
                 class="bi display-2 bi-telegram"></i></a>
     </div>
