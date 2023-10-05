@@ -6,7 +6,8 @@
             <ul class="nav nav-tabs" id="myTab" role="tablist">
                 <li class="nav-item" role="presentation">
                     <button class="nav-link {{ !isset($_GET['tab']) ? 'active' : '' }}" id="home-tab" data-bs-toggle="tab"
-                        data-bs-target="#home" type="button" role="tab" aria-controls="home" aria-selected="true"> <i class="bi bi-person-circle"></i> My
+                        data-bs-target="#home" type="button" role="tab" aria-controls="home" aria-selected="true"> <i
+                            class="bi bi-person-circle"></i> My
                         Profile</button>
                 </li>
                 <li class="nav-item" role="presentation">
@@ -16,12 +17,16 @@
                         Password</button>
                 </li>
                 <li class="nav-item" role="presentation">
-                    <button class="nav-link {{ isset($_GET['tab']) && $_GET['tab'] == 'google' ? 'show active' : '' }}" id="contact-tab" data-bs-toggle="tab" data-bs-target="#contact" type="button"
-                        role="tab" aria-controls="contact" aria-selected="false"><i class="bi bi-shield-lock-fill"></i> Google Authenticator</button>
+                    <button class="nav-link {{ isset($_GET['tab']) && $_GET['tab'] == 'google' ? 'show active' : '' }}"
+                        id="contact-tab" data-bs-toggle="tab" data-bs-target="#contact" type="button" role="tab"
+                        aria-controls="contact" aria-selected="false"><i class="bi bi-shield-lock-fill"></i> Google
+                        Authenticator</button>
                 </li>
                 <li class="nav-item" role="presentation">
-                    <button class="nav-link {{ isset($_GET['tab']) && $_GET['tab'] == 'kyc' ? 'show active' : '' }}" id="kyc-tab" data-bs-toggle="tab" data-bs-target="#kyc" type="button"
-                        role="tab" aria-controls="kyc" aria-selected="false"><i class="bi bi-file-person"></i> KYC Verification</button>
+                    <button class="nav-link {{ isset($_GET['tab']) && $_GET['tab'] == 'kyc' ? 'show active' : '' }}"
+                        id="kyc-tab" data-bs-toggle="tab" data-bs-target="#kyc" type="button" role="tab"
+                        aria-controls="kyc" aria-selected="false"><i class="bi bi-file-person"></i> KYC
+                        Verification</button>
                 </li>
             </ul>
             <div class="tab-content" id="myTabContent">
@@ -67,8 +72,8 @@
                             @csrf
                             <div class="form-group">
                                 <label for="current_password">Current Password</label>
-                                <input type="password" name="current_password" id="current_password" class="form-control"
-                                    placeholder="Current Password">
+                                <input type="password" name="current_password" id="current_password"
+                                    class="form-control" placeholder="Current Password">
                             </div>
                             <div class="form-group">
                                 <label for="password">New Password</label>
@@ -86,7 +91,8 @@
                         </form>
                     </div>
                 </div>
-                <div class="tab-pane fade {{ isset($_GET['tab']) && $_GET['tab'] == 'google' ? 'show active' : '' }}" id="contact" role="tabpanel" aria-labelledby="contact-tab">
+                <div class="tab-pane fade {{ isset($_GET['tab']) && $_GET['tab'] == 'google' ? 'show active' : '' }}"
+                    id="contact" role="tabpanel" aria-labelledby="contact-tab">
                     <div class="card-body">
                         <h4>Manage Google Authentication</h4>
                         <hr>
@@ -121,9 +127,13 @@
                                                     alt="Google Authentication Code">
                                             </div>
                                             <div class="form-group">
-                                                <label for="secret">Copy Secret Code</label>
-                                                <input type="text" name="secret" id="secret" class="form-control"
-                                                    value="{{ $secret }}" readonly>
+                                                <label for="referLink">Copy Secret Code</label>
+                                                <div class="input-group">
+                                                    <input type="text" class="form-control" name="secret"
+                                                        id="referLink" value="{{ $secret }}" readonly>
+                                                    <button type="button" onclick="copyInputValue('referLink')"
+                                                        class="btn btn-primary">Copy</button>
+                                                </div>
                                             </div>
                                             <div class="form-group">
                                                 <label for="code">Provide Google Authentication Code</label>
@@ -143,7 +153,8 @@
 
                     </div>
                 </div>
-                <div class="tab-pane fade {{ isset($_GET['tab']) && $_GET['tab'] == 'kyc' ? 'show active' : '' }}" id="kyc" role="tabpanel" aria-labelledby="contact-tab">
+                <div class="tab-pane fade {{ isset($_GET['tab']) && $_GET['tab'] == 'kyc' ? 'show active' : '' }}"
+                    id="kyc" role="tabpanel" aria-labelledby="contact-tab">
                     <div class="card-body">
                         <h4>Complete Your KYC</h4>
                         <hr>

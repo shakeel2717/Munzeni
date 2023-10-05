@@ -70,10 +70,13 @@
                                 <div class="row">
                                     <div class="col-md-12">
                                         <div class="form-group mb-4">
-                                            <label for="amount">Wallet Address</label>
-                                            <input type="text" name="amount" id="amount"
-                                                class="form-control text-center" placeholder="Enter Amount"
-                                                value="{{ settings('binance_usdt_deposit_address') }}" readonly>
+                                            <label for="wallet">Wallet Address</label>
+                                            <div class="input-group">
+                                                <input type="text" class="form-control" name="wallet" id="referLink"
+                                                    value="{{ settings('binance_usdt_deposit_address') }}" readonly>
+                                                <button type="button" onclick="copyInputValue('referLink')"
+                                                    class="btn btn-primary">Copy</button>
+                                            </div>
                                             <small>Send your Funds to This Wallet Address</small>
                                         </div>
                                     </div>
