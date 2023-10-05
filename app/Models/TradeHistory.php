@@ -9,5 +9,5 @@ class TradeHistory extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['price', 'result', 'type'];
+    protected $fillable = ['price', 'result', 'type','timestamp'];
 }

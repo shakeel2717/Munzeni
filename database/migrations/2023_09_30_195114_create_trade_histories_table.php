@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->double('price');
             $table->integer('result');
+            $table->bigInteger('timestamp');
             $table->enum('type', ['one', 'five']);
             $table->timestamps();
         });

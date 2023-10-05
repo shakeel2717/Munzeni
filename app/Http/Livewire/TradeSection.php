@@ -46,25 +46,35 @@ class TradeSection extends Component
     }
 
     public function updateOneTimeSecond()
-    {
-        $this->oneTimeSecond = 60 - date('s');
-        if ($this->oneTimeSecond < 20) {
-            $this->disabledInvestButton = true;
-            $this->resetAll();
-        }
+{
+    $now = time();
+    $this->oneTimeSecond = 60 - date('s', $now);
 
-        $secondsRemaining = 300 - date('s');
-        $minutes = floor($secondsRemaining / 60);
-        $seconds = $secondsRemaining % 60;
+    // Calculate the remaining seconds for the 5-minute timer
+    $secondsRemaining = 300 - ($now % 300);
 
-        $this->fiveTimeSecond = sprintf('%02d:%02d', $minutes, $seconds);
-
-        if ($secondsRemaining < 180) {
-            $this->disabledInvestButton = true;
-            $this->resetAll();
-        }
-        $this->timestamp = date('YmdHi');
+    // Check if the one-minute timer needs to reset
+    if ($this->oneTimeSecond < 20) {
+        $this->disabledInvestButton = true;
     }
+
+    // Calculate minutes and seconds for the 5-minute timer
+    $minutes = floor($secondsRemaining / 60);
+    $seconds = $secondsRemaining % 60;
+
+    // Check if the 5-minute timer needs to reset
+    if ($secondsRemaining <= 0) {
+        $minutes = 4;
+        $seconds = 59;
+        $this->disabledInvestButton = true;
+    }
+
+    // Format the time for the 5-minute timer
+    $this->fiveTimeSecond = sprintf('%02d:%02d', $minutes, $seconds);
+
+    $this->timestamp = date('YmdHi');
+}
+
 
       public function invested()
     {

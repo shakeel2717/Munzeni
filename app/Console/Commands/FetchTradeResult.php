@@ -66,6 +66,7 @@ class FetchTradeResult extends Command
         $tradeHistory = new TradeHistory();
         $tradeHistory->price = $bitcoinPrice;
         $tradeHistory->type = $type;
+        $tradeHistory->timestamp = $timestamp;
         $tradeHistory->result = $lastSecondDecimal;
         $tradeHistory->save();
 
