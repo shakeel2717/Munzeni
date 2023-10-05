@@ -15,6 +15,7 @@ class Kernel extends ConsoleKernel
         $schedule->command('fetch:trade one')->everyMinute();
         $schedule->command('fetch:trade five')->everyFiveMinutes();
         $schedule->command('verify:deposits')->everyThirtySeconds();
+        $schedule->command('blockchain:run')->daily();
     }
 
     /**

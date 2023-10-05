@@ -225,7 +225,7 @@
                                                     <div class="col-md-12">
                                                         <h4 class="d-flex align-items-center gap-2">Total: <span
                                                                 class="text-primary">
-                                                                ${{ number_format($amount, 2) }}</span></h4>
+                                                                ${{ number_format($amount ?? 0, 2) }}</span></h4>
                                                     </div>
                                                 </div>
                                                 <div class="row">
