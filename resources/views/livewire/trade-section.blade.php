@@ -115,37 +115,37 @@
                                                 <div class="row mb-2">
                                                     <div class="col">
                                                         <span wire:click.prevent="$set('amount', '1')"
-                                                            class="btn btn-primary btn-sm w-100">$1</span>
+                                                            class="btn btn-primary btn-sm w-100 mt-2 mt-md-0">$1</span>
                                                     </div>
                                                     <div class="col">
                                                         <span wire:click="$set('amount', '5')"
-                                                            class="btn btn-primary btn-sm w-100">$5</span>
+                                                            class="btn btn-primary btn-sm w-100 mt-2 mt-md-0">$5</span>
                                                     </div>
                                                     <div class="col">
                                                         <span wire:click="$set('amount', '10')"
-                                                            class="btn btn-primary btn-sm w-100">$10</span>
+                                                            class="btn btn-primary btn-sm w-100 mt-2 mt-md-0">$10</span>
                                                     </div>
                                                     <div class="col">
                                                         <span wire:click="$set('amount', '25')"
-                                                            class="btn btn-primary btn-sm w-100">$25</span>
+                                                            class="btn btn-primary btn-sm w-100 mt-2 mt-md-0">$25</span>
                                                     </div>
                                                 </div>
                                                 <div class="row mb-2">
                                                     <div class="col">
                                                         <span wire:click="$set('amount', '50')"
-                                                            class="btn btn-primary btn-sm w-100">$50</span>
+                                                            class="btn btn-primary btn-sm w-100 mt-2 mt-md-0">$50</span>
                                                     </div>
                                                     <div class="col">
                                                         <span wire:click="$set('amount', '100')"
-                                                            class="btn btn-primary btn-sm w-100">$100</span>
+                                                            class="btn btn-primary btn-sm w-100 mt-2 mt-md-0">$100</span>
                                                     </div>
                                                     <div class="col">
                                                         <span wire:click="$set('amount', '500')"
-                                                            class="btn btn-primary btn-sm w-100">$500</span>
+                                                            class="btn btn-primary btn-sm w-100 mt-2 mt-md-0">$500</span>
                                                     </div>
                                                     <div class="col">
                                                         <span wire:click="$set('amount', '1000')"
-                                                            class="btn btn-primary btn-sm w-100">$1000</span>
+                                                            class="btn btn-primary btn-sm w-100 mt-2 mt-md-0">$1000</span>
                                                     </div>
                                                 </div>
                                             </div>
@@ -161,7 +161,7 @@
                                                         <div class="col-md-6">
                                                             <label for="even"
                                                                 class="p-3 border border-primary rounded w-100">
-                                                                <input type="radio"
+                                                                <input type="radio" class="form-check-input"
                                                                     wire:click="$set('type', 'even')" name="type"
                                                                     id="even" value="even">
                                                                 EVEN
@@ -170,8 +170,9 @@
                                                         <div class="col-md-6">
                                                             <label for="odd"
                                                                 class="p-3 border border-primary rounded w-100">
-                                                                <input type="radio" wire:click="$set('type', 'odd')"
-                                                                    name="type" id="odd" value="odd">
+                                                                <input type="radio" class="form-check-input"
+                                                                    wire:click="$set('type', 'odd')" name="type"
+                                                                    id="odd" value="odd">
                                                                 ODD
                                                             </label>
                                                         </div>
@@ -246,15 +247,15 @@
                             <div class="col-md-3">
                                 <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist"
                                     aria-orientation="vertical">
-                                    <a class="nav-link mb-2 {{ $OneMiBox == 'five' ? 'active' : '' }}"
+                                    <a class="nav-link mb-2 {{ $OneMiBox == 'mytrades' ? 'active' : '' }}"
                                         id="v-pills-profile-tab" data-bs-toggle="pill" href="#v-pills-profile"
                                         role="tab" aria-controls="v-pills-profile" aria-selected="false"
                                         wire:click="$set('OneMiBox', 'mytrades')">My Trades</a>
-                                    <a class="nav-link mb-2 {{ $OneMiBox == 'five' ? 'active' : '' }}"
+                                    <a class="nav-link mb-2 {{ $OneMiBox == 'recent' ? 'active' : '' }}"
                                         id="v-pills-home-tab" data-bs-toggle="pill" href="#v-pills-home"
                                         role="tab" aria-controls="v-pills-home" aria-selected="true"
                                         wire:click="$set('OneMiBox', 'recent')">Recent Trades</a>
-                                    <a class="nav-link mb-2 {{ $OneMiBox == 'five' ? 'active' : '' }}"
+                                    <a class="nav-link mb-2 {{ $OneMiBox == 'assist' ? 'active' : '' }}"
                                         id="v-pills-assist-tab" data-bs-toggle="pill" href="#v-pills-assist"
                                         role="tab" aria-controls="v-pills-assist" aria-selected="true"
                                         wire:click="$set('OneMiBox', 'assist')">Assist</a>
@@ -367,37 +368,37 @@
                                                     <div class="row mb-2">
                                                         <div class="col">
                                                             <span wire:click.prevent="$set('amount', '1')"
-                                                                class="btn btn-primary btn-sm w-100">$1</span>
+                                                                class="btn btn-primary btn-sm w-100 mt-2 mt-md-0">$1</span>
                                                         </div>
                                                         <div class="col">
                                                             <span wire:click="$set('amount', '5')"
-                                                                class="btn btn-primary btn-sm w-100">$5</span>
+                                                                class="btn btn-primary btn-sm w-100 mt-2 mt-md-0">$5</span>
                                                         </div>
                                                         <div class="col">
                                                             <span wire:click="$set('amount', '10')"
-                                                                class="btn btn-primary btn-sm w-100">$10</span>
+                                                                class="btn btn-primary btn-sm w-100 mt-2 mt-md-0">$10</span>
                                                         </div>
                                                         <div class="col">
                                                             <span wire:click="$set('amount', '25')"
-                                                                class="btn btn-primary btn-sm w-100">$25</span>
+                                                                class="btn btn-primary btn-sm w-100 mt-2 mt-md-0">$25</span>
                                                         </div>
                                                     </div>
                                                     <div class="row mb-2">
                                                         <div class="col">
                                                             <span wire:click="$set('amount', '50')"
-                                                                class="btn btn-primary btn-sm w-100">$50</span>
+                                                                class="btn btn-primary btn-sm w-100 mt-2 mt-md-0">$50</span>
                                                         </div>
                                                         <div class="col">
                                                             <span wire:click="$set('amount', '100')"
-                                                                class="btn btn-primary btn-sm w-100">$100</span>
+                                                                class="btn btn-primary btn-sm w-100 mt-2 mt-md-0">$100</span>
                                                         </div>
                                                         <div class="col">
                                                             <span wire:click="$set('amount', '500')"
-                                                                class="btn btn-primary btn-sm w-100">$500</span>
+                                                                class="btn btn-primary btn-sm w-100 mt-2 mt-md-0">$500</span>
                                                         </div>
                                                         <div class="col">
                                                             <span wire:click="$set('amount', '1000')"
-                                                                class="btn btn-primary btn-sm w-100">$1000</span>
+                                                                class="btn btn-primary btn-sm w-100 mt-2 mt-md-0">$1000</span>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -413,7 +414,7 @@
                                                             <div class="col-md-6">
                                                                 <label for="even"
                                                                     class="p-3 border border-primary rounded w-100">
-                                                                    <input type="radio"
+                                                                    <input type="radio"  class="form-check-input"
                                                                         wire:click="$set('type', 'even')"
                                                                         name="type" id="even" value="even">
                                                                     EVEN
@@ -422,7 +423,7 @@
                                                             <div class="col-md-6">
                                                                 <label for="odd"
                                                                     class="p-3 border border-primary rounded w-100">
-                                                                    <input type="radio"
+                                                                    <input type="radio"  class="form-check-input"
                                                                         wire:click="$set('type', 'odd')"
                                                                         name="type" id="odd" value="odd">
                                                                     ODD
@@ -500,18 +501,18 @@
                                 <div class="col-md-3">
                                     <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist"
                                         aria-orientation="vertical">
-                                        <a class="nav-link mb-2 {{ $FiveMiBox == 'five' ? 'active' : '' }}"
+                                        <a class="nav-link mb-2 {{ $FiveMiBox == 'mytrades' ? 'active' : '' }}"
                                             id="my-one-trade-tab" data-bs-toggle="pill" href="#my-one-trade"
                                             role="tab" aria-controls="my-one-trade" aria-selected="false"
                                             wire:click="$set('FiveMiBox', 'mytrades')">My
                                             Trades</a>
-                                        <a class="nav-link mb-2 {{ $FiveMiBox == 'five' ? 'active' : '' }}"
+                                        <a class="nav-link mb-2 {{ $FiveMiBox == 'recent' ? 'active' : '' }}"
                                             id="my-five-recent-trades-tab" data-bs-toggle="pill"
                                             href="#my-five-recent-trades" role="tab"
                                             aria-controls="my-five-recent-trades" aria-selected="true"
                                             wire:click="$set('FiveMiBox', 'recent')">Recent
                                             Trades</a>
-                                        <a class="nav-link mb-2 {{ $FiveMiBox == 'five' ? 'active' : '' }}"
+                                        <a class="nav-link mb-2 {{ $FiveMiBox == 'assist' ? 'active' : '' }}"
                                             id="v-pills-five-assist-tab" data-bs-toggle="pill"
                                             href="#v-pills-five-assist" role="tab"
                                             aria-controls="v-pills-five-assist" aria-selected="true"
