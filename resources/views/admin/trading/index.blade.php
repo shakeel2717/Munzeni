@@ -66,6 +66,15 @@
                 <h2 class="card-title">All Future Trading Policy</h2>
                 <hr>
                 <livewire:admin.all-future-policy/>
+                <hr>
+            </div>
+        </div>
+        <div class="col-md-12">
+            <div class="card card-body">
+                <h2 class="card-title">All Active Trading</h2>
+                <hr>
+                <livewire:admin.all-user-trading/>
+                <hr>
             </div>
         </div>
     </div>
