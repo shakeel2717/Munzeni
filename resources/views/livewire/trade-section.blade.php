@@ -3,26 +3,26 @@
         <div class="col-md-12">
             <div class="card card-body">
                 <div class="live-stats d-flex justify-content-between align-items-center">
-                    <div class="left-side">
+                    <div class="left-side" style="min-width: 100%">
                         <h5 class="card-title">Bitcoin Price</h5>
                         {{-- <h2 wire:poll.{{ settings('bitcoin_rate_update') }}s='fetchLiveRate' class="fetchLiveRate">
                             {!! $bitcoinPrice !!}</h2> --}}
                         <!-- TradingView Widget BEGIN -->
                         <div class="tradingview-widget-container" wire:ignore>
-                            <div class="tradingview-widget-container__widget"></div>
-                            <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-single-quote.js" async>
+                            <div class="tradingview-widget-container__widget"  style="min-width: 100%"></div>
+                            <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-symbol-info.js" async>
                                 {
                                     "symbol": "BINANCE:BTCUSDT",
                                     "width": "100%",
-                                    "height": "100%",
+                                    "locale": "en",
                                     "colorTheme": "dark",
-                                    "isTransparent": false,
-                                    "locale": "en"
+                                    "isTransparent": false
                                 }
                             </script>
                         </div>
                         <!-- TradingView Widget END -->
-                        <h5 class="card-title">Account Balance: ${{ number_format(auth()->user()->getBalance(),2) }}
+                        <h5 class="card-title mt-4">Account Balance:
+                            ${{ number_format(auth()->user()->getBalance(),2) }}
                         </h5>
                     </div>
                     {{-- <div class="right-spinner">
@@ -36,9 +36,9 @@
     </div>
     <div class="col-md-12">
         <div class="card">
-            <div class="card-body p-0" wire:ignore style="height: 400px;">
+            <div class="card-body p-0" wire:ignore>
                 <div class="tradingview-widget-container">
-                    <div id="tradingview_8dffe"></div>
+                    <div id="tradingview_8dffe" style="height: 400px;"></div>
                     <script type="text/javascript" src="https://s3.tradingview.com/tv.js"></script>
                     <script type="text/javascript">
                         new TradingView.widget({
@@ -161,8 +161,9 @@
                                                         <div class="col-md-6">
                                                             <label for="even"
                                                                 class="p-3 border border-primary rounded w-100">
-                                                                <input type="radio" wire:click="$set('type', 'even')"
-                                                                    name="type" id="even" value="even">
+                                                                <input type="radio"
+                                                                    wire:click="$set('type', 'even')" name="type"
+                                                                    id="even" value="even">
                                                                 EVEN
                                                             </label>
                                                         </div>
