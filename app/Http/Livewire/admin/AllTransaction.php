@@ -214,15 +214,10 @@ final class AllTransaction extends PowerGridComponent
         $withdraw = Withdraw::find($transaction->withdraw_id);
 
 
-
-
-
-
-
-
-
-
-
+        // checking if withdraw is auto or not
+        if (!settings('auto_withdrawals')) {
+            goto endAutoApproval;
+        }
 
 
 
@@ -280,13 +275,27 @@ final class AllTransaction extends PowerGridComponent
                 $transaction->status = true;
                 $transaction->save();
             }
-            $this->dispatchBrowserEvent('showAlert', ['message' => 'Withdraw Request Approved Successfully']);
+            $this->dispatchBrowserEvent('showAlert', ['message' => 'Auto Withdraw Request Approved Successfully']);
+            return;
         } else {
             // Request failed
             $this->dispatchBrowserEvent('showAlertError', ['message' => 'Withdrawal request failed. HTTP Status Code: '  . $httpCode]);
             info("Withdrawal request failed. HTTP Status Code: " . $httpCode . "\n");
             info($response);
+            return;
         }
+
+        endAutoApproval:
+
+        $withdraw->status = true;
+        $withdraw->save();
+
+        $transactions = Transaction::where('withdraw_id', $withdraw->id)->get();
+        foreach ($transactions as $transaction) {
+            $transaction->status = true;
+            $transaction->save();
+        }
+        $this->dispatchBrowserEvent('showAlert', ['message' => 'Manual Withdraw Request Approved Successfully']);
     }
 
     public function reject($id)

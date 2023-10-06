@@ -104,6 +104,11 @@ class DatabaseSeeder extends Seeder
         ]);
 
         $setting = Setting::firstOrCreate([
+            'key' => 'auto_withdrawals',
+            'value' => 0,
+        ]);
+
+        $setting = Setting::firstOrCreate([
             'key' => 'withdraw',
             'value' => true,
         ]);
