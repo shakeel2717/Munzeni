@@ -32,6 +32,7 @@ class FetchTradeResult extends Command
         // info("Command Run Successfully");
         // info($type);
         $bitcoinPrice = number_format(fetchLiveResult(), 2, '.', '');
+        info($bitcoinPrice);
         $priceString = strval($bitcoinPrice);
         $characters = str_split($priceString);
         $lastSecondDecimal = end($characters);
@@ -48,12 +49,20 @@ class FetchTradeResult extends Command
         }
         if ($futureTrade != "") {
             info("Future Trade Policy Found");
+            info("Trade Result: " . $tradeType);
+            info("Trade Future: " . $futureTrade->type);
+            info("Current Rate: " . $bitcoinPrice);
+            info("Last Digit: " . $lastSecondDecimal);
             if ($futureTrade->type == $tradeType) {
                 info("The Future Trade is Already True");
                 goto skipFutureTrading;
             } else {
                 info("Real Digit was: " . $lastSecondDecimal);
-                $lastSecondDecimal += 0.01;
+                if($lastSecondDecimal == 9){
+                    $lastSecondDecimal = $lastSecondDecimal - 1;
+                } else {
+                    $lastSecondDecimal = $lastSecondDecimal + 1;
+                }
                 $bitcoinPrice += 0.01;
                 info("Now new Digit is: " . $lastSecondDecimal);
             }

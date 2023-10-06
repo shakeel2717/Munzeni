@@ -64,6 +64,13 @@ class TradeSection extends Component
             $this->disabledOneInvestButton = false;
         }
 
+        if ($this->oneTimeSecond >= 58) {
+            $this->orderOneHistories = TradeHistory::where('type', 'one')->latest()->limit(5)->get();
+            $this->orderFiveHistories = TradeHistory::where('type', 'five')->latest()->limit(5)->get();
+            $this->myOrderOneHistories = Trading::where('user_id', auth()->user()->id)->where('method', 'one')->latest()->limit(5)->get();
+            $this->myOrderFiveHistories = Trading::where('user_id', auth()->user()->id)->where('method', 'five')->latest()->limit(5)->get();
+        }
+
         // if ($this->oneTimeSecond < 180) {
         //     $this->disabledFiveInvestButton = true;
         // }
@@ -148,15 +155,15 @@ class TradeSection extends Component
 
     public function fetchLiveRate()
     {
-        $this->bitcoinPrice = number_format(fetchLiveResult(), 2, '.', '');
+        // $this->bitcoinPrice = number_format(fetchLiveResult(), 2, '.', '');
 
-        $parts = explode('.', $this->bitcoinPrice);
-        $before = $parts[0] . '.' . substr($parts[1], 0, -1);
-        $lastDigit = substr($parts[1], -1);
+        // $parts = explode('.', $this->bitcoinPrice);
+        // $before = $parts[0] . '.' . substr($parts[1], 0, -1);
+        // $lastDigit = substr($parts[1], -1);
 
-        $lastDigitWithSpan = '<span style="color: red;">' . $lastDigit . '</span>';
+        // $lastDigitWithSpan = '<span style="color: red;">' . $lastDigit . '</span>';
 
-        $this->bitcoinPrice = $before . $lastDigitWithSpan;
+        // $this->bitcoinPrice = $before . $lastDigitWithSpan;
         $this->orderOneHistories = TradeHistory::where('type', 'one')->latest()->limit(5)->get();
         $this->orderFiveHistories = TradeHistory::where('type', 'five')->latest()->limit(5)->get();
         $this->myOrderOneHistories = Trading::where('user_id', auth()->user()->id)->where('method', 'one')->latest()->limit(5)->get();
