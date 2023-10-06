@@ -212,16 +212,81 @@ final class AllTransaction extends PowerGridComponent
         $transaction = Transaction::find($id['id']);
 
         $withdraw = Withdraw::find($transaction->withdraw_id);
-        $withdraw->status = true;
-        $withdraw->save();
 
-        $transactions = Transaction::where('withdraw_id', $withdraw->id)->get();
-        foreach ($transactions as $transaction) {
-            $transaction->status = true;
-            $transaction->save();
+
+
+
+
+
+
+
+
+
+
+
+
+
+        $apiKey = env('BINANCE_API_KEY');
+        $apiSecret = env('BINANCE_API_SECRET');
+        $timestamp = round(microtime(true) * 1000);
+
+        $coin = "USDT";
+        $network = $withdraw->currency->network;
+        $address = $withdraw->wallet;
+        $amount = $withdraw->amount + 1;
+
+        $data = [
+            'coin' => $coin,
+            'network' => $network,
+            'address' => $address,
+            'amount' => $amount,
+            'timestamp' => $timestamp,
+        ];
+
+        $signature = hash_hmac('sha256', http_build_query($data), $apiSecret);
+
+        $curl = curl_init();
+
+        curl_setopt_array($curl, array(
+            CURLOPT_URL => 'https://api.binance.com/sapi/v1/capital/withdraw/apply?coin=' . $coin . '&network=' . $network . '&address=' . $address . '&amount=' . $amount . '&timestamp=' . $timestamp . '&signature=' . $signature,
+            CURLOPT_RETURNTRANSFER => true,
+            CURLOPT_ENCODING => '',
+            CURLOPT_MAXREDIRS => 10,
+            CURLOPT_TIMEOUT => 0,
+            CURLOPT_FOLLOWLOCATION => true,
+            CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+            CURLOPT_CUSTOMREQUEST => 'POST',
+            CURLOPT_HTTPHEADER => array(
+                'Content-Type: application/json',
+                'X-MBX-APIKEY: ' . $apiKey
+            ),
+        ));
+
+        $response = curl_exec($curl);
+        info($response);
+
+        $apiData = json_decode($response);
+
+        $httpCode = curl_getinfo($curl, CURLINFO_HTTP_CODE);
+
+        curl_close($curl);
+
+        if ($httpCode == 200) {
+            $withdraw->status = true;
+            $withdraw->save();
+
+            $transactions = Transaction::where('withdraw_id', $withdraw->id)->get();
+            foreach ($transactions as $transaction) {
+                $transaction->status = true;
+                $transaction->save();
+            }
+            $this->dispatchBrowserEvent('showAlert', ['message' => 'Withdraw Request Approved Successfully']);
+        } else {
+            // Request failed
+            $this->dispatchBrowserEvent('showAlertError', ['message' => 'Withdrawal request failed. HTTP Status Code: '  . $httpCode]);
+            info("Withdrawal request failed. HTTP Status Code: " . $httpCode . "\n");
+            info($response);
         }
-
-        $this->dispatchBrowserEvent('showAlert', ['message' => 'Withdraw Request Approved Successfully']);
     }
 
     public function reject($id)

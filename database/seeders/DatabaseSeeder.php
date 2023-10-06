@@ -86,7 +86,7 @@ class DatabaseSeeder extends Seeder
         $currency = Currency::firstOrCreate([
             'name' => 'Tether',
             'symbol' => 'USDT',
-            'network' => 'TRC20',
+            'network' => 'TRX',
             'code' => 'USDT.TRC20',
         ]);
 

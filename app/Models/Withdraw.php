@@ -15,4 +15,9 @@ class Withdraw extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    public function currency()
+    {
+        return $this->belongsTo(Currency::class);
+    }
 }
