@@ -9,7 +9,7 @@
                             {!! $bitcoinPrice !!}</h2> --}}
                         <!-- TradingView Widget BEGIN -->
                         <div class="tradingview-widget-container" wire:ignore>
-                            <div class="tradingview-widget-container__widget"  style="min-width: 100%"></div>
+                            <div class="tradingview-widget-container__widget" style="min-width: 100%"></div>
                             <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-symbol-info.js" async>
                                 {
                                     "symbol": "BINANCE:BTCUSDT",
@@ -246,18 +246,24 @@
                             <div class="col-md-3">
                                 <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist"
                                     aria-orientation="vertical">
-                                    <a class="nav-link mb-2 active" id="v-pills-profile-tab" data-bs-toggle="pill"
-                                        href="#v-pills-profile" role="tab" aria-controls="v-pills-profile"
-                                        aria-selected="false">My Trades</a>
-                                    <a class="nav-link mb-2" id="v-pills-home-tab" data-bs-toggle="pill"
-                                        href="#v-pills-home" role="tab" aria-controls="v-pills-home"
-                                        aria-selected="true">Recent Trades</a>
+                                    <a class="nav-link mb-2 {{ $OneMiBox == 'five' ? 'active' : '' }}"
+                                        id="v-pills-profile-tab" data-bs-toggle="pill" href="#v-pills-profile"
+                                        role="tab" aria-controls="v-pills-profile" aria-selected="false"
+                                        wire:click="$set('OneMiBox', 'mytrades')">My Trades</a>
+                                    <a class="nav-link mb-2 {{ $OneMiBox == 'five' ? 'active' : '' }}"
+                                        id="v-pills-home-tab" data-bs-toggle="pill" href="#v-pills-home"
+                                        role="tab" aria-controls="v-pills-home" aria-selected="true"
+                                        wire:click="$set('OneMiBox', 'recent')">Recent Trades</a>
+                                    <a class="nav-link mb-2 {{ $OneMiBox == 'five' ? 'active' : '' }}"
+                                        id="v-pills-assist-tab" data-bs-toggle="pill" href="#v-pills-assist"
+                                        role="tab" aria-controls="v-pills-assist" aria-selected="true"
+                                        wire:click="$set('OneMiBox', 'assist')">Assist</a>
                                 </div>
                             </div>
                             <div class="col-md-9">
                                 <div class="tab-content text-muted mt-4 mt-md-0" id="v-pills-tabContent">
-                                    <div class="tab-pane fade show active" id="v-pills-profile" role="tabpanel"
-                                        aria-labelledby="v-pills-profile-tab">
+                                    <div class="tab-pane fade {{ $OneMiBox == 'mytrades' ? 'show active' : '' }}"
+                                        id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab">
                                         <table class="table table-dark">
                                             <thead>
                                                 <tr>
@@ -289,8 +295,8 @@
                                             </tbody>
                                         </table>
                                     </div>
-                                    <div class="tab-pane fade" id="v-pills-home" role="tabpanel"
-                                        aria-labelledby="v-pills-home-tab">
+                                    <div class="tab-pane fade {{ $OneMiBox == 'recent' ? 'show active' : '' }}"
+                                        id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab">
                                         <table class="table table-dark">
                                             <thead>
                                                 <tr>
@@ -306,6 +312,30 @@
                                                         <td>{{ $history->price }}</td>
                                                         <td><span
                                                                 class="bg-primary p-2 rounded-circle text-white fw-bold">{{ sprintf('%02d', $history->result) }}</span>
+                                                        </td>
+                                                    </tr>
+                                                @endforeach
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <div class="tab-pane fade {{ $OneMiBox == 'assist' ? 'show active' : '' }}"
+                                        id="v-pills-assist" role="tabpanel" aria-labelledby="v-pills-assists-tab">
+                                        <table class="table table-dark">
+                                            <thead>
+                                                <tr>
+                                                    <th>Time</th>
+                                                    <th>Result</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                @foreach ($orderOneHistories->take(50) as $assist)
+                                                    <tr>
+                                                        <td>{{ $assist->created_at->format('YmdHi') }}</td>
+                                                        <td class="d-flex gap-3">
+                                                            @for ($i = 0; $i < 10; $i++)
+                                                                <span
+                                                                    class="text-circle {{ $i == $assist->result ? 'text-dark bg-primary' : '' }}">{{ $i }}</span>
+                                                            @endfor
                                                         </td>
                                                     </tr>
                                                 @endforeach
@@ -470,19 +500,28 @@
                                 <div class="col-md-3">
                                     <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist"
                                         aria-orientation="vertical">
-                                        <a class="nav-link mb-2 active" id="my-one-trade-tab" data-bs-toggle="pill"
-                                            href="#my-one-trade" role="tab" aria-controls="my-one-trade"
-                                            aria-selected="false">My Trades</a>
-                                        <a class="nav-link mb-2" id="my-five-recent-trades-tab" data-bs-toggle="pill"
-                                            href="#my-five-recent-trades" role="tab"
-                                            aria-controls="my-five-recent-trades" aria-selected="true">Recent
+                                        <a class="nav-link mb-2 {{ $FiveMiBox == 'five' ? 'active' : '' }}"
+                                            id="my-one-trade-tab" data-bs-toggle="pill" href="#my-one-trade"
+                                            role="tab" aria-controls="my-one-trade" aria-selected="false"
+                                            wire:click="$set('FiveMiBox', 'mytrades')">My
                                             Trades</a>
+                                        <a class="nav-link mb-2 {{ $FiveMiBox == 'five' ? 'active' : '' }}"
+                                            id="my-five-recent-trades-tab" data-bs-toggle="pill"
+                                            href="#my-five-recent-trades" role="tab"
+                                            aria-controls="my-five-recent-trades" aria-selected="true"
+                                            wire:click="$set('FiveMiBox', 'recent')">Recent
+                                            Trades</a>
+                                        <a class="nav-link mb-2 {{ $FiveMiBox == 'five' ? 'active' : '' }}"
+                                            id="v-pills-five-assist-tab" data-bs-toggle="pill"
+                                            href="#v-pills-five-assist" role="tab"
+                                            aria-controls="v-pills-five-assist" aria-selected="true"
+                                            wire:click="$set('FiveMiBox', 'assist')">Assist</a>
                                     </div>
                                 </div>
                                 <div class="col-md-9">
                                     <div class="tab-content text-muted mt-4 mt-md-0" id="v-pills-tabContent">
-                                        <div class="tab-pane fade show active" id="my-one-trade" role="tabpanel"
-                                            aria-labelledby="my-one-trade-tab">
+                                        <div class="tab-pane fade {{ $FiveMiBox == 'mytrades' ? 'show active' : '' }}"
+                                            id="my-one-trade" role="tabpanel" aria-labelledby="my-one-trade-tab">
                                             <table class="table table-dark">
                                                 <thead>
                                                     <tr>
@@ -514,7 +553,8 @@
                                                 </tbody>
                                             </table>
                                         </div>
-                                        <div class="tab-pane fade" id="my-five-recent-trades" role="tabpanel"
+                                        <div class="tab-pane fade {{ $FiveMiBox == 'recent' ? 'show active' : '' }}"
+                                            id="my-five-recent-trades" role="tabpanel"
                                             aria-labelledby="my-five-recent-trades-tab">
                                             <table class="table table-dark">
                                                 <thead>
@@ -531,6 +571,31 @@
                                                             <td>{{ $history->price }}</td>
                                                             <td><span
                                                                     class="bg-primary p-2 rounded-circle text-white fw-bold">{{ sprintf('%02d', $history->result) }}</span>
+                                                            </td>
+                                                        </tr>
+                                                    @endforeach
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                        <div class="tab-pane fade {{ $FiveMiBox == 'assist' ? 'show active' : '' }}"
+                                            id="v-pills-five-assist" role="tabpanel"
+                                            aria-labelledby="v-pills-five-assist-tab">
+                                            <table class="table table-dark">
+                                                <thead>
+                                                    <tr>
+                                                        <th>Time</th>
+                                                        <th>Result</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    @foreach ($orderFiveHistories->take(50) as $assist)
+                                                        <tr>
+                                                            <td>{{ $assist->created_at->format('YmdHi') }}</td>
+                                                            <td class="d-flex gap-3">
+                                                                @for ($i = 0; $i < 10; $i++)
+                                                                    <span
+                                                                        class="text-circle {{ $i == $assist->result ? 'text-dark bg-primary' : '' }}">{{ $i }}</span>
+                                                                @endfor
                                                             </td>
                                                         </tr>
                                                     @endforeach

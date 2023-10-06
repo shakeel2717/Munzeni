@@ -31,6 +31,9 @@ class TradeSection extends Component
     public $disabledFiveInvestButton = false;
 
     public $boxType = 'one';
+    public $FiveMiBox = 'mytrades';
+    public $OneMiBox = 'mytrades';
+
 
     public function mount()
     {
@@ -47,49 +50,48 @@ class TradeSection extends Component
     }
 
     public function updateOneTimeSecond()
-{
-    $now = time();
-    $this->oneTimeSecond = 60 - date('s', $now);
+    {
+        $now = time();
+        $this->oneTimeSecond = 60 - date('s', $now);
 
-    // Calculate the remaining seconds for the 5-minute timer
-    $secondsRemaining = 300 - ($now % 300);
+        // Calculate the remaining seconds for the 5-minute timer
+        $secondsRemaining = 300 - ($now % 300);
 
-    // Check if the one-minute timer needs to reset
-    if ($this->oneTimeSecond < 20) {
-        $this->disabledOneInvestButton = true;
-    } else {
-        $this->disabledOneInvestButton = false;
+        // Check if the one-minute timer needs to reset
+        if ($this->oneTimeSecond < 20) {
+            $this->disabledOneInvestButton = true;
+        } else {
+            $this->disabledOneInvestButton = false;
+        }
+
+        // if ($this->oneTimeSecond < 180) {
+        //     $this->disabledFiveInvestButton = true;
+        // }
+
+        // Calculate minutes and seconds for the 5-minute timer
+        $minutes = floor($secondsRemaining / 60);
+        $seconds = $secondsRemaining % 60;
+
+        // Check if the 5-minute timer needs to reset
+        if ($secondsRemaining <= 0) {
+            $minutes = 4;
+            $seconds = 59;
+        }
+
+        if ($minutes < 3) {
+            $this->disabledFiveInvestButton = true;
+        } else {
+            $this->disabledFiveInvestButton = false;
+        }
+
+        // Format the time for the 5-minute timer
+        $this->fiveTimeSecond = sprintf('%02d:%02d', $minutes, $seconds);
+
+        $this->timestamp = date('YmdHi');
     }
 
-    // if ($this->oneTimeSecond < 180) {
-    //     $this->disabledFiveInvestButton = true;
-    // }
 
-    // Calculate minutes and seconds for the 5-minute timer
-    $minutes = floor($secondsRemaining / 60);
-    $seconds = $secondsRemaining % 60;
-
-    // Check if the 5-minute timer needs to reset
-    if ($secondsRemaining <= 0) {
-        $minutes = 4;
-        $seconds = 59;
-    }
-
-    if($minutes < 3){
-        $this->disabledFiveInvestButton = true;
-    }
-    else {
-        $this->disabledFiveInvestButton = false;
-    }
-
-    // Format the time for the 5-minute timer
-    $this->fiveTimeSecond = sprintf('%02d:%02d', $minutes, $seconds);
-
-    $this->timestamp = date('YmdHi');
-}
-
-
-      public function invested()
+    public function invested()
     {
         // checking if available balance is enough
         if (auth()->user()->getBalance() < floatval($this->amount)) {
