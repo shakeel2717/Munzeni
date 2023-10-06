@@ -311,7 +311,7 @@
                                                         <td>{{ $history->created_at->diffForHumans() }}</td>
                                                         <td>{{ $history->price }}</td>
                                                         <td><span
-                                                                class="bg-primary p-2 rounded-circle text-white fw-bold">{{ sprintf('%02d', $history->result) }}</span>
+                                                                class="bg-primary p-2 rounded-circle text-dark fw-bold">{{ sprintf('%02d', $history->result) }}</span>
                                                         </td>
                                                     </tr>
                                                 @endforeach
@@ -570,7 +570,7 @@
                                                             <td>{{ $history->created_at->diffForHumans() }}</td>
                                                             <td>{{ $history->price }}</td>
                                                             <td><span
-                                                                    class="bg-primary p-2 rounded-circle text-white fw-bold">{{ sprintf('%02d', $history->result) }}</span>
+                                                                    class="bg-primary p-2 rounded-circle text-dark fw-bold">{{ sprintf('%02d', $history->result) }}</span>
                                                             </td>
                                                         </tr>
                                                     @endforeach
