@@ -22,6 +22,6 @@
     <div class="mt-5 text-center">
         <p>Remember your account ? <a href="{{ route('login') }}" class="font-weight-medium text-primary"> Try Login</a>
         </p>
-        <p>© 2020 {{ env('APP_NAME') }}. All Rights Reserved</p>
+        <p>© {{ date('Y') }} {{ env('APP_NAME') }}. All Rights Reserved</p>
     </div>
 @endsection

@@ -25,6 +25,6 @@
         </div>
     </form>
     <div class="mt-5 text-center">
-        <p>© 2020 {{ env('APP_NAME') }}. All Rights Reserved</p>
+        <p>© {{ date('Y') }} {{ env('APP_NAME') }}. All Rights Reserved</p>
     </div>
 @endsection
