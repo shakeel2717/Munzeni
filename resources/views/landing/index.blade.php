@@ -76,6 +76,21 @@
             </div>
         </div>
     </section>
+    <section class="d-flex align-items-center bg-secondary" style="height: 600px">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <h1 class="mb-5 text-center text-white display-2 fw-bold">Download Android Applicaton</h1>
+                    <p class="text-primary mb-5 fs-4 text-center">Download Trading Application for best and smooth
+                        experiences</p>
+                    <div class="text-center">
+                        <a href="{{ asset('munzeni_1_1.0.apk') }}" class="btn btn-primary px-4 py-2 fs-4">Download
+                            Now</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
     <section class="min-vh-100 py-5 d-flex align-items-center bg-dark pb-5">
         <div class="container">
             <div class="row">
@@ -261,7 +276,7 @@
     </section>
     <div class="livechat position-fixed" style="bottom: 20px; right: 20px;">
         <a class="rounded-circle" href="{{ settings('telegram_link') ?? 'https://telegram.org/' }}"><i
-            class="bi fs-1 bi-chat-fill"></i></a>
+                class="bi fs-1 bi-chat-fill"></i></a>
     </div>
     <footer class="bg-secondary p-3">
         <h4 class="text-center text-white">Copyrights {{ date('Y') }} {{ env('APP_NAME') }}. All Rights Reserved
