@@ -34,7 +34,8 @@
                     <input type="password" name="password" class="form-control" id="password" placeholder="Enter password">
                     <div class="input-group-append">
                         <span class="input-group-text">
-                            <i class="bi bi-eye-slash-fill" id="togglePassword"></i>
+                            <i class="bi bi-eye" id="togglePassword"></i>
+                            <i class="bi bi-eye-slash-fill d-none" id="togglePassword2"></i>
                         </span>
                     </div>
                 </div>
@@ -65,14 +66,23 @@
         const passwordInput = document.getElementById('password');
         const passwordInputConfirm = document.getElementById('password_confirmation');
         const togglePasswordButton = document.getElementById('togglePassword');
+        const togglePasswordButton2 = document.getElementById('togglePassword2');
 
         togglePasswordButton.addEventListener('click', function() {
             if (passwordInput.type === 'password') {
                 passwordInput.type = 'text';
                 passwordInputConfirm.type = 'text';
-            } else {
+                togglePasswordButton2.classList.remove('d-none');
+                togglePasswordButton.classList.add('d-none');
+            }
+        });
+
+        togglePasswordButton2.addEventListener('click', function() {
+            if (passwordInput.type === 'text') {
                 passwordInput.type = 'password';
                 passwordInputConfirm.type = 'password';
+                togglePasswordButton2.classList.add('d-none');
+                togglePasswordButton.classList.remove('d-none');
             }
         });
     </script>
