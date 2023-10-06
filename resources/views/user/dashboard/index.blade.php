@@ -4,12 +4,12 @@
     <div class="row">
         <div class="col-md-12">
             <div class="card card-body shadow-sm border-0">
-                <div class="d-flex justify-content-between align-items-center">
-                    <div class="titles">
+                <div class="row">
+                    <div class="col text-start">
                         <h2>Download the Munzeni Mobile App</h2>
                         <p class="mb-0">And Trade while you are on the go</p>
                     </div>
-                    <div class="playstore d-none d-md-block">
+                    <div class="col text-center text-md-end mt-4 mt-md-0">
                         <a href="{{ asset('munzeni_1_1.0.apk') }}"><img src="{{ asset('assets/google.webp') }}" alt="Google Play Store" width="200"></a>
                     </div>
                 </div>

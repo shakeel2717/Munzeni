@@ -191,15 +191,15 @@
                                                 @if ($type == 'even')
                                                     <div class="row">
                                                         <div class="col-md-12">
-                                                            <h4 class="d-flex align-items-center gap-2">PORTFOLIO:
+                                                            <h4 class="d-flex align-items-center gap-2">P:
                                                                 <span
                                                                     class="btn btn-primary btn-sm text-uppercase">E</span>
                                                                 [
-                                                                <span class="btn btn-primary btn-sm">1</span>
-                                                                <span class="btn btn-primary btn-sm ">3</span>
-                                                                <span class="btn btn-primary btn-sm ">5</span>
-                                                                <span class="btn btn-primary btn-sm ">7</span>
-                                                                <span class="btn btn-primary btn-sm ">9</span>
+                                                                <span class="btn btn-primary btn-sm">0</span>
+                                                                <span class="btn btn-primary btn-sm">2</span>
+                                                                <span class="btn btn-primary btn-sm ">4</span>
+                                                                <span class="btn btn-primary btn-sm ">6</span>
+                                                                <span class="btn btn-primary btn-sm ">8</span>
                                                                 ]
                                                             </h4>
                                                         </div>
@@ -208,15 +208,15 @@
                                                 @if ($type == 'odd')
                                                     <div class="row">
                                                         <div class="col-md-12">
-                                                            <h4 class="d-flex align-items-center gap-2">PORTFOLIO:
+                                                            <h4 class="d-flex align-items-center gap-2">P:
                                                                 <span
                                                                     class="btn btn-primary btn-sm text-uppercase">O</span>
                                                                 [
-                                                                <span class="btn btn-primary btn-sm">0</span>
-                                                                <span class="btn btn-primary btn-sm">2</span>
-                                                                <span class="btn btn-primary btn-sm ">4</span>
-                                                                <span class="btn btn-primary btn-sm ">6</span>
-                                                                <span class="btn btn-primary btn-sm ">8</span>
+                                                                <span class="btn btn-primary btn-sm">1</span>
+                                                                <span class="btn btn-primary btn-sm ">3</span>
+                                                                <span class="btn btn-primary btn-sm ">5</span>
+                                                                <span class="btn btn-primary btn-sm ">7</span>
+                                                                <span class="btn btn-primary btn-sm ">9</span>
                                                                 ]
                                                             </h4>
                                                         </div>
@@ -276,7 +276,7 @@
                                             <tbody>
                                                 @foreach ($myOrderOneHistories as $trade)
                                                     <tr>
-                                                        <td>{{ $trade->created_at->diffForHumans() }}</td>
+                                                        <td>{{ $trade->created_at->format('YmdHi') }}</td>
                                                         <td>{{ strtoupper($trade->type) }}</td>
                                                         <td
                                                             class="{{ $trade->win ? 'text-success' : 'text-danger' }}">
@@ -308,7 +308,7 @@
                                             <tbody>
                                                 @foreach ($orderOneHistories as $history)
                                                     <tr>
-                                                        <td>{{ $history->created_at->diffForHumans() }}</td>
+                                                        <td>{{ $history->created_at->format('YmdHi') }}</td>
                                                         <td>{{ $history->price }}</td>
                                                         <td><span
                                                                 class="bg-primary p-2 rounded-circle text-dark fw-bold">{{ sprintf('%02d', $history->result) }}</span>
@@ -444,24 +444,7 @@
                                                     @if ($type == 'even')
                                                         <div class="row">
                                                             <div class="col-md-12">
-                                                                <h4 class="d-flex align-items-center gap-2">PORTFOLIO:
-                                                                    <span
-                                                                        class="btn btn-primary btn-sm text-uppercase">E</span>
-                                                                    [
-                                                                    <span class="btn btn-primary btn-sm">1</span>
-                                                                    <span class="btn btn-primary btn-sm ">3</span>
-                                                                    <span class="btn btn-primary btn-sm ">5</span>
-                                                                    <span class="btn btn-primary btn-sm ">7</span>
-                                                                    <span class="btn btn-primary btn-sm ">9</span>
-                                                                    ]
-                                                                </h4>
-                                                            </div>
-                                                        </div>
-                                                    @endif
-                                                    @if ($type == 'odd')
-                                                        <div class="row">
-                                                            <div class="col-md-12">
-                                                                <h4 class="d-flex align-items-center gap-2">PORTFOLIO:
+                                                                <h4 class="d-flex align-items-center gap-2">P:
                                                                     <span
                                                                         class="btn btn-primary btn-sm text-uppercase">O</span>
                                                                     [
@@ -470,6 +453,23 @@
                                                                     <span class="btn btn-primary btn-sm ">4</span>
                                                                     <span class="btn btn-primary btn-sm ">6</span>
                                                                     <span class="btn btn-primary btn-sm ">8</span>
+                                                                    ]
+                                                                </h4>
+                                                            </div>
+                                                        </div>
+                                                    @endif
+                                                    @if ($type == 'odd')
+                                                        <div class="row">
+                                                            <div class="col-md-12">
+                                                                <h4 class="d-flex align-items-center gap-2">P:
+                                                                    <span
+                                                                        class="btn btn-primary btn-sm text-uppercase">E</span>
+                                                                    [
+                                                                    <span class="btn btn-primary btn-sm">1</span>
+                                                                    <span class="btn btn-primary btn-sm ">3</span>
+                                                                    <span class="btn btn-primary btn-sm ">5</span>
+                                                                    <span class="btn btn-primary btn-sm ">7</span>
+                                                                    <span class="btn btn-primary btn-sm ">9</span>
                                                                     ]
                                                                 </h4>
                                                             </div>
@@ -534,7 +534,7 @@
                                                 <tbody>
                                                     @foreach ($myOrderFiveHistories as $trade)
                                                         <tr>
-                                                            <td>{{ $trade->created_at->diffForHumans() }}</td>
+                                                            <td>{{ $trade->created_at->format('YmdHi') }}</td>
                                                             <td>{{ strtoupper($trade->type) }}</td>
                                                             <td
                                                                 class="{{ $trade->win ? 'text-success' : 'text-danger' }}">
@@ -567,7 +567,7 @@
                                                 <tbody>
                                                     @foreach ($orderFiveHistories as $history)
                                                         <tr>
-                                                            <td>{{ $history->created_at->diffForHumans() }}</td>
+                                                            <td>{{ $history->created_at->format('YmdHi') }}</td>
                                                             <td>{{ $history->price }}</td>
                                                             <td><span
                                                                     class="bg-primary p-2 rounded-circle text-dark fw-bold">{{ sprintf('%02d', $history->result) }}</span>

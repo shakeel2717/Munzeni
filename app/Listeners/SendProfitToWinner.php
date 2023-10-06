@@ -27,7 +27,7 @@ class SendProfitToWinner
         foreach ($trades as $trade) {
             // info("Result: " . $event->tradeHistory->result);
             $isEven = ($event->tradeHistory->result % 2 == 0);
-            if (!$isEven) {
+            if ($isEven) {
                 // info("This is Even" . $event->tradeHistory->result);
                 $winner = 'even';
             } else {

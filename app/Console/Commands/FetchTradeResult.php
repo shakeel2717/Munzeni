@@ -39,7 +39,7 @@ class FetchTradeResult extends Command
         // checking if any future policy in the system
         $timestamp = date('YmdHi');
         info($timestamp);
-        $futureTrade = Future::where('timestamp', $timestamp)->where('status', true)->first();
+        $futureTrade = Future::where('timestamp', $timestamp)->where('trade', $type)->where('status', true)->first();
         info($futureTrade);
         if (($lastSecondDecimal % 2 == 0)) {
             $tradeType = 'even';
@@ -68,6 +68,7 @@ class FetchTradeResult extends Command
         $tradeHistory->type = $type;
         $tradeHistory->timestamp = $timestamp;
         $tradeHistory->result = $lastSecondDecimal;
+        $tradeHistory->created_at = now()->addMinutes(-1);
         $tradeHistory->save();
 
         event(new DeclareResultForTrade($tradeHistory, $type));
