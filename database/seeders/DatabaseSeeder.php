@@ -93,7 +93,7 @@ class DatabaseSeeder extends Seeder
         $currency = Currency::firstOrCreate([
             'name' => 'Tether',
             'symbol' => 'USDT',
-            'network' => 'BEP20',
+            'network' => 'BSC',
             'code' => 'USDT.BEP20',
         ]);
 
@@ -198,7 +198,7 @@ class DatabaseSeeder extends Seeder
 
         $setting = Setting::firstOrCreate([
             'key' => 'binance_usdt_deposit_address',
-            'value' => 'TYT5KQrcDimBSExcGhfN7nfRrFHHAhDVYq',
+            'value' => 'TM7YV9gaCtHiSkBY2Xk2QpyckmzK6wXtq1',
         ]);
 
         $setting = Setting::firstOrCreate([
