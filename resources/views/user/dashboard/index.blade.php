@@ -206,12 +206,8 @@
             <div class="modal-content bg-dark">
                 <div class="modal-body">
                     <h3 class="text-center">Deposit Bonus</h3>
-                    <p>
-                        1. 10% bonus will be refunded starting from the first recharge of $10. Please contact the platform
-                        customer service to receive the first recharge bonus.
-                    </p>
-                    <p>(For more tips on making money, you can consult the platform customer service manager, who will
-                        provide better solutions)</p>
+                    <p>{{ settings('welcome_modal_text_1') }}</p>
+                    <p>{{ settings('welcome_modal_text_2') }}</p>
                     <div class="text-center">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                     </div>

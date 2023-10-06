@@ -201,6 +201,18 @@ class DatabaseSeeder extends Seeder
             'value' => 10,
         ]);
 
+        $setting = Setting::firstOrCreate([
+            'key' => 'welcome_modal_text_1',
+            'value' => '1. 10% bonus will be refunded starting from the first recharge of $10. Please contact the platform
+            customer service to receive the first recharge bonus.',
+        ]);
+
+        $setting = Setting::firstOrCreate([
+            'key' => 'welcome_modal_text_2',
+            'value' => '(For more tips on making money, you can consult the platform customer service manager, who will
+            provide better solutions)',
+        ]);
+
 
         $plan = Plan::firstOrCreate([
             'name' => 'Basic',
