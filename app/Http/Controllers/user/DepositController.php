@@ -51,9 +51,9 @@ class DepositController extends Controller
         ]);
 
         // checking if this user request already pending
-        if (auth()->user()->pending_tids()->get()->count() > 0) {
-            return back()->withErrors(['Your Deposit Request Already Received, Please wait!']);
-        }
+        // if (auth()->user()->pending_tids()->get()->count() > 0) {
+        //     return back()->withErrors(['Your Deposit Request Already Received, Please wait!']);
+        // }
 
         auth()->user()->tids()->create([
             'hash_id' => $validatedData['hash_id'],
