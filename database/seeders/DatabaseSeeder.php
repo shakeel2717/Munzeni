@@ -20,73 +20,18 @@ class DatabaseSeeder extends Seeder
         $admin = User::firstOrCreate([
             'name' => 'Administrator',
             'username' => 'admin',
-            'email' => 'admin@gmail.com',
+            'email' => 'munzeni.ai@gmail.com',
             'role' => 'admin',
             'user_code' => "MZ" . rand(0000000, 99999999),
             'email_verified_at' => now(),
             'password' => bcrypt('asdfasdf'),
         ]);
 
-
-        $user = User::firstOrCreate([
-            'name' => 'Shakeel Ahmad',
-            'username' => 'shakeel2717',
-            'email' => 'shakeel2717@gmail.com',
-            'email_verified_at' => now(),
-            'user_code' => "MZ" . rand(0000000, 99999999),
-            'refer' => 'default',
-            'password' => bcrypt('asdfasdf'),
-        ]);
-
-        // adding balance to this user
-        $transaction = $user->transactions()->create([
-            'type' => 'deposit',
-            'amount' => 100,
-            'sum' => true,
-            'status' => true,
-            'reference' => "Database Seed",
-        ]);
-
-        // $user = User::firstOrCreate([
-        //     'name' => 'Test 1',
-        //     'username' => 'test1',
-        //     'email' => 'test1@gmail.com',
-        //     'email_verified_at' => now(),
-        //     'refer' => $user->username,
-        //     'password' => bcrypt('asdfasdf'),
-        // ]);
-
-        // // adding balance to this user
-        // $transaction = $user->transactions()->create([
-        //     'type' => 'deposit',
-        //     'amount' => 100,
-        //     'sum' => true,
-        //     'status' => true,
-        //     'reference' => "Database Seed",
-        // ]);
-
-        // $user = User::firstOrCreate([
-        //     'name' => 'Test 2',
-        //     'username' => 'test2',
-        //     'email' => 'test2@gmail.com',
-        //     'email_verified_at' => now(),
-        //     'refer' => $user->username,
-        //     'password' => bcrypt('asdfasdf'),
-        // ]);
-
-        // adding balance to this user
-        $transaction = $user->transactions()->create([
-            'type' => 'deposit',
-            'amount' => 100,
-            'sum' => true,
-            'status' => true,
-            'reference' => "Database Seed",
-        ]);
-
         $currency = Currency::firstOrCreate([
             'name' => 'Tether',
             'symbol' => 'USDT',
             'network' => 'TRX',
+            'fees' => 1,
             'code' => 'USDT.TRC20',
         ]);
 
@@ -94,6 +39,7 @@ class DatabaseSeeder extends Seeder
             'name' => 'Tether',
             'symbol' => 'USDT',
             'network' => 'BSC',
+            'fees' => 0.29,
             'code' => 'USDT.BEP20',
         ]);
 

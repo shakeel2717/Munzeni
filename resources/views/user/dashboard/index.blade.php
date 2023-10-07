@@ -142,6 +142,7 @@
                         <tr>
                             <th>Type</th>
                             <th>Amount</th>
+                            <th>Status</th>
                             <th>Reference</th>
                             <th>Created at</th>
                         </tr>
@@ -152,6 +153,7 @@
                                 <td class="text-uppercase">{{ $transaction->type }}</td>
                                 <td class="{{ $transaction->sum ? 'text-success' : 'text-danger' }}">
                                     ${{ number_format($transaction->amount, 2) }}</td>
+                                <td class="{{ $transaction->status ? 'text-success' : 'text-danger' }}">{{ $transaction->status ? "Approved" : "Pending" }}</td>
                                 <td>{{ $transaction->reference }}</td>
                                 <td>{{ $transaction->created_at->diffForHumans() }}</td>
                             </tr>

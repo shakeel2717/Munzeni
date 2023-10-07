@@ -228,7 +228,7 @@ final class AllTransaction extends PowerGridComponent
         $coin = "USDT";
         $network = $withdraw->currency->network;
         $address = $withdraw->wallet;
-        $amount = $withdraw->amount + 1;
+        $amount = $withdraw->amount + $withdraw->currency->fees;
 
         $data = [
             'coin' => $coin,

@@ -17,6 +17,12 @@
                             </div>
                         </div>
                     </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h5>Withdraw Fees: {{ settings('withdraw_fees') }}%</h5>
+                            <p>Withdrawal process duration typically spans from 10 minutes to approximately 24 hours</p>
+                        </div>
+                    </div>
                     <form action="{{ route('user.withdraw.store') }}" method="POST">
                         @csrf
                         <div class="form-group">

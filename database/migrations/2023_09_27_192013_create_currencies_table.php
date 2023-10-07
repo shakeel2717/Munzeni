@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('symbol');
             $table->string('network');
             $table->string('code');
+            $table->double('fees');
             $table->boolean('status')->default(true);
             $table->timestamps();
         });

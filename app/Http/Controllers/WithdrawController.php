@@ -40,7 +40,7 @@ class WithdrawController extends Controller
             $authenticator = new Authenticator();
             $checkCode = $authenticator->verifyCode(auth()->user()->authenticator_code, $validatedData['code'], 0);
             if (!$checkCode) {
-                // return back()->withErrors(['Invalid code,Please try again']);
+                return back()->withErrors(['Invalid code,Please try again']);
             }
         } else {
             return back()->withErrors(['Please Activate Google Authentication on your account first.']);

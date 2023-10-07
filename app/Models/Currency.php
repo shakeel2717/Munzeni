@@ -14,6 +14,7 @@ class Currency extends Model
         'symbol',
         'code',
         'network',
+        'fees',
         'status',
     ];
 }
