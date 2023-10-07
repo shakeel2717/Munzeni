@@ -161,8 +161,7 @@
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="card card-body border border-primary">
-                                    <h4 class="mb-0 text-danger"> <i class="ri-close-circle-fill fs-lage"></i> KYC is
-                                        Pending</h4>
+                                    <h4 class="mb-0"> <i class="ri-close-circle-fill fs-lage"></i> KYC is {{ auth()->user()->kyc_status }}</h4>
                                 </div>
                             </div>
                         </div>
