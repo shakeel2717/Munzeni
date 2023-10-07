@@ -170,6 +170,11 @@ class DatabaseSeeder extends Seeder
             'value' => 5,
         ]);
 
+        $setting = Setting::firstOrCreate([
+            'key' => 'telegram_support',
+            'value' => 'https://telegram.org/',
+        ]);
+
 
         $setting = Setting::firstOrCreate([
             'key' => 'telegram_link',
