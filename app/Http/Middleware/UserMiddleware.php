@@ -16,16 +16,11 @@ class UserMiddleware
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if (auth()->user()->role == "user") {
-            // checking if this user is not suspended
-            if (auth()->user()->status == "suspend") {
-                Auth::logout();
-                return redirect()->route('login')->withErrors(['Account Suspended, Please Contact Support']);
-            } else {
-                return $next($request);
-            }
-        } elseif (auth()->user()->role == 'admin') {
-            return redirect()->route('admin.dashboard.index');
+        if (auth()->user()->status == "suspend") {
+            Auth::logout();
+            return redirect()->route('login')->withErrors(['Account Suspended, Please Contact Support']);
+        } else {
+            return $next($request);
         }
     }
 }
