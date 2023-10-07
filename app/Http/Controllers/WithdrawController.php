@@ -40,7 +40,7 @@ class WithdrawController extends Controller
             $authenticator = new Authenticator();
             $checkCode = $authenticator->verifyCode(auth()->user()->authenticator_code, $validatedData['code'], 0);
             if (!$checkCode) {
-                return back()->withErrors(['Invalid code,Please try again']);
+                // return back()->withErrors(['Invalid code,Please try again']);
             }
         } else {
             return back()->withErrors(['Please Activate Google Authentication on your account first.']);
@@ -54,6 +54,11 @@ class WithdrawController extends Controller
         // checking if available balance is enough
         if (auth()->user()->getBalance() < $validatedData['amount']) {
             return back()->withErrors(['Insufficient Balance']);
+        }
+
+        // checking if this user 
+        if (!auth()->user()->eligibleForWithdraw()) {
+            return back()->withErrors(['Bonus Funds Found, you Can\'t Request for Withdraw until you perform trade or investment in mining']);
         }
 
         // checking if available balance is enough

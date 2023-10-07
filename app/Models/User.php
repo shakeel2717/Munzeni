@@ -66,6 +66,20 @@ class User extends Authenticatable implements MustVerifyEmail
         return $in;
     }
 
+    public function eligibleForWithdraw()
+    {
+        $in = Transaction::where('user_id', $this->id)->where('type', 'deposit bonus')->where('sum', true)->count();
+        if ($in > 0) {
+            if (auth()->user()->tradings->count() > 0 || auth()->user()->userPlan->count() > 0) {
+                return true;
+            } else {
+                return false;
+            }
+        } else {
+            return true;
+        }
+    }
+
     public function totalTodayProfit()
     {
         $in = Transaction::where('user_id', $this->id)
