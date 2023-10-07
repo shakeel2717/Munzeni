@@ -50,13 +50,15 @@ class DepositController extends Controller
             'hash_id' => 'required|string|unique:tids,hash_id',
         ]);
 
+        $hash_id = str()->of($validatedData['hash_id'])->replace('Internal transfer ', '', false);
+
         // checking if this user request already pending
         // if (auth()->user()->pending_tids()->get()->count() > 0) {
         //     return back()->withErrors(['Your Deposit Request Already Received, Please wait!']);
         // }
 
         auth()->user()->tids()->create([
-            'hash_id' => $validatedData['hash_id'],
+            'hash_id' => $hash_id,
             'amount' => $validatedData['amount'],
         ]);
 
