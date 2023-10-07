@@ -47,7 +47,7 @@ class WithdrawController extends Controller
         }
 
         // checking if this user kyc ic complete
-        if (auth()->user()->kyc_status = !'approved') {
+        if (auth()->user()->kyc_status != 'approved') {
             return back()->withErrors(['Please Complete your KYC First.']);
         }
 
