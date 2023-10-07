@@ -33,14 +33,14 @@ class FetchTradeResult extends Command
         // info($type);
         // checking if any future policy in the system
         $timestamp = date('YmdHi');
+        
+        info($timestamp);
+        $futureTrade = Future::where('timestamp', $timestamp)->first();
         $bitcoinPrice = number_format(fetchLiveResult(), 2, '.', '');
         info($bitcoinPrice);
         $priceString = strval($bitcoinPrice);
         $characters = str_split($priceString);
         $lastSecondDecimal = end($characters);
-
-        info($timestamp);
-        $futureTrade = Future::where('timestamp', $timestamp)->first();
         info($futureTrade);
         if (($lastSecondDecimal % 2 == 0)) {
             $tradeType = 'even';
