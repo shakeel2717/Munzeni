@@ -32,8 +32,8 @@ class FetchTradeResult extends Command
         // info("Command Run Successfully");
         // info($type);
         // checking if any future policy in the system
-        $timestamp = date('YmdHi');
-        
+        $timestamp = now()->addSecond(-1)->format("YmdHi");
+
         info($timestamp);
         $futureTrade = Future::where('timestamp', $timestamp)->first();
         $bitcoinPrice = number_format(fetchLiveResult(), 2, '.', '');
@@ -58,7 +58,7 @@ class FetchTradeResult extends Command
                 goto skipFutureTrading;
             } else {
                 info("Real Digit was: " . $lastSecondDecimal);
-                if($lastSecondDecimal == 9){
+                if ($lastSecondDecimal == 9) {
                     $lastSecondDecimal = $lastSecondDecimal - 1;
                 } else {
                     $lastSecondDecimal = $lastSecondDecimal + 1;
