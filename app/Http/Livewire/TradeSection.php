@@ -65,10 +65,10 @@ class TradeSection extends Component
         }
 
         if ($this->oneTimeSecond >= 58) {
-            $this->orderOneHistories = TradeHistory::where('type', 'one')->latest()->limit(5)->get();
-            $this->orderFiveHistories = TradeHistory::where('type', 'five')->latest()->limit(5)->get();
-            $this->myOrderOneHistories = Trading::where('user_id', auth()->user()->id)->where('method', 'one')->latest()->limit(5)->get();
-            $this->myOrderFiveHistories = Trading::where('user_id', auth()->user()->id)->where('method', 'five')->latest()->limit(5)->get();
+            $this->orderOneHistories = TradeHistory::where('type', 'one')->latest()->limit(50)->get();
+            $this->orderFiveHistories = TradeHistory::where('type', 'five')->latest()->limit(50)->get();
+            $this->myOrderOneHistories = Trading::where('user_id', auth()->user()->id)->where('method', 'one')->latest()->limit(50)->get();
+            $this->myOrderFiveHistories = Trading::where('user_id', auth()->user()->id)->where('method', 'five')->latest()->limit(50)->get();
         }
 
         // if ($this->oneTimeSecond < 180) {
