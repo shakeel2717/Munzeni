@@ -115,7 +115,7 @@
                 <div class="row">
                     <div class="col-md-12">
                         <div class="card card-body" style="min-height: 60vh;">
-                            @yield('content')`
+                            @yield('content')
                         </div>
                     </div>
                 </div>
