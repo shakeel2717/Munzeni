@@ -4,6 +4,7 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Symfony\Component\HttpFoundation\Response;
 
 class UserMiddleware
@@ -16,7 +17,13 @@ class UserMiddleware
     public function handle(Request $request, Closure $next): Response
     {
         if (auth()->user()->role == "user") {
-            return $next($request);
+            // checking if this user is not suspended
+            if (auth()->user()->status == "suspend") {
+                Auth::logout();
+                return redirect()->route('login')->withErrors(['Account Suspended, Please Contact Support']);
+            } else {
+                return $next($request);
+            }
         } elseif (auth()->user()->role == 'admin') {
             return redirect()->route('admin.dashboard.index');
         }
