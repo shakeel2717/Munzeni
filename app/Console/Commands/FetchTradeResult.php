@@ -29,45 +29,45 @@ class FetchTradeResult extends Command
     public function handle()
     {
         $type = $this->argument('type');
-        // // info("Command Run Successfully");
-        // // info($type);
+        // info("Command Run Successfully");
+        // info($type);
         // checking if any future policy in the system
         $timestamp = date('YmdHi');
         $bitcoinPrice = number_format(fetchLiveResult(), 2, '.', '');
-        // info($bitcoinPrice);
+        info($bitcoinPrice);
         $priceString = strval($bitcoinPrice);
         $characters = str_split($priceString);
         $lastSecondDecimal = end($characters);
 
-        // info($timestamp);
+        info($timestamp);
         $futureTrade = Future::where('timestamp', $timestamp)->first();
-        // info($futureTrade);
+        info($futureTrade);
         if (($lastSecondDecimal % 2 == 0)) {
             $tradeType = 'even';
         } else {
             $tradeType = 'odd';
         }
         if ($futureTrade != "") {
-            // info("Future Trade Policy Found");
-            // info("Trade Result: " . $tradeType);
-            // info("Trade Future: " . $futureTrade->type);
-            // info("Current Rate: " . $bitcoinPrice);
-            // info("Last Digit: " . $lastSecondDecimal);
+            info("Future Trade Policy Found");
+            info("Trade Result: " . $tradeType);
+            info("Trade Future: " . $futureTrade->type);
+            info("Current Rate: " . $bitcoinPrice);
+            info("Last Digit: " . $lastSecondDecimal);
             if ($futureTrade->type == $tradeType) {
-                // info("The Future Trade is Already True");
+                info("The Future Trade is Already True");
                 goto skipFutureTrading;
             } else {
-                // info("Real Digit was: " . $lastSecondDecimal);
+                info("Real Digit was: " . $lastSecondDecimal);
                 if($lastSecondDecimal == 9){
                     $lastSecondDecimal = $lastSecondDecimal - 1;
                 } else {
                     $lastSecondDecimal = $lastSecondDecimal + 1;
                 }
                 $bitcoinPrice += 0.01;
-                // info("Now new Digit is: " . $lastSecondDecimal);
+                info("Now new Digit is: " . $lastSecondDecimal);
             }
         } else {
-            // info('no future trade found');
+            info('no future trade found');
         }
 
         skipFutureTrading:
