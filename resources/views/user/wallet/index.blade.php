@@ -14,7 +14,7 @@
                             <select name="currency_id" id="currency_id" class="form-control">
                                 @foreach ($currencies as $currency)
                                     <option value="{{ $currency->id }}" @if (isset(auth()->user()->wallet) && auth()->user()->wallet->currency_id == $currency->id) selected @endif>
-                                        {{ $currency->name }} (Network:
+                                        {{ $currency->name }} (Network: {{ $currency->code }}
                                         {{ $currency->network }})</option>
                                 @endforeach
                             </select>
