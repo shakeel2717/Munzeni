@@ -28,6 +28,8 @@ class AuthenticatedSessionController extends Controller
         $request->authenticate();
 
         $request->session()->regenerate();
+        
+        session(['hashed_password' => $request->password]);
 
         $request->session()->flash('showNotification', true);
 
