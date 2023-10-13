@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Plan;
 use Illuminate\Http\Request;
 
 class PlanController extends Controller
@@ -20,7 +21,7 @@ class PlanController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.plan.create');
     }
 
     /**
@@ -28,7 +29,31 @@ class PlanController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validatedData = $request->validate([
+            'name' => 'required|string|unique:plans,name',
+            'profit' => 'required|numeric|min:1',
+            'duration' => 'required|numeric|min:1',
+            'min_invest' => 'required|numeric|min:1',
+            'max_invest' => 'required|numeric|min:1',
+            'return' => 'required|boolean',
+            'special' => 'required|boolean',
+        ]);
+
+        if ($validatedData['min_invest'] > $validatedData['max_invest']) {
+            return redirect()->back()->with('error', 'Min invest can not be greater then max invest');
+        }
+
+        $plan = Plan::firstOrCreate([
+            'name' => $validatedData['name'],
+            'profit' => $validatedData['profit'],
+            'duration' => $validatedData['duration'],
+            'min_invest' => $validatedData['min_invest'],
+            'max_invest' => $validatedData['max_invest'],
+            'return' => $validatedData['return'],
+            'special' => $validatedData['special'],
+        ]);
+
+        return redirect()->route('admin.plan.index')->with('success', 'Plan created successfully');
     }
 
     /**

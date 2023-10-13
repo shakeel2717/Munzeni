@@ -56,6 +56,15 @@ class PlanController extends Controller
             return back()->withErrors(['Min amount to invest ' . $plan->min_invest . ' and max amount: ' . $plan->max_invest]);
         }
 
+        // checking if this plan is special and user already active this plan before
+
+        if ($plan->special) {
+            $checkSpecialPlan = UserPlan::where('user_id', auth()->user()->id)->where('plan_id', $plan->id)->count();
+            if ($checkSpecialPlan > 0) {
+                return back()->withErrors(['You cannot activate this plan more than once.']);
+            }
+        }
+
         $amount = $validatedData['amount'];
         $plan_active_fees = settings('plan_active_fees');
 
