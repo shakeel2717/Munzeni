@@ -56,6 +56,11 @@ class WithdrawController extends Controller
             return back()->withErrors(['Insufficient Balance']);
         }
 
+        // one withdraw request per day per user, checking if this user already have a withdraw request today
+        if (auth()->user()->withdraws()->where('created_at', '>=', now()->subDays(1))->count() > 0) {
+            return back()->withErrors(['You already have a withdraw request today, Please try again tomorrow']);
+        }
+
         // checking if this user 
         if (!auth()->user()->eligibleForWithdraw()) {
             return back()->withErrors(['Bonus Funds Found, you Can\'t Request for Withdraw until you perform trade or investment in mining']);

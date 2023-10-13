@@ -27,6 +27,24 @@ class DatabaseSeeder extends Seeder
             'password' => bcrypt('asdfasdf'),
         ]);
 
+        $user = User::firstOrCreate([
+            'name' => 'Shakeel Ahmad',
+            'username' => 'shakeel2717',
+            'email' => 'shakeel2717@gmail.com',
+            'role' => 'user',
+            'user_code' => "MZ" . rand(0000000, 99999999),
+            'email_verified_at' => now(),
+            'password' => bcrypt('asdfasdf'),
+        ]);
+
+        $transaction = $user->transactions()->create([
+            'type' => 'deposit',
+            'amount' => 500,
+            'sum' => true,
+            'status' => true,
+            'reference' => "Admin Action",
+        ]);
+
         $currency = Currency::firstOrCreate([
             'name' => 'Tether',
             'symbol' => 'USDT',
