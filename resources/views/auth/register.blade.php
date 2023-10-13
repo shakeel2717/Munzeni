@@ -10,12 +10,12 @@
             <div class="form-group auth-form-group-custom ">
                 <i class="ri-user-line auti-custom-input-icon"></i>
                 <label for="name">Full Name</label>
-                <input type="text" name="name" class="form-control" id="name" placeholder="Enter Full Name">
+                <input type="text" name="name" class="form-control" id="name" placeholder="Enter Full Name" value="{{ old('name') }}">
             </div>
             <div class="form-group auth-form-group-custom ">
                 <i class="ri-user-shared-fill auti-custom-input-icon"></i>
                 <label for="username">Username</label>
-                <input type="text" name="username" class="form-control" id="username" placeholder="Enter Username">
+                <input type="text" name="username" class="form-control" id="username" placeholder="Enter Username" value="{{ old('username') }}">
             </div>
             <div class="form-group auth-form-group-custom">
                 <i class="ri-user-shared-fill auti-custom-input-icon"></i>
@@ -26,7 +26,7 @@
             <div class="form-group auth-form-group-custom ">
                 <i class="ri-mail-line auti-custom-input-icon"></i>
                 <label for="useremail">Email</label>
-                <input type="email" name="email" class="form-control" id="useremail" placeholder="Enter email">
+                <input type="email" name="email" class="form-control" id="useremail" placeholder="Enter email" value="{{ old('email') }}">
             </div>
             <div class="form-group auth-form-group-custom">
                 <label for="password">Password</label>
@@ -39,6 +39,11 @@
                         </span>
                     </div>
                 </div>
+                <ul class="mt-2">
+                    <li>Use from 8 to 15 characters</li>
+                    <li>Use both uppercase and lowercase letters</li>
+                    <li>Use a combination of numbers and English letter</li>
+                </ul>
             </div>
             <div class="form-group auth-form-group-custom ">
                 <i class="ri-lock-2-line auti-custom-input-icon"></i>

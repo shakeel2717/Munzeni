@@ -13,11 +13,17 @@
                 <i class="ri-lock-2-line auti-custom-input-icon"></i>
                 <label for="password">New Password</label>
                 <input type="password" name="password" class="form-control" id="password" placeholder="Enter password">
+                <ul class="mt-2">
+                    <li>Use from 8 to 15 characters</li>
+                    <li>Use both uppercase and lowercase letters</li>
+                    <li>Use a combination of numbers and English letter</li>
+                </ul>
             </div>
             <div class="form-group auth-form-group-custom mb-4">
                 <i class="ri-lock-2-line auti-custom-input-icon"></i>
                 <label for="password_confirmation">Confirm New Password</label>
-                <input type="password" name="password_confirmation" class="form-control" id="password_confirmation" placeholder="Enter password">
+                <input type="password" name="password_confirmation" class="form-control" id="password_confirmation"
+                    placeholder="Enter password">
             </div>
             <div class="text-center">
                 <button class="btn btn-primary w-md waves-effect waves-light" type="submit">Email Password Reset

@@ -35,6 +35,15 @@ class NewPasswordController extends Controller
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
         ]);
 
+        $password = $request->password;
+        $uppercase = preg_match('@[A-Z]@', $password);
+        $lowercase = preg_match('@[a-z]@', $password);
+        $number    = preg_match('@[0-9]@', $password);
+
+        if (!$uppercase || !$lowercase || !$number || strlen($password) < 8 || strlen($password) > 15) {
+            return back()->withErrors(['Password must be 8 to 15 characters and must contain at least one lowercase letter, one uppercase letter, one numeric digit, and one special character.']);
+        }
+
         // Here we will attempt to reset the user's password. If it is successful we
         // will update the password on an actual user model and persist it to the
         // database. Otherwise we will parse the error and return the response.
