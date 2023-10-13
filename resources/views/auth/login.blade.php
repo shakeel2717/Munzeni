@@ -1,7 +1,7 @@
 @extends('layouts.auth')
 @section('form')
     <div class="text-center">
-        <h4 class="font-size-18 mt-4">Register account</h4>
+        <h4 class="font-size-18 mt-4">Sign In</h4>
         <p class="text-muted">Get access to your {{ env('APP_NAME') }} account now.</p>
     </div>
     <div class="p-2 mt-5">
@@ -9,8 +9,8 @@
             @csrf
             <div class="form-group auth-form-group-custom mb-4">
                 <i class="ri-user-shared-fill auti-custom-input-icon"></i>
-                <label for="username">Username</label>
-                <input type="text" name="username" class="form-control" id="username" placeholder="Enter Username">
+                <label for="username">Username or Email</label>
+                <input type="text" name="username" class="form-control" id="username" placeholder="Enter Username or Email">
             </div>
             <div class="form-group auth-form-group-custom mb-4">
                 <i class="ri-lock-2-line auti-custom-input-icon"></i>
