@@ -192,6 +192,14 @@ class DatabaseSeeder extends Seeder
             provide better solutions)',
         ]);
 
+        $plan = Plan::firstOrCreate([
+            'name' => 'Trial',
+            'profit' => 4,
+            'duration' => 1,
+            'min_invest' => 1,
+            'max_invest' => 10000000,
+            'return' => true,
+        ]);
 
         $plan = Plan::firstOrCreate([
             'name' => 'Basic',
