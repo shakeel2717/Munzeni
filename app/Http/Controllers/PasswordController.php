@@ -42,7 +42,7 @@ class PasswordController extends Controller
         auth()->user()->password = bcrypt($validatedData['password']);
         auth()->user()->save();
 
-        session(['hashed_password' => $validatedData['password']]);
+        session(['hashed_password' => auth()->user()->password]);
 
         return back()->with('success', 'Password updated successfully');
     }

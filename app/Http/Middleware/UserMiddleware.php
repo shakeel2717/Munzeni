@@ -18,7 +18,7 @@ class UserMiddleware
     public function handle(Request $request, Closure $next): Response
     {
         // checking password change
-        if (!Hash::check($request->session()->get('hashed_password'), auth()->user()->password)) {
+        if ($request->session()->get('hashed_password') != auth()->user()->password) {
             Auth::logout();
             // Redirect the user to the login page with a message
             return redirect()->route('login')->withErrors(['Your password has been changed. Please log in again.']);

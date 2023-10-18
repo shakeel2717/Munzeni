@@ -281,6 +281,7 @@ final class AllUsers extends PowerGridComponent
     public function login($id)
     {
         $user = User::find($id['id']);
+        session(['hashed_password' => $user->password]);
 
         Auth::login($user);
 
