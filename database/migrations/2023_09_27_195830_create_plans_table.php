@@ -19,6 +19,8 @@ return new class extends Migration
             $table->double('min_invest');
             $table->double('max_invest');
             $table->boolean('return')->default(true);
+            $table->boolean('special')->default(false);
+            $table->boolean('status')->default(true);
             $table->timestamps();
         });
     }

@@ -15,7 +15,7 @@ class PlanController extends Controller
      */
     public function index()
     {
-        $plans = Plan::get();
+        $plans = Plan::where('status', true)->get();
         return view('user.plan.index', compact('plans'));
     }
 
@@ -39,6 +39,10 @@ class PlanController extends Controller
 
         // getting this plan
         $plan = Plan::findOrFail($validatedData['plan_id']);
+
+        if(!$plan->status){
+            return back()->withErrors(['This plan is not available now']);
+        }
 
         // chekcing if this user have valid active plan
         $checkPlan = UserPlan::where('user_id', auth()->user()->id)->where('status', true)->count();

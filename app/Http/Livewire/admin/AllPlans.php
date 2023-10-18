@@ -189,32 +189,47 @@ final class AllPlans extends PowerGridComponent
      * @return array<int, Button>
      */
 
-    //  public function actions(): array
-    //  {
-    //      return [
-    //          Button::make('delete', 'Delete')
-    //              ->class('btn btn-danger btn-sm')
-    //              ->emit('delete', ['id' => 'id']),
-    //      ];
-    //  }
+    public function actions(): array
+    {
+        return [
+            Button::make('deactive', 'Deactivate')
+                ->class('btn btn-danger btn-sm')
+                ->emit('deactive', ['id' => 'id']),
 
-    //  protected function getListeners(): array
-    //  {
-    //      return array_merge(
-    //          parent::getListeners(),
-    //          [
-    //              'delete'   => 'delete',
-    //          ]
-    //      );
-    //  }
+            Button::make('activate', 'Activate')
+                ->class('btn btn-primary btn-sm')
+                ->emit('activate', ['id' => 'id']),
+        ];
+    }
 
-    //  public function delete($id)
-    //  {
-    //      $user = Plan::find($id['id']);
-    //      $user->delete();
+    protected function getListeners(): array
+    {
+        return array_merge(
+            parent::getListeners(),
+            [
+                'deactive'   => 'deactive',
+                'activate'   => 'activate',
+            ]
+        );
+    }
 
-    //      $this->dispatchBrowserEvent('showAlert', ['message' => 'Future Trade Deleted Successfully']);
-    //  }
+    public function deactive($id)
+    {
+        $user = Plan::find($id['id']);
+        $user->status = false;
+        $user->save();
+
+        $this->dispatchBrowserEvent('showAlert', ['message' => 'Plan Deactivated Successfully']);
+    }
+
+    public function activate($id)
+    {
+        $user = Plan::find($id['id']);
+        $user->status = true;
+        $user->save();
+
+        $this->dispatchBrowserEvent('showAlert', ['message' => 'Plan Activated Successfully']);
+    }
 
     /*
     |--------------------------------------------------------------------------
@@ -230,16 +245,19 @@ final class AllPlans extends PowerGridComponent
      * @return array<int, RuleActions>
      */
 
-    /*
+
     public function actionRules(): array
     {
-       return [
+        return [
 
-           //Hide button edit for ID 1
-            Rule::button('edit')
-                ->when(fn($plan) => $plan->id === 1)
+            //Hide button edit for ID 1
+            Rule::button('deactive')
+                ->when(fn ($plan) => $plan->status == false)
+                ->hide(),
+
+            Rule::button('activate')
+                ->when(fn ($plan) => $plan->status == true)
                 ->hide(),
         ];
     }
-    */
 }
