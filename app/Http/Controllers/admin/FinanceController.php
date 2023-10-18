@@ -31,16 +31,28 @@ class FinanceController extends Controller
     {
         $validatedData = $request->validate([
             'username' => 'required|string|exists:users',
-            'amount' => 'required|numeric|digits_between:1,999999',
+            'amount' => 'required|numeric',
         ]);
 
         $user = User::where('username',$validatedData['username'])->firstOrFail();
 
+        // checking if this money will plus or negtive
+        if($validatedData['amount'] < 0){
+            $validatedData['amount'] = str_replace('-','',$validatedData['amount']);
+            $type = 'Balance Adjust';
+            $sum = false;
+        } else {
+            // amount is -500, remove - from the amount
+            $validatedData['amount'] = str_replace('-','',$validatedData['amount']);
+            $type = 'Deposit';
+            $sum = true;
+        }
+
         // adding balance to this user
         $transaction = $user->transactions()->create([
-            'type' => 'deposit',
+            'type' => $type,
             'amount' => $validatedData['amount'],
-            'sum' => true,
+            'sum' => $sum,
             'status' => true,
             'reference' => "Admin Action",
         ]);
