@@ -261,7 +261,7 @@
                                         wire:click="$set('OneMiBox', 'assist')">Assist</a>
                                 </div>
                             </div>
-                            <div class="col-md-9">
+                            <div class="col-md-9" style="overflow: scroll;">
                                 <div class="tab-content text-muted mt-4 mt-md-0" id="v-pills-tabContent">
                                     <div class="tab-pane fade {{ $OneMiBox == 'mytrades' ? 'show active' : '' }}"
                                         id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab">
@@ -321,7 +321,7 @@
                                     </div>
                                     <div class="tab-pane fade {{ $OneMiBox == 'assist' ? 'show active' : '' }}"
                                         id="v-pills-assist" role="tabpanel" aria-labelledby="v-pills-assists-tab">
-                                        <table class="table table-dark">
+                                        <table class="table table-dark table-responsive">
                                             <thead>
                                                 <tr>
                                                     <th>Time</th>
@@ -519,7 +519,7 @@
                                             wire:click="$set('FiveMiBox', 'assist')">Assist</a>
                                     </div>
                                 </div>
-                                <div class="col-md-9">
+                                <div class="col-md-9" style="overflow: scroll;">
                                     <div class="tab-content text-muted mt-4 mt-md-0" id="v-pills-tabContent">
                                         <div class="tab-pane fade {{ $FiveMiBox == 'mytrades' ? 'show active' : '' }}"
                                             id="my-one-trade" role="tabpanel" aria-labelledby="my-one-trade-tab">
