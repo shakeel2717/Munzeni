@@ -139,6 +139,11 @@ class DatabaseSeeder extends Seeder
             'value' => 'https://telegram.org/',
         ]);
 
+        $setting = Setting::firstOrCreate([
+            'key' => 'app_download_link',
+            'value' => 'https://google.com/',
+        ]);
+
 
         $setting = Setting::firstOrCreate([
             'key' => 'telegram_link',

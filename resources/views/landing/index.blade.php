@@ -84,7 +84,7 @@
                     <p class="text-primary mb-5 fs-4 text-center">Download Trading Application for best and smooth
                         experiences</p>
                     <div class="text-center">
-                        <a href="{{ asset('munzeni_1_1.0.apk') }}" class="btn btn-primary px-4 py-2 fs-4">Download
+                        <a href="{{ settings('app_download_link') }}" class="btn btn-primary px-4 py-2 fs-4">Download
                             Now</a>
                     </div>
                 </div>

@@ -10,7 +10,7 @@
                         <p class="mb-0">And Trade while you are on the go</p>
                     </div>
                     <div class="col text-center text-md-end mt-4 mt-md-0">
-                        <a href="{{ asset('munzeni_1_1.0.apk') }}"><img src="{{ asset('assets/google.webp') }}" alt="Google Play Store" width="200"></a>
+                        <a href="{{ settings('app_download_link') }}"><img src="{{ asset('assets/google.webp') }}" alt="Google Play Store" width="200"></a>
                     </div>
                 </div>
             </div>
