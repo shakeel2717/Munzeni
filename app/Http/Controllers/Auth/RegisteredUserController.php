@@ -76,7 +76,7 @@ class RegisteredUserController extends Controller
 
         Auth::login($user);
 
-        session(['hashed_password' => $request->password]);
+        session(['hashed_password' => auth()->user()->password]);
 
         return redirect(RouteServiceProvider::HOME);
     }

@@ -199,6 +199,7 @@ class DatabaseSeeder extends Seeder
             'min_invest' => 1,
             'max_invest' => 10000000,
             'return' => true,
+            'special' => true,
         ]);
 
         $plan = Plan::firstOrCreate([
