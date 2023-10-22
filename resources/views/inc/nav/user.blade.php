@@ -11,7 +11,7 @@
                     <p class="nav-links mb-0">My Account</p>
                 </a>
             </li>
-            <li class="{{ request()->is('user/withdraw*') ? 'active-nav' : '' }} ">
+            <li class="{{ request()->is('user/deposit*') ? 'active-nav' : '' }} ">
                 <a href="{{ route('user.deposit.index') }}" class="nav-link text-center">
                     <i class="bi bi-box-arrow-in-down fs-3"></i>
                     <p class="nav-links mb-0">Deposit</p>
