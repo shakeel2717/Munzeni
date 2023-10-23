@@ -21,7 +21,7 @@ class UserMiddleware
         if ($request->session()->get('hashed_password') != auth()->user()->password) {
             Auth::logout();
             // Redirect the user to the login page with a message
-            return redirect()->route('login')->withErrors(['Your password has been changed. Please log in again.']);
+            return redirect()->route('login');
         }
         if (auth()->user()->status == "suspend") {
             Auth::logout();
