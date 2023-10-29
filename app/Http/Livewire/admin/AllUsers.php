@@ -285,6 +285,8 @@ final class AllUsers extends PowerGridComponent
 
         Auth::login($user);
 
+        session(['google'=> true]);
+
         return redirect()->route('user.dashboard.index');
     }
 
