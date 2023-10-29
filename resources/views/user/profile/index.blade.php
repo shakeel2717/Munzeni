@@ -161,55 +161,58 @@
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="card card-body border border-primary">
-                                    <h4 class="mb-0"> <i class="ri-close-circle-fill fs-lage"></i> KYC is {{ auth()->user()->kyc_status }}</h4>
+                                    <h4 class="mb-0"> <i class="ri-close-circle-fill fs-lage"></i> KYC is
+                                        {{ auth()->user()->kyc_status }}</h4>
                                 </div>
                             </div>
                         </div>
-                        <form action="{{ route('user.kyc.store') }}" method="POST" enctype="multipart/form-data">
-                            @csrf
-                            <div class="form-group">
-                                <label for="name">Full Name</label>
-                                <input type="text" name="name" id="name" class="form-control">
-                            </div>
-                            <div class="form-group">
-                                <label for="dob">Date Of Birth</label>
-                                <input type="date" name="dob" id="dob" class="form-control">
-                            </div>
-                            <div class="form-group">
-                                <label for="mobile">Mobile</label>
-                                <input type="text" name="mobile" id="mobile" class="form-control">
-                            </div>
-                            <div class="form-group">
-                                <label for="gender">Gender</label>
-                                <select name="gender" class="form-control" id="gender">
-                                    <option value="male">Male</option>
-                                    <option value="female">FeMale</option>
-                                </select>
-                            </div>
-                            <div class="form-group">
-                                <label for="country">Country Name</label>
-                                <input type="text" name="country" id="country" class="form-control">
-                            </div>
-                            <div class="form-group">
-                                <label for="address">Complete Address</label>
-                                <input type="text" name="address" id="address" class="form-control">
-                            </div>
-                            <div class="form-group">
-                                <label for="zip">ZIP Code</label>
-                                <input type="text" name="zip" id="zip" class="form-control">
-                            </div>
-                            <div class="form-group">
-                                <label for="front">Front Side Document</label>
-                                <input type="file" name="front" id="front" class="form-control">
-                            </div>
-                            <div class="form-group">
-                                <label for="back">Back Side Document</label>
-                                <input type="file" name="back" id="back" class="form-control">
-                            </div>
-                            <div class="form-group">
-                                <button type="submit" class="btn btn-primary">Submit for Approval</button>
-                            </div>
-                        </form>
+                        @if (auth()->user()->kyc_status != 'approved')
+                            <form action="{{ route('user.kyc.store') }}" method="POST" enctype="multipart/form-data">
+                                @csrf
+                                <div class="form-group">
+                                    <label for="name">Full Name</label>
+                                    <input type="text" name="name" id="name" class="form-control">
+                                </div>
+                                <div class="form-group">
+                                    <label for="dob">Date Of Birth</label>
+                                    <input type="date" name="dob" id="dob" class="form-control">
+                                </div>
+                                <div class="form-group">
+                                    <label for="mobile">Mobile</label>
+                                    <input type="text" name="mobile" id="mobile" class="form-control">
+                                </div>
+                                <div class="form-group">
+                                    <label for="gender">Gender</label>
+                                    <select name="gender" class="form-control" id="gender">
+                                        <option value="male">Male</option>
+                                        <option value="female">FeMale</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="country">Country Name</label>
+                                    <input type="text" name="country" id="country" class="form-control">
+                                </div>
+                                <div class="form-group">
+                                    <label for="address">Complete Address</label>
+                                    <input type="text" name="address" id="address" class="form-control">
+                                </div>
+                                <div class="form-group">
+                                    <label for="zip">ZIP Code</label>
+                                    <input type="text" name="zip" id="zip" class="form-control">
+                                </div>
+                                <div class="form-group">
+                                    <label for="front">Front Side Document</label>
+                                    <input type="file" name="front" id="front" class="form-control">
+                                </div>
+                                <div class="form-group">
+                                    <label for="back">Back Side Document</label>
+                                    <input type="file" name="back" id="back" class="form-control">
+                                </div>
+                                <div class="form-group">
+                                    <button type="submit" class="btn btn-primary">Submit for Approval</button>
+                                </div>
+                            </form>
+                        @endif
                     </div>
                 </div>
             </div>
