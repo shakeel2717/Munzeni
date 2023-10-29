@@ -14,7 +14,7 @@
 </head>
 
 <body>
-    <nav class="d-flex justify-content-between p-4 position-fixed top-0 bg-dark w-100">
+    <nav class="d-flex justify-content-between p-4 position-fixed top-0 bg-dark w-100" style="z-index: 999">
         <div class="brand">
             <a href="{{ route('index') }}"><img src="{{ asset('logo-light.png') }}" alt="{{ env('APP_NAME') }}"></a>
         </div>
