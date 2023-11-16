@@ -5,6 +5,7 @@ namespace App\Console\Commands;
 use App\Models\Tid;
 use App\Models\Transaction;
 use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Http;
 
@@ -34,7 +35,10 @@ class BinanceDeposit extends Command
         $timestamp = round(microtime(true) * 1000);
 
         // finding pending tid
-        $tids = Tid::where('status', false)->get();
+        $fourHoursAgo = Carbon::now()->subHours(4);
+        $tids = Tid::where('status', false)
+            ->where('created_at', '>=', $fourHoursAgo)
+            ->get();
         foreach ($tids as $tid) {
             $params = [
                 'timestamp' => $timestamp,
@@ -71,33 +75,38 @@ class BinanceDeposit extends Command
 
             // adding Transaction to user balance
             $user = User::find($tid->user_id);
-            $transaction = $user->transactions()->create([
-                'type' => 'deposit',
-                'amount' => $finalAmount,
-                'sum' => true,
-                'status' => true,
-                'reference' => "Deposit Approved, TxId: " . $tid->hash_id,
-            ]);
+            // checking if this amount is less then min deposit amount
+            if ($finalAmount >= settings('min_deposit')) {
+                $transaction = $user->transactions()->create([
+                    'type' => 'deposit',
+                    'amount' => $finalAmount,
+                    'sum' => true,
+                    'status' => true,
+                    'reference' => "Deposit Approved, TxId: " . $tid->hash_id,
+                ]);
 
-            if (settings('first_deposit_bonus') > 0) {
-                // checking if this is first deposit if this user
-                $checkDeposit = Transaction::where('user_id', $user->id)->where('type', 'deposit')->count();
-                if ($checkDeposit <= 1) {
-                    $bonus = settings('first_deposit_bonus');
+                if (settings('first_deposit_bonus') > 0) {
+                    // checking if this is first deposit if this user
+                    $checkDeposit = Transaction::where('user_id', $user->id)->where('type', 'deposit')->count();
+                    if ($checkDeposit <= 1) {
+                        $bonus = settings('first_deposit_bonus');
 
-                    // eligible for bonus
-                    $transaction = $user->transactions()->create([
-                        'type' => 'deposit bonus',
-                        'amount' => $finalAmount * $bonus / 100,
-                        'sum' => true,
-                        'status' => true,
-                        'reference' => "Deposit Bonus",
-                    ]);
-					info("Deposit Bonus Added");
+                        // eligible for bonus
+                        $transaction = $user->transactions()->create([
+                            'type' => 'deposit bonus',
+                            'amount' => $finalAmount * $bonus / 100,
+                            'sum' => true,
+                            'status' => true,
+                            'reference' => "Deposit Bonus",
+                        ]);
+                        info("Deposit Bonus Added");
+                    }
                 }
-            }
 
-            info("Deposit Added");
+                info("Deposit Added");
+            } else {
+                info("Deposit is Less then Min Deposit Amount, Skipping");
+            }
 
             endThisTxLoop:
         }
