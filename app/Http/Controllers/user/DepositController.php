@@ -36,7 +36,7 @@ class DepositController extends Controller
 
         // checking if deposit amount is enough
         if ($validatedData['amount'] < settings('min_deposit')) {
-            return back()->withErrors(['Minimum Withdrawal Limit is: ' . settings('min_deposit')]);
+            return back()->withErrors(['Minimum Deposit Limit is: ' . settings('min_deposit')]);
         }
         $wallet = settings('binance_usdt_deposit_address');
         return view('user.deposit.address', compact('wallet', 'validatedData'));
