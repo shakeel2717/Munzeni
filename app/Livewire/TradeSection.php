@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Livewire;
+namespace App\Livewire;
 
 use App\Events\UserInvestInTrading;
 use App\Models\TradeHistory;
@@ -21,7 +21,7 @@ class TradeSection extends Component
 
     public $showEvenNumbers = true;
     public $showOddNumbers = false;
-    public $amount = 0;
+    public int $amount = 0;
     public $bitcoinPrice;
     public $type;
     public $timestamp;
@@ -102,7 +102,7 @@ class TradeSection extends Component
     {
         // checking if available balance is enough
         if (auth()->user()->getBalance() < floatval($this->amount)) {
-            $this->dispatchBrowserEvent('showAlertError', ['message' => 'Insufficient Balance']);
+            $this->dispatch('showAlertError', ['message' => 'Insufficient Balance']);
             $this->resetAll();
             return;
         }
@@ -131,7 +131,7 @@ class TradeSection extends Component
         $this->resetAll();
         $this->fetchLiveRate();
 
-        $this->dispatchBrowserEvent('showAlert', ['message' => 'Invested Successfully']);
+        $this->dispatch('showAlert', ['message' => 'Invested Successfully']);
     }
 
     public function resetAll()

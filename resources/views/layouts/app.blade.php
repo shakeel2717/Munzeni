@@ -49,9 +49,9 @@
                             <li><a class="dropdown-item"
                                     href="{{ route('user.profile.index', ['tab' => 'password']) }}">Change Password</a>
                             </li>
-                            <li><a class="dropdown-item" href="{{ route('user.profile.index', ['tab' => 'kyc']) }}">KYC
+                            {{-- <li><a class="dropdown-item" href="{{ route('user.profile.index', ['tab' => 'kyc']) }}">KYC
                                     Verification</a>
-                            </li>
+                            </li> --}}
                             <li>
                                 <hr class="dropdown-divider">
                             </li>
@@ -66,7 +66,7 @@
             </ul>
         </div>
     </section>
-    @if (!auth()->user()->authenticator)
+    {{-- @if (!auth()->user()->authenticator)
         <section class="p-3 shadow-sm bg-secondary">
             <div class="container text-white d-flex justify-content-between align-items-center">
                 <div class="profile-section text-white d-flex align-items-center gap-3">
@@ -79,7 +79,7 @@
                 </div>
             </div>
         </section>
-    @endif
+    @endif --}}
     <section>
         <nav class="d-block d-md-none position-fixed bottom-0 bg-dark w-100 left-0 p-2" style="z-index: 10">
             <ul class="list-unstyled d-flex px-2 justify-content-between align-items-center mb-0">

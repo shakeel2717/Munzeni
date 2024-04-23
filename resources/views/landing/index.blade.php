@@ -96,9 +96,9 @@
             <div class="row">
                 <div class="col-md-6 py-4">
                     <h1 class="mb-5  text-white display-2 fw-bold">About {{ env('APP_NAME') }}</h1>
-                    <p class="text-primary mb-5 fs-4 ">Welcome to Munzeni - The Future</p>
+                    <p class="text-primary mb-5 fs-4 ">Welcome to {{ env('APP_NAME') }} - The Future</p>
                     <p class="text-white">
-                        At Munzeni, we are pioneering the future of financial growth and sustainability from the heart
+                        At {{ env('APP_NAME') }}, we are pioneering the future of financial growth and sustainability from the heart
                         of Asia, Singapore. As a premier binary trading website, mining, and investment company, we
                         combine cutting-edge technology with ethical practices to redefine the landscape of finance.
                     </p>
@@ -156,7 +156,7 @@
                         </li>
                     </ul>
                     <p class="text-white">
-                        Join us at Munzeni as we embark on a journey of innovation, sustainability, and growth.
+                        Join us at {{ env('APP_NAME') }} as we embark on a journey of innovation, sustainability, and growth.
                         Together, let's shape a future where financial success is harmonized with environmental
                         consciousness and societal well-being.
                     </p>
@@ -180,9 +180,9 @@
                 <div class="col-md-8">
                     <div class="card card-body p-5 mt-5 w-100">
                         <h1 class="mb-5  text-white display-2 fw-bold">Why Choose Us</h1>
-                        <p class="text-primary mb-5 fs-4 ">Why Choice Munzeni??</p>
+                        <p class="text-primary mb-5 fs-4 ">Why Choice {{ env('APP_NAME') }}??</p>
                         <p class="text-white">
-                            At Munzeni, we invite you to choose us as your trusted partner on a journey towards a
+                            At {{ env('APP_NAME') }}, we invite you to choose us as your trusted partner on a journey towards a
                             brighter
                             future. As we evolve into a world-class corporation, our unwavering commitment to
                             sustainability, health, and excellence sets us apart.

@@ -6,7 +6,7 @@
             <div class="card card-body shadow-sm border-0">
                 <div class="row">
                     <div class="col text-start">
-                        <h2>Download the Munzeni Mobile App</h2>
+                        <h2>Download the {{ env('APP_NAME') }} Mobile App</h2>
                         <p class="mb-0">And Trade while you are on the go</p>
                     </div>
                     <div class="col text-center text-md-end mt-4 mt-md-0">

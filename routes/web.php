@@ -17,21 +17,21 @@ use Illuminate\Support\Facades\Route;
 
 
 Route::resource('/', LandingPageController::class);
-Route::get('/google/code', [GoogleAuthenticatorController::class, 'code'])->name('user.google.code');
-Route::post('/google/code', [GoogleAuthenticatorController::class, 'codeReq'])->name('user.google.code.req');
-Route::prefix('user/')->name('user.')->middleware('auth', 'verified', 'user', 'google')->group(function () {
+// Route::get('/google/code', [GoogleAuthenticatorController::class, 'code'])->name('user.google.code');
+// Route::post('/google/code', [GoogleAuthenticatorController::class, 'codeReq'])->name('user.google.code.req');
+Route::prefix('user/')->name('user.')->middleware('auth', 'verified', 'user',)->group(function () {
     Route::resource('/dashboard', DashboardController::class);
     Route::resource('/withdraw', WithdrawController::class);
     Route::resource('/wallet', WalletController::class);
     Route::resource('/plan', PlanController::class);
     Route::post('/deposit/verify', [DepositController::class, 'verify'])->name('deposit.verify');
     Route::resource('/deposit', DepositController::class);
-    Route::resource('/kyc', KycController::class);
+    // Route::resource('/kyc', KycController::class);
     Route::resource('/profile', ProfileController::class);
     Route::resource('/referral', ReferralController::class);
     Route::resource('/password', PasswordController::class);
-    Route::post('/google/deactivate', [GoogleAuthenticatorController::class, 'deactivate'])->name('google.deactivate');
-    Route::resource('/google', GoogleAuthenticatorController::class);
+    // Route::post('/google/deactivate', [GoogleAuthenticatorController::class, 'deactivate'])->name('google.deactivate');
+    // Route::resource('/google', GoogleAuthenticatorController::class);
     Route::resource('/trading', TradeController::class);
     Route::controller(HistoryController::class)->name('history.')->prefix('history/')->group(function () {
         Route::view('deposit', 'user.history.deposit')->name('deposits');

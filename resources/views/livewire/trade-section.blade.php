@@ -22,7 +22,7 @@
                         </div>
                         <!-- TradingView Widget END -->
                         <h5 class="card-title mt-4">Account Balance:
-                            ${{ number_format(auth()->user()->getBalance(),2) }}
+                            ${{ number_format(auth()->user()->getBalance(), 2) }}
                         </h5>
                     </div>
                     {{-- <div class="right-spinner">
@@ -115,37 +115,45 @@
                                                 <div class="row mb-2">
                                                     <div class="col">
                                                         <span wire:click.prevent="$set('amount', '1')"
-                                                            class="btn btn-primary btn-sm w-100 mt-2 mt-md-0">$1</span>
+                                                            class="btn btn-primary btn-sm w-100 mt-2 mt-md-0"
+                                                            onclick="document.getElementById('amount').value = '1';">$1</span>
                                                     </div>
                                                     <div class="col">
                                                         <span wire:click="$set('amount', '5')"
-                                                            class="btn btn-primary btn-sm w-100 mt-2 mt-md-0">$5</span>
+                                                            class="btn btn-primary btn-sm w-100 mt-2 mt-md-0"
+                                                            onclick="document.getElementById('amount').value = '5';">$5</span>
                                                     </div>
                                                     <div class="col">
                                                         <span wire:click="$set('amount', '10')"
-                                                            class="btn btn-primary btn-sm w-100 mt-2 mt-md-0">$10</span>
+                                                            class="btn btn-primary btn-sm w-100 mt-2 mt-md-0"
+                                                            onclick="document.getElementById('amount').value = '10';">$10</span>
                                                     </div>
                                                     <div class="col">
                                                         <span wire:click="$set('amount', '25')"
-                                                            class="btn btn-primary btn-sm w-100 mt-2 mt-md-0">$25</span>
+                                                            class="btn btn-primary btn-sm w-100 mt-2 mt-md-0"
+                                                            onclick="document.getElementById('amount').value = '25';">$25</span>
                                                     </div>
                                                 </div>
                                                 <div class="row mb-2">
                                                     <div class="col">
                                                         <span wire:click="$set('amount', '50')"
-                                                            class="btn btn-primary btn-sm w-100 mt-2 mt-md-0">$50</span>
+                                                            class="btn btn-primary btn-sm w-100 mt-2 mt-md-0"
+                                                            onclick="document.getElementById('amount').value = '50';">$50</span>
                                                     </div>
                                                     <div class="col">
                                                         <span wire:click="$set('amount', '100')"
-                                                            class="btn btn-primary btn-sm w-100 mt-2 mt-md-0">$100</span>
+                                                            class="btn btn-primary btn-sm w-100 mt-2 mt-md-0"
+                                                            onclick="document.getElementById('amount').value = '100';">$100</span>
                                                     </div>
                                                     <div class="col">
                                                         <span wire:click="$set('amount', '500')"
-                                                            class="btn btn-primary btn-sm w-100 mt-2 mt-md-0">$500</span>
+                                                            class="btn btn-primary btn-sm w-100 mt-2 mt-md-0"
+                                                            onclick="document.getElementById('amount').value = '500';">$500</span>
                                                     </div>
                                                     <div class="col">
                                                         <span wire:click="$set('amount', '1000')"
-                                                            class="btn btn-primary btn-sm w-100 mt-2 mt-md-0">$1000</span>
+                                                            class="btn btn-primary btn-sm w-100 mt-2 mt-md-0"
+                                                            onclick="document.getElementById('amount').value = '1000';">$1000</span>
                                                     </div>
                                                 </div>
                                             </div>
@@ -225,9 +233,18 @@
                                                 @endif
                                                 <div class="row">
                                                     <div class="col-md-12">
-                                                        <h4 class="d-flex align-items-center gap-2">Total: <span
-                                                                class="text-primary">
-                                                                ${{ number_format($amount ?? 0, 2) }}</span></h4>
+                                                        <h4 class="d-flex align-items-center gap-2">
+                                                            Total:
+                                                            <span class="text-primary">
+                                                                ${{ number_format($amount ?? 0, 2) }}
+                                                            </span>
+                                                        </h4>
+                                                        <h4 class="d-flex align-items-center gap-2">
+                                                            Type:
+                                                            <span class="text-primary">
+                                                                {{ ucfirst($type) }}
+                                                            </span>
+                                                        </h4>
                                                     </div>
                                                 </div>
                                                 <div class="row">
@@ -362,43 +379,43 @@
                                                     <hr>
                                                     <div class="form-group mb-2">
                                                         <label for="amount">Invest Amount</label>
-                                                        <input type="text" wire:model="amount" id="amount"
-                                                            class="form-control" placeholder="Invest Amount">
+                                                        <input type="text" wire:model.live="amount" id="amount"
+                                                            class="form-control fiveMinuteInput" placeholder="Invest Amount">
                                                     </div>
                                                     <div class="row mb-2">
                                                         <div class="col">
                                                             <span wire:click.prevent="$set('amount', '1')"
-                                                                class="btn btn-primary btn-sm w-100 mt-2 mt-md-0">$1</span>
+                                                                class="btn btn-primary btn-sm w-100 mt-2 mt-md-0" onclick="document.querySelector('.fiveMinuteInput').value = '1';">$1</span>
                                                         </div>
                                                         <div class="col">
                                                             <span wire:click="$set('amount', '5')"
-                                                                class="btn btn-primary btn-sm w-100 mt-2 mt-md-0">$5</span>
+                                                                class="btn btn-primary btn-sm w-100 mt-2 mt-md-0" onclick="document.querySelector('.fiveMinuteInput').value = '5';">$5</span>
                                                         </div>
                                                         <div class="col">
                                                             <span wire:click="$set('amount', '10')"
-                                                                class="btn btn-primary btn-sm w-100 mt-2 mt-md-0">$10</span>
+                                                                class="btn btn-primary btn-sm w-100 mt-2 mt-md-0" onclick="document.querySelector('.fiveMinuteInput').value = '10';">$10</span>
                                                         </div>
                                                         <div class="col">
                                                             <span wire:click="$set('amount', '25')"
-                                                                class="btn btn-primary btn-sm w-100 mt-2 mt-md-0">$25</span>
+                                                                class="btn btn-primary btn-sm w-100 mt-2 mt-md-0" onclick="document.querySelector('.fiveMinuteInput').value = '25';">$25</span>
                                                         </div>
                                                     </div>
                                                     <div class="row mb-2">
                                                         <div class="col">
                                                             <span wire:click="$set('amount', '50')"
-                                                                class="btn btn-primary btn-sm w-100 mt-2 mt-md-0">$50</span>
+                                                                class="btn btn-primary btn-sm w-100 mt-2 mt-md-0" onclick="document.querySelector('.fiveMinuteInput').value = '50';">$50</span>
                                                         </div>
                                                         <div class="col">
                                                             <span wire:click="$set('amount', '100')"
-                                                                class="btn btn-primary btn-sm w-100 mt-2 mt-md-0">$100</span>
+                                                                class="btn btn-primary btn-sm w-100 mt-2 mt-md-0" onclick="document.querySelector('.fiveMinuteInput').value = '100';">$100</span>
                                                         </div>
                                                         <div class="col">
                                                             <span wire:click="$set('amount', '500')"
-                                                                class="btn btn-primary btn-sm w-100 mt-2 mt-md-0">$500</span>
+                                                                class="btn btn-primary btn-sm w-100 mt-2 mt-md-0" onclick="document.querySelector('.fiveMinuteInput').value = '500';">$500</span>
                                                         </div>
                                                         <div class="col">
                                                             <span wire:click="$set('amount', '1000')"
-                                                                class="btn btn-primary btn-sm w-100 mt-2 mt-md-0">$1000</span>
+                                                                class="btn btn-primary btn-sm w-100 mt-2 mt-md-0" onclick="document.querySelector('.fiveMinuteInput').value = '1000';">$1000</span>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -414,7 +431,7 @@
                                                             <div class="col-md-6">
                                                                 <label for="even"
                                                                     class="p-3 border border-primary rounded w-100">
-                                                                    <input type="radio"  class="form-check-input"
+                                                                    <input type="radio" class="form-check-input"
                                                                         wire:click="$set('type', 'even')"
                                                                         name="type" id="even" value="even">
                                                                     EVEN
@@ -423,7 +440,7 @@
                                                             <div class="col-md-6">
                                                                 <label for="odd"
                                                                     class="p-3 border border-primary rounded w-100">
-                                                                    <input type="radio"  class="form-check-input"
+                                                                    <input type="radio" class="form-check-input"
                                                                         wire:click="$set('type', 'odd')"
                                                                         name="type" id="odd" value="odd">
                                                                     ODD
@@ -478,9 +495,18 @@
                                                     @endif
                                                     <div class="row">
                                                         <div class="col-md-12">
-                                                            <h4 class="d-flex align-items-center gap-2">Total: <span
-                                                                    class="text-primary">
-                                                                    ${{ number_format($amount, 2) }}</span></h4>
+                                                            <h4 class="d-flex align-items-center gap-2">
+                                                                Total:
+                                                                <span class="text-primary">
+                                                                    ${{ number_format($amount ?? 0, 2) }}
+                                                                </span>
+                                                            </h4>
+                                                            <h4 class="d-flex align-items-center gap-2">
+                                                                Type:
+                                                                <span class="text-primary">
+                                                                    {{ ucfirst($type) }}
+                                                                </span>
+                                                            </h4>
                                                         </div>
                                                     </div>
                                                     <div class="row">

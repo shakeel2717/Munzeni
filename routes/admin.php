@@ -22,5 +22,5 @@ Route::prefix('admin/')->name('admin.')->middleware('auth', 'verified', 'admin')
     Route::resource('/finance', FinanceController::class);
     Route::resource('/trading', TradingController::class);
     Route::resource('/plan', PlanController::class);
-    Route::view('/kyc', 'admin.kyc.index')->name('kyc.index');
+    // Route::view('/kyc', 'admin.kyc.index')->name('kyc.index');
 });

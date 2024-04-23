@@ -1,31 +1,30 @@
 <?php
 
-namespace App\Http\Livewire\admin;
+namespace App\Livewire\Admin;
 
 use App\Models\Transaction;
 use App\Models\Withdraw;
 use Illuminate\Support\Carbon;
 use Illuminate\Database\Eloquent\Builder;
-use PowerComponents\LivewirePowerGrid\Rules\{Rule, RuleActions};
-use PowerComponents\LivewirePowerGrid\Traits\{ActionButton, WithExport};
-use PowerComponents\LivewirePowerGrid\Filters\Filter;
-use PowerComponents\LivewirePowerGrid\{Button, Column, Exportable, Footer, Header, PowerGrid, PowerGridComponent, PowerGridColumns};
+use PowerComponents\LivewirePowerGrid\Button;
+use PowerComponents\LivewirePowerGrid\Column;
+use PowerComponents\LivewirePowerGrid\Exportable;
+use PowerComponents\LivewirePowerGrid\Facades\Filter;
+use PowerComponents\LivewirePowerGrid\Facades\Rule;
+use PowerComponents\LivewirePowerGrid\Footer;
+use PowerComponents\LivewirePowerGrid\Header;
+use PowerComponents\LivewirePowerGrid\PowerGrid;
+use PowerComponents\LivewirePowerGrid\PowerGridFields;
+use PowerComponents\LivewirePowerGrid\PowerGridComponent;
+use PowerComponents\LivewirePowerGrid\Traits\WithExport;
 
 final class AllTransaction extends PowerGridComponent
 {
-    use ActionButton;
     use WithExport;
 
     public $type;
     public $status;
 
-    /*
-    |--------------------------------------------------------------------------
-    |  Features Setup
-    |--------------------------------------------------------------------------
-    | Setup Table's general features
-    |
-    */
     public function setUp(): array
     {
         $this->showCheckBox();
@@ -41,19 +40,6 @@ final class AllTransaction extends PowerGridComponent
         ];
     }
 
-    /*
-    |--------------------------------------------------------------------------
-    |  Datasource
-    |--------------------------------------------------------------------------
-    | Provides data to your Table using a Model or Collection
-    |
-    */
-
-    /**
-     * PowerGrid datasource.
-     *
-     * @return Builder<\App\Models\Transaction>
-     */
     public function datasource(): Builder
     {
         if ($this->type == 'all') {
@@ -63,19 +49,6 @@ final class AllTransaction extends PowerGridComponent
         }
     }
 
-    /*
-    |--------------------------------------------------------------------------
-    |  Relationship Search
-    |--------------------------------------------------------------------------
-    | Configure here relationships to be used by the Search and Table Filters.
-    |
-    */
-
-    /**
-     * Relationship search.
-     *
-     * @return array<string, array<int, string>>
-     */
     public function relationSearch(): array
     {
         return [
@@ -85,52 +58,27 @@ final class AllTransaction extends PowerGridComponent
         ];
     }
 
-    /*
-    |--------------------------------------------------------------------------
-    |  Add Column
-    |--------------------------------------------------------------------------
-    | Make Datasource fields available to be used as columns.
-    | You can pass a closure to transform/modify the data.
-    |
-    | ❗ IMPORTANT: When using closures, you must escape any value coming from
-    |    the database using the `e()` Laravel Helper function.
-    |
-    */
-    public function addColumns(): PowerGridColumns
+    public function fields(): PowerGridFields
     {
-        return PowerGrid::columns()
-            ->addColumn('id')
-            ->addColumn('user', fn (Transaction $model) => strtolower(e($model->user->username)))
-            ->addColumn('type')
-
-            ->addColumn('amount')
-            ->addColumn('status')
-            ->addColumn('sum')
-            ->addColumn('reference')
-            ->addColumn('withdraw_id')
-            ->addColumn('trading_id')
-            ->addColumn('created_at_formatted', fn (Transaction $model) => Carbon::parse($model->created_at)->format('d/m/Y H:i:s'));
+        return PowerGrid::fields()
+            ->add('id')
+            ->add('user_id')
+            ->add('user', fn (Transaction $model) => strtolower(e($model->user->username)))
+            ->add('type')
+            ->add('amount')
+            ->add('status')
+            ->add('sum')
+            ->add('reference')
+            ->add('withdraw_id')
+            ->add('trading_id')
+            ->add('created_at');
     }
 
-    /*
-    |--------------------------------------------------------------------------
-    |  Include Columns
-    |--------------------------------------------------------------------------
-    | Include the columns added columns, making them visible on the Table.
-    | Each column can be configured with properties, filters, actions...
-    |
-    */
-
-    /**
-     * PowerGrid Columns.
-     *
-     * @return array<int, Column>
-     */
     public function columns(): array
     {
         return [
             Column::make('Id', 'id'),
-            Column::make('User', 'user'),
+            Column::make('User id', 'user'),
             Column::make('Type', 'type')
                 ->sortable()
                 ->searchable(),
@@ -140,23 +88,21 @@ final class AllTransaction extends PowerGridComponent
                 ->searchable(),
 
             Column::make('Status', 'status')
-                ->toggleable(),
+                ->sortable()
+                ->searchable(),
 
             Column::make('Reference', 'reference')
                 ->sortable()
                 ->searchable(),
 
-            Column::make('Created at', 'created_at_formatted', 'created_at')
-                ->sortable(),
+            Column::make('Created at', 'created_at')
+                ->sortable()
+                ->searchable(),
 
+            Column::action('Action')
         ];
     }
 
-    /**
-     * PowerGrid Filters.
-     *
-     * @return array<int, Filter>
-     */
     public function filters(): array
     {
         return [
@@ -167,49 +113,10 @@ final class AllTransaction extends PowerGridComponent
         ];
     }
 
-    /*
-    |--------------------------------------------------------------------------
-    | Actions Method
-    |--------------------------------------------------------------------------
-    | Enable the method below only if the Routes below are defined in your app.
-    |
-    */
-
-    /**
-     * PowerGrid Transaction Action Buttons.
-     *
-     * @return array<int, Button>
-     */
-
-
-    public function actions(): array
+    #[\Livewire\Attributes\On('approve')]
+    public function approve($id): void
     {
-        return [
-            Button::make('approve', 'Approve')
-                ->class('btn btn-primary btn-sm')
-                ->emit('approve', ['id' => 'id']),
-
-            Button::make('reject', 'Reject')
-                ->class('btn btn-danger btn-sm')
-                ->emit('reject', ['id' => 'id']),
-        ];
-    }
-
-
-    protected function getListeners(): array
-    {
-        return array_merge(
-            parent::getListeners(),
-            [
-                'approve'   => 'approve',
-                'reject'   => 'reject',
-            ]
-        );
-    }
-
-    public function approve($id)
-    {
-        $transaction = Transaction::find($id['id']);
+        $transaction = Transaction::find($id);
 
         $withdraw = Withdraw::find($transaction->withdraw_id);
 
@@ -275,11 +182,11 @@ final class AllTransaction extends PowerGridComponent
                 $transaction->status = true;
                 $transaction->save();
             }
-            $this->dispatchBrowserEvent('showAlert', ['message' => 'Auto Withdraw Request Approved Successfully']);
+            $this->dispatch('showAlert', ['message' => 'Auto Withdraw Request Approved Successfully']);
             return;
         } else {
             // Request failed
-            $this->dispatchBrowserEvent('showAlertError', ['message' => 'Withdrawal request failed. HTTP Status Code: '  . $httpCode]);
+            $this->dispatch('showAlertError', ['message' => 'Withdrawal request failed. HTTP Status Code: '  . json_decode($response)->msg]);
             info("Withdrawal request failed. HTTP Status Code: " . $httpCode . "\n");
             info($response);
             return;
@@ -295,12 +202,13 @@ final class AllTransaction extends PowerGridComponent
             $transaction->status = true;
             $transaction->save();
         }
-        $this->dispatchBrowserEvent('showAlert', ['message' => 'Manual Withdraw Request Approved Successfully']);
+        $this->dispatch('showAlert', ['message' => 'Manual Withdraw Request Approved Successfully']);
     }
 
-    public function reject($id)
+    #[\Livewire\Attributes\On('reject')]
+    public function reject($id): void
     {
-        $transaction = Transaction::find($id['id']);
+        $transaction = Transaction::find($id);
 
         $withdraw = Withdraw::find($transaction->withdraw_id);
         $withdraw->delete();
@@ -310,29 +218,27 @@ final class AllTransaction extends PowerGridComponent
             $transaction->delete();
         }
 
-        $this->dispatchBrowserEvent('showAlert', ['message' => 'Withdraw Request Deleted Successfully']);
+        $this->dispatch('showAlert', ['message' => 'Withdraw Request Deleted Successfully']);
+    }
+
+    public function actions(Transaction $row): array
+    {
+        return [
+            Button::make('approve', 'Approve')
+                ->class('btn btn-primary btn-sm')
+                ->dispatch('approve', ['id' => $row->id]),
+
+            Button::make('reject', 'Reject')
+                ->class('btn btn-danger btn-sm')
+                ->dispatch('reject', ['id' => $row->id]),
+        ];
     }
 
 
-    /*
-    |--------------------------------------------------------------------------
-    | Actions Rules
-    |--------------------------------------------------------------------------
-    | Enable the method below to configure Rules for your Table and Action Buttons.
-    |
-    */
-
-    /**
-     * PowerGrid Transaction Action Rules.
-     *
-     * @return array<int, RuleActions>
-     */
-
-
-    public function actionRules(): array
+    public function actionRules($row): array
     {
         return [
-
+            // Hide button edit for ID 1
             //Hide button edit for ID 1
             Rule::button('approve')
                 ->when(fn ($transaction) => $transaction->type != 'withdraw')

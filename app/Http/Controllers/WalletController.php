@@ -44,15 +44,15 @@ class WalletController extends Controller
         }
 
         // checking authenticator code
-        if (auth()->user()->authenticator) {
-            $authenticator = new Authenticator();
-            $checkCode = $authenticator->verifyCode(auth()->user()->authenticator_code, $validatedData['code'], 0);
-            if (!$checkCode) {
-                return back()->withErrors(['Invalid code,Please try again']);
-            }
-        } else {
-            return back()->withErrors(['Please Activate Google Authentication on your account first.']);
-        }
+        // if (auth()->user()->authenticator) {
+        //     $authenticator = new Authenticator();
+        //     $checkCode = $authenticator->verifyCode(auth()->user()->authenticator_code, $validatedData['code'], 0);
+        //     if (!$checkCode) {
+        //         return back()->withErrors(['Invalid code,Please try again']);
+        //     }
+        // } else {
+        //     return back()->withErrors(['Please Activate Google Authentication on your account first.']);
+        // }
 
         
         $wallet = Wallet::updateOrCreate([

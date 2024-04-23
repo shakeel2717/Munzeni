@@ -16,18 +16,18 @@
                         aria-controls="password" aria-selected="false"><i class="bi bi-key"></i> Change
                         Password</button>
                 </li>
-                <li class="nav-item" role="presentation">
+                {{-- <li class="nav-item" role="presentation">
                     <button class="nav-link {{ isset($_GET['tab']) && $_GET['tab'] == 'google' ? 'show active' : '' }}"
                         id="contact-tab" data-bs-toggle="tab" data-bs-target="#contact" type="button" role="tab"
                         aria-controls="contact" aria-selected="false"><i class="bi bi-shield-lock-fill"></i> Google
                         Authenticator</button>
-                </li>
-                <li class="nav-item" role="presentation">
+                </li> --}}
+                {{-- <li class="nav-item" role="presentation">
                     <button class="nav-link {{ isset($_GET['tab']) && $_GET['tab'] == 'kyc' ? 'show active' : '' }}"
                         id="kyc-tab" data-bs-toggle="tab" data-bs-target="#kyc" type="button" role="tab"
                         aria-controls="kyc" aria-selected="false"><i class="bi bi-file-person"></i> KYC
                         Verification</button>
-                </li>
+                </li> --}}
             </ul>
             <div class="tab-content" id="myTabContent">
                 <div class="tab-pane fade {{ !isset($_GET['tab']) ? 'show active' : '' }}" id="home" role="tabpanel"
