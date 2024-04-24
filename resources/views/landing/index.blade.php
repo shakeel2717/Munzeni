@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>{{ env('APP_NAME') }}</title>
-    <link rel="icon" href="{{ asset('assets/favi.ico') }}">
+    <link rel="icon" href="{{ asset('assets/favi.png') }}">
 
     <link rel="stylesheet" href="{{ asset('assets/css/bootstrap.css') }}">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
@@ -16,7 +16,7 @@
 <body>
     <nav class="d-flex justify-content-between p-4 position-fixed top-0 bg-dark w-100" style="z-index: 999">
         <div class="brand">
-            <a href="{{ route('index') }}"><img src="{{ asset('logo-light.png') }}" alt="{{ env('APP_NAME') }}"></a>
+            <a href="{{ route('index') }}"><img src="{{ asset('assets/logo.png') }}" width="150" alt="{{ env('APP_NAME') }}"></a>
         </div>
         <ul class="nav gap-5 d-none d-sm-flex">
             <li class=""><a class="fs-5" href="{{ route('index') }}">Home</a></li>
