@@ -30,6 +30,6 @@
         </div>
     </div>
     <div class="mt-5 text-center">
-        <p>© {{ date('Y') }} {{ env('APP_NAME') }}. All Rights Reserved</p>
+        <p>© 2021 {{ env('APP_NAME') }}. All Rights Reserved</p>
     </div>
 @endsection

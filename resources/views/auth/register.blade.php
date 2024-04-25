@@ -63,7 +63,7 @@
     </div>
     <div class="mt-5 text-center">
         <p>Already have an account ? <a href="{{ route('login') }}" class="font-weight-medium text-primary"> Login</a> </p>
-        <p>© {{ date('Y') }} {{ env('APP_NAME') }}. All Rights Reserved</p>
+        <p>© 2021 {{ env('APP_NAME') }}. All Rights Reserved</p>
     </div>
 @endsection
 @section('footer')

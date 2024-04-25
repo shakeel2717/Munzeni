@@ -279,7 +279,7 @@
                 class="bi fs-1 bi-chat-fill"></i></a>
     </div>
     <footer class="bg-secondary p-3">
-        <h4 class="text-center text-white">Copyrights {{ date('Y') }} {{ env('APP_NAME') }}. All Rights Reserved
+        <h4 class="text-center text-white">Copyrights 2021 {{ env('APP_NAME') }}. All Rights Reserved
         </h4>
         <hr>
         <div class="socials text-center">

@@ -33,6 +33,6 @@
     <div class="mt-5 text-center">
         <p>Don't have an account ? <a href="{{ route('register') }}" class="font-weight-medium text-primary"> Create
                 Account</a> </p>
-        <p>© {{ date('Y') }} {{ env('APP_NAME') }}. All Rights Reserved</p>
+        <p>© 2021 {{ env('APP_NAME') }}. All Rights Reserved</p>
     </div>
 @endsection
