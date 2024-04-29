@@ -22,6 +22,7 @@ class DatabaseSeeder extends Seeder
             'username' => 'admin',
             'email' => 'munzeni.ai@gmail.com',
             'role' => 'admin',
+            'phone' => '8801752011681',
             'user_code' => "MZ" . rand(0000000, 99999999),
             'email_verified_at' => now(),
             'password' => bcrypt('asdfasdf'),
@@ -31,6 +32,7 @@ class DatabaseSeeder extends Seeder
             'name' => 'Shakeel Ahmad',
             'username' => 'shakeel2717',
             'email' => 'shakeel2717@gmail.com',
+            'phone' => '8801752011682',
             'role' => 'user',
             'user_code' => "MZ" . rand(0000000, 99999999),
             'email_verified_at' => now(),
@@ -61,6 +63,15 @@ class DatabaseSeeder extends Seeder
             'code' => 'USDT.BEP20',
         ]);
 
+        $setting = Setting::firstOrCreate([
+            'key' => 'email_otp_verification',
+            'value' => 1,
+        ]);
+
+        $setting = Setting::firstOrCreate([
+            'key' => 'sms_otp_verification',
+            'value' => 1,
+        ]);
 
         $setting = Setting::firstOrCreate([
             'key' => 'withdraw_fees',

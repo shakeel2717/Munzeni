@@ -7,6 +7,7 @@ use App\Events\PlanActivation;
 use App\Events\UserInvestInTrading;
 use App\Listeners\SendDirectCommission;
 use App\Listeners\SendDirectTradingCommission;
+use App\Listeners\SendOTPVerification;
 use App\Listeners\SendProfitToWinner;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
@@ -22,7 +23,8 @@ class EventServiceProvider extends ServiceProvider
      */
     protected $listen = [
         Registered::class => [
-            SendEmailVerificationNotification::class,
+            // SendEmailVerificationNotification::class,
+            SendOTPVerification::class
         ],
         PlanActivation::class => [
             SendDirectCommission::class

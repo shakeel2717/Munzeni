@@ -35,6 +35,7 @@ class RegisteredUserController extends Controller
             'email' => ['required', 'string', 'email', 'max:255', 'unique:' . User::class],
             'username' => ['required', 'string', 'max:255', 'unique:' . User::class],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
+            'phone' => ['required', 'numeric', 'digits:13', 'unique:' . User::class],
             'refer' => ['nullable', 'string'],
         ]);
 
@@ -63,14 +64,19 @@ class RegisteredUserController extends Controller
         }
 
 
+        $otp = generateRandomOTP(6);
+
         $user = User::create([
             'name' => $request->name,
             'username' => $request->username,
             'email' => $request->email,
             'refer' => $upliner ?? 'default',
+            'otp' => $otp,
+            'phone' => $request->phone,
             'user_code' => $code,
             'password' => Hash::make($request->password),
         ]);
+
 
         event(new Registered($user));
 

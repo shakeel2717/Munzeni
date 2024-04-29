@@ -21,3 +21,10 @@ function fetchLiveResult()
     $liveRate = $response->json();
     return $liveRate['price'];
 }
+
+function generateRandomOTP($digits = 6)
+{
+    $otp = rand(pow(10, $digits - 1), pow(10, $digits) - 1);
+
+    return $otp;
+}

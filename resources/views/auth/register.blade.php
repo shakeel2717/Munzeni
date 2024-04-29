@@ -10,12 +10,14 @@
             <div class="form-group auth-form-group-custom ">
                 <i class="ri-user-line auti-custom-input-icon"></i>
                 <label for="name">Full Name</label>
-                <input type="text" name="name" class="form-control" id="name" placeholder="Enter Full Name" value="{{ old('name') }}">
+                <input type="text" name="name" class="form-control" id="name" placeholder="Enter Full Name"
+                    value="{{ old('name') }}">
             </div>
             <div class="form-group auth-form-group-custom ">
                 <i class="ri-user-shared-fill auti-custom-input-icon"></i>
                 <label for="username">Username</label>
-                <input type="text" name="username" class="form-control" id="username" placeholder="Enter Username" value="{{ old('username') }}">
+                <input type="text" name="username" class="form-control" id="username" placeholder="Enter Username"
+                    value="{{ old('username') }}">
             </div>
             <div class="form-group auth-form-group-custom">
                 <i class="ri-user-shared-fill auti-custom-input-icon"></i>
@@ -26,7 +28,15 @@
             <div class="form-group auth-form-group-custom ">
                 <i class="ri-mail-line auti-custom-input-icon"></i>
                 <label for="useremail">Email</label>
-                <input type="email" name="email" class="form-control" id="useremail" placeholder="Enter email" value="{{ old('email') }}">
+                <input type="email" name="email" class="form-control" id="useremail" placeholder="Enter email"
+                    value="{{ old('email') }}">
+            </div>
+            <div class="form-group auth-form-group-custom ">
+                <i class="ri-mail-line auti-custom-input-icon"></i>
+                <label for="phone">Phone</label>
+                <input type="number" name="phone" class="form-control" id="phone" placeholder="Enter Phone"
+                    value="{{ old('phone') }}" pattern="[0-9]{13}">
+                <small>Format: 880XXXXXXXXXX</small>
             </div>
             <div class="form-group auth-form-group-custom">
                 <label for="password">Password</label>
