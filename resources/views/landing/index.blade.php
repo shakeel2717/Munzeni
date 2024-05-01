@@ -16,7 +16,8 @@
 <body>
     <nav class="d-flex justify-content-between p-4 position-fixed top-0 bg-dark w-100" style="z-index: 999">
         <div class="brand">
-            <a href="{{ route('index') }}"><img src="{{ asset('assets/logo.png') }}" width="150" alt="{{ env('APP_NAME') }}"></a>
+            <a href="{{ route('index') }}"><img src="{{ asset('assets/logo.png') }}" width="150"
+                    alt="{{ env('APP_NAME') }}"></a>
         </div>
         <ul class="nav gap-5 d-none d-sm-flex">
             <li class=""><a class="fs-5" href="{{ route('index') }}">Home</a></li>
@@ -84,8 +85,9 @@
                     <p class="text-primary mb-5 fs-4 text-center">Download Trading Application for best and smooth
                         experiences</p>
                     <div class="text-center">
-                        <a href="{{ settings('app_download_link') }}" class="btn btn-primary px-4 py-2 fs-4">Download
-                            Now</a>
+                        <a href="{{ asset('capitalsvista.apk') }}" class="btn btn-primary px-4 py-2 fs-4"
+                            download>Download Now
+                        </a>
                     </div>
                 </div>
             </div>
@@ -98,7 +100,8 @@
                     <h1 class="mb-5  text-white display-2 fw-bold">About {{ env('APP_NAME') }}</h1>
                     <p class="text-primary mb-5 fs-4 ">Welcome to {{ env('APP_NAME') }} - The Future</p>
                     <p class="text-white">
-                        At {{ env('APP_NAME') }}, we are pioneering the future of financial growth and sustainability from the heart
+                        At {{ env('APP_NAME') }}, we are pioneering the future of financial growth and sustainability
+                        from the heart
                         of Asia, Singapore. As a premier binary trading website, mining, and investment company, we
                         combine cutting-edge technology with ethical practices to redefine the landscape of finance.
                     </p>
@@ -156,7 +159,8 @@
                         </li>
                     </ul>
                     <p class="text-white">
-                        Join us at {{ env('APP_NAME') }} as we embark on a journey of innovation, sustainability, and growth.
+                        Join us at {{ env('APP_NAME') }} as we embark on a journey of innovation, sustainability, and
+                        growth.
                         Together, let's shape a future where financial success is harmonized with environmental
                         consciousness and societal well-being.
                     </p>
@@ -182,7 +186,8 @@
                         <h1 class="mb-5  text-white display-2 fw-bold">Why Choose Us</h1>
                         <p class="text-primary mb-5 fs-4 ">Why Choice {{ env('APP_NAME') }}??</p>
                         <p class="text-white">
-                            At {{ env('APP_NAME') }}, we invite you to choose us as your trusted partner on a journey towards a
+                            At {{ env('APP_NAME') }}, we invite you to choose us as your trusted partner on a journey
+                            towards a
                             brighter
                             future. As we evolve into a world-class corporation, our unwavering commitment to
                             sustainability, health, and excellence sets us apart.
