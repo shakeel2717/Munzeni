@@ -118,7 +118,7 @@
                                     @else
                                         <h4 class="mb-0 text-danger"> <i class="ri-close-circle-fill fs-lage"></i>
                                             Authentication Disabled</h4>
-                                        <form action="{{ route('user.google.store') }}" method="POST"
+                                        <form action="#" method="POST"
                                             enctype="multipart/form-data">
                                             @csrf
                                             <div class="form-group text-center">
@@ -167,7 +167,7 @@
                             </div>
                         </div>
                         @if (auth()->user()->kyc_status != 'approved')
-                            <form action="{{ route('user.kyc.store') }}" method="POST" enctype="multipart/form-data">
+                            <form action="#" method="POST" enctype="multipart/form-data">
                                 @csrf
                                 <div class="form-group">
                                     <label for="name">Full Name</label>
