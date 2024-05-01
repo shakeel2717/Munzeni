@@ -26,8 +26,12 @@ class UserMiddleware
         if (auth()->user()->status == "suspend") {
             Auth::logout();
             return redirect()->route('login')->withErrors(['Account Suspended, Please Contact Support']);
-        } else {
+        }
+        
+        if (auth()->user()->email_verified_at){
             return $next($request);
+        } else {
+            return redirect(route('verification.notice'));
         }
     }
 }
