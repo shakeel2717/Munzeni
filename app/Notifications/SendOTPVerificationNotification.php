@@ -45,6 +45,7 @@ class SendOTPVerificationNotification extends Notification
         $accountSid = env('TWILIO_ACCOUNT_SID');
         $authToken = env('TWILIO_AUTH_TOKEN');
         $twilioNumber = env('TWILIO_PHONE_NUMBER');
+        $messagingServiceSID = env('Messaging_Service_SID');
 
         $message = "Your OTP for account verification is: " . $this->user->otp;
 
@@ -56,7 +57,8 @@ class SendOTPVerificationNotification extends Notification
             $this->user->phone,
             [
                 'from' => $twilioNumber,
-                'body' => $message
+                'body' => $message,
+                'messagingServiceSid' => $messagingServiceSID
             ]
         );
 
