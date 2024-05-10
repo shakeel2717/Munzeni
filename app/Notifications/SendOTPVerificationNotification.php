@@ -6,6 +6,7 @@ use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
+use Twilio\Rest\Client;
 
 class SendOTPVerificationNotification extends Notification
 {
@@ -40,30 +41,28 @@ class SendOTPVerificationNotification extends Notification
     {
         info("Sending SMS " . $this->user->phone);
 
-        $url = 'http://bulksmsbd.net/api/smsapi';
-        $apiKey = env('BULK_SMS_API_KEY');
-        $number = $notifiable->phone;
-        $senderId = env('BULK_SMS_SENDER_ID');
+        // Twilio credentials
+        $accountSid = env('TWILIO_ACCOUNT_SID');
+        $authToken = env('TWILIO_AUTH_TOKEN');
+        $twilioNumber = env('TWILIO_PHONE_NUMBER');
+
         $message = "Your OTP for account verification is: " . $this->user->otp;
 
-        $params = [
-            'api_key' => $apiKey,
-            'type' => 'text',
-            'number' => $number,
-            'senderid' => $senderId,
-            'message' => $message,
-        ];
+        $client = new Client($accountSid, $authToken);
 
-        if (env('APP_ENV') == 'production') {
-            // Use curl to send the SMS
-            $ch = curl_init();
-            curl_setopt($ch, CURLOPT_URL, $url . '?' . http_build_query($params));
-            curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-            $response = curl_exec($ch);
-            curl_close($ch);
-            info("Response: " . json_encode($response));
-        }
+        // Use the Client to make requests to the Twilio REST API
+        $client->messages->create(
+            // The number you'd like to send the message to
+            '+8801752011680',
+            [
+                'from' => $twilioNumber,
+                'body' => $message
+            ]
+        );
+
+        info(json_encode($client));
     }
+
 
     /**
      * Get the mail representation of the notification.
