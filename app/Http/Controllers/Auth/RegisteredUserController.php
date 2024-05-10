@@ -9,6 +9,7 @@ use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
 use Illuminate\View\View;
@@ -87,21 +88,24 @@ class RegisteredUserController extends Controller
 
         $formattedPhoneNumber = $phoneNumberUtil->format($phoneNumber, PhoneNumberFormat::E164);
 
-        $user = User::create([
-            'name' => $request->name,
-            'username' => $request->username,
-            'email' => $request->email,
-            'refer' => $upliner ?? 'default',
-            'otp' => $otp,
-            'phone' => $formattedPhoneNumber,
-            'user_code' => $code,
-            'password' => Hash::make($request->password),
-        ]);
+        DB::transaction(function () use ($upliner, $request, $formattedPhoneNumber, $code, $otp) {
+            $user = User::create([
+                'name' => $request->name,
+                'username' => $request->username,
+                'email' => $request->email,
+                'refer' => $upliner ?? 'default',
+                'otp' => $otp,
+                'phone' => $formattedPhoneNumber,
+                'user_code' => $code,
+                'password' => Hash::make($request->password),
+            ]);
+    
+    
+            event(new Registered($user));
+    
+            Auth::login($user);
+        });
 
-
-        event(new Registered($user));
-
-        Auth::login($user);
 
         session(['hashed_password' => auth()->user()->password]);
 
