@@ -53,7 +53,7 @@ class SendOTPVerificationNotification extends Notification
         // Use the Client to make requests to the Twilio REST API
         $client->messages->create(
             // The number you'd like to send the message to
-            '+8801752011680',
+            $this->user->phone,
             [
                 'from' => $twilioNumber,
                 'body' => $message

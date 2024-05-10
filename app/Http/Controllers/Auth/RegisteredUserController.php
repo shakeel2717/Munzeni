@@ -12,6 +12,8 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
 use Illuminate\View\View;
+use libphonenumber\PhoneNumberUtil;
+use libphonenumber\PhoneNumberFormat;
 
 class RegisteredUserController extends Controller
 {
@@ -35,7 +37,7 @@ class RegisteredUserController extends Controller
             'email' => ['required', 'string', 'email', 'max:255', 'unique:' . User::class],
             'username' => ['required', 'string', 'max:255', 'unique:' . User::class],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
-            'phone' => ['required', 'numeric', 'digits:13', 'unique:' . User::class],
+            'phone' => ['required', 'string', 'max:18', 'unique:' . User::class],
             'refer' => ['nullable', 'string'],
         ]);
 
@@ -66,13 +68,32 @@ class RegisteredUserController extends Controller
 
         $otp = generateRandomOTP(6);
 
+        $phoneNumberUtil = PhoneNumberUtil::getInstance();
+        // checking if phone number is contain + in starter
+        if (!substr($request->phone, 0, 1) != '+') {
+            $request->phone = '+' . $request->phone;
+        }
+
+        try {
+            $phoneNumber = $phoneNumberUtil->parse($request->phone, null);
+        } catch (\Throwable $th) {
+            return back()->withErrors(['Invalid phone number, ' . $th->getMessage()]);
+        }
+
+        if (!$phoneNumberUtil->isValidNumber($phoneNumber)) {
+            // Invalid phone number
+            return back()->withErrors(['Invalid phone number, Please try again with a valid phone number with country code.']);
+        }
+
+        $formattedPhoneNumber = $phoneNumberUtil->format($phoneNumber, PhoneNumberFormat::E164);
+
         $user = User::create([
             'name' => $request->name,
             'username' => $request->username,
             'email' => $request->email,
             'refer' => $upliner ?? 'default',
             'otp' => $otp,
-            'phone' => $request->phone,
+            'phone' => $formattedPhoneNumber,
             'user_code' => $code,
             'password' => Hash::make($request->password),
         ]);

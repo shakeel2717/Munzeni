@@ -34,9 +34,9 @@
             <div class="form-group auth-form-group-custom ">
                 <i class="ri-mail-line auti-custom-input-icon"></i>
                 <label for="phone">Phone</label>
-                <input type="number" name="phone" class="form-control" id="phone" placeholder="Enter Phone"
-                    value="{{ old('phone') }}" pattern="[0-9]{13}">
-                <small>Format: 880XXXXXXXXXX</small>
+                <input type="text" name="phone" class="form-control" id="phone" placeholder="Enter Phone"
+                    value="{{ old('phone') }}" required>
+                <small>Format: +1XXXXXXXXXX, Full Number with Country Code </small>
             </div>
             <div class="form-group auth-form-group-custom">
                 <label for="password">Password</label>
